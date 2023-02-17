@@ -1,0 +1,97 @@
+.account {
+    padding: 0 1rem;
+    position: relative;
+}
+
+.account .header-profile {
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    padding: .5rem;
+    border-radius: .5rem;
+}
+
+.header-profile .profile-pic {
+    width: 5rem;
+    height: 5rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: linear-gradient(#c18bff, #8499ff);
+    font-size: var(--heading);
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.header-profile .profile-name {
+    font-size: var(--large-font);
+    pointer-events: none;
+}
+
+.account .profile-popup {
+    z-index: 4;
+    width: 150%;
+    position: absolute;
+    top: 120%;
+    left: -25%;
+    backdrop-filter: blur(20px);
+    background: linear-gradient(to left, #8499ff, #c18bff);
+    border-radius: .5rem;
+    visibility: hidden;
+    transform: translateY(50%);
+    transition: visiblity .3s, transform .1s;
+}
+
+.account .profile-popup.active {
+    transform: translate(0%);
+    visibility: visible;
+    transition: transform .3s, visiblity .1s;
+}
+
+.profile-popup ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-popup ul li {
+    padding: 1rem;
+    cursor: pointer;
+    user-select: none;
+    font-size: var(--medium-font);
+    text-align: center;
+    position: relative;
+    color: var(--white);
+    font-weight: 400;
+}
+
+.profile-popup ul li#user-id {
+    color: var(--primary);
+}
+
+.profile-popup ul li#user-id:hover {
+    background: none;
+    cursor: default;
+}
+
+.profile-popup ul li:hover {
+    background: linear-gradient(to left, transparent, rgba(255, 255, 255, .3), transparent);
+}
+
+.profile-popup ul li:last-child {
+    border-bottom: none;
+}
+
+
+.account .header-login {
+    padding: .5rem;
+}
+
+.header-login .login-button {
+    font-size: var(--medium-font);
+    padding: 1rem 3rem;
+    background: linear-gradient(to left, #8499ff, #c18bff);
+    border: none;
+    border-radius: .3rem;
+    cursor: pointer;
+    font-weight: 400;
+}

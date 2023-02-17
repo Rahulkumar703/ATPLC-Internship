@@ -1,0 +1,89 @@
+.header {
+    width: 100%;
+    height: 10rem;
+    padding: 1rem 5%;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+header .heading {
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+}
+
+.heading .logo {
+    width: 6rem;
+    cursor: pointer;
+    height: 6rem;
+}
+
+.heading .text {
+    cursor: pointer;
+}
+
+.header-actions {
+    display: flex;
+
+}
+
+.hamburger {
+    width: 4rem;
+    height: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    cursor: pointer;
+    display: none;
+}
+
+.hamburger span {
+    display: block;
+    height: .5rem;
+    border-radius: .3rem;
+    background: var(--text);
+    pointer-events: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Responsive */
+
+@media screen and (max-width: 650px) {
+    html {
+        font-size: 60%;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .header-actions {
+        position: absolute;
+        top: 10rem;
+        left: 0;
+        display: none;
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .header-actions.active {
+        display: flex;
+        padding: 0 3rem;
+    }
+
+    .account .profile-popup.active {
+        left: -30%;
+    }
+
+}
