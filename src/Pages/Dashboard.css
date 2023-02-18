@@ -1,22 +1,38 @@
 .dashboard-page {
-    justify-content: flex-start;
+    align-items: start;
+    justify-content: start;
 }
 
-.dashboard-page .score-card {
+.dashboard-page .score-card-container,
+.dashboard-page .recent-task-container,
+.dashboard-page .task-list-container {
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(33rem, 1fr));
-    gap: 1rem;
+    padding: 1rem;
 }
 
-.score-card .card:nth-child(1) {
+
+.score-card-container .card:nth-child(1) {
     --button-color: var(--success);
 }
 
-.score-card .card:nth-child(2) {
+.score-card-container .card:nth-child(2) {
     --button-color: var(--warning);
 }
 
-.score-card .card:nth-child(3) {
+.score-card-container .card:nth-child(3) {
     --button-color: var(--danger);
 }
+
+.dashboard-page .title {
+    font-size: var(--heading);
+    padding: 1rem;
+    margin-top: 5rem;
+}
+
+
+
+
+
+/* Responsive */
+
+@media screen and (max-width:600px) {}

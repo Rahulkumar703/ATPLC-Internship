@@ -16,7 +16,7 @@
     display: grid;
     place-items: center;
     border-radius: 50%;
-    background: linear-gradient(#c18bff, #8499ff);
+    background: var(--primary);
     font-size: var(--large-font);
     font-weight: bold;
     user-select: none;

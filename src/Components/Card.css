@@ -1,10 +1,16 @@
 .card {
-    background: var(--bg-dark);
+    background: var(--bg);
     gap: 1rem;
     padding: 1rem;
     border-radius: .5rem;
     flex-shrink: 0;
     min-width: 30rem;
+    transition: .3s;
+}
+
+.card:hover {
+    transform: scale(1.005);
+    box-shadow: 0 1rem 5rem -4.5rem var(--button-color);
 }
 
 .card .card-top {
@@ -16,8 +22,12 @@
     width: fit-content;
     background: var(--button-color);
     border-radius: .3rem;
-    font-size: var(--large-font);
+    color: var(--black);
     user-select: none;
+}
+
+.card-top .icon span {
+    font-size: var(--heading);
 }
 
 .card .card-middle {

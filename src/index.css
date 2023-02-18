@@ -6,8 +6,11 @@
   --black: #000000;
   --primary: #6075ff;
   --success: #41f1b6;
+  --success-tint: #a8ffe2;
   --warning: #ffbb55;
+  --warning-tint: #ffdeac;
   --danger: #ff7782;
+  --danger-tint: #ffb1b8;
   --small-font: 1.2rem;
   --medium-font: 1.6rem;
   --large-font: 2rem;
@@ -37,6 +40,7 @@ body {
   --bg: hsl(0, 0%, 93%);
   --bg-dark: hsl(0, 0%, 88%);
   --text: #101010;
+  --faded-text: rgba(0, 0, 0, 0.3);
 
   background: var(--bg-light);
   color: var(--text);
@@ -50,6 +54,7 @@ body.dark {
   --bg: hsl(0, 0%, 13%);
   --bg-dark: hsl(0, 0%, 8%);
   --text: #ffffff;
+  --faded-text: rgba(255, 255, 255, 0.3);
 
   background: var(--bg-light);
   color: var(--text);
@@ -76,6 +81,31 @@ img {
 
 /* Helper Class */
 
+.pending {
+  background: var(--warning-tint);
+}
+
+.success {
+  background: var(--success-tint);
+}
+
+.danger {
+
+  background: var(--danger-tint);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  padding: 0 .5rem;
+}
+
+.icon span {
+  font-size: var(--medium-font);
+  color: var(--text);
+  user-select: none;
+}
+
 .col {
   display: flex;
   flex-direction: column;
@@ -86,11 +116,30 @@ img {
   flex-direction: row;
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: 1rem;
+}
+
 
 
 @media screen and (max-width: 650px) {
   html {
     font-size: 50%;
+  }
+
+}
+
+
+
+
+
+/* Responsive */
+
+@media screen and (max-width:600px) {
+  .dashboard-page {
+    grid-template-columns: 1fr;
   }
 
 }
