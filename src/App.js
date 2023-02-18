@@ -17,20 +17,31 @@ function App() {
 
   return (
     <div className="App">
+
+      {/* Header */}
       <Header />
+
+      {/* Main */}
       <Routes>
-        {/* For Home Route */}
+
+        {/* Route For Home */}
         {
           userState.isLoggedIn ?
             <Route exact path="/" element={<Dashboard />} />
             :
             <Route exact path="/" element={<Home />} />
         }
+
         {/* Route For Profile */}
         <Route exact path="/profile" element={<Profile />} />
-        {/* 404 Page Route */}
+
+        {/* Route For 404 Error Page */}
         <Route exact path="*" element={<Error />} />
+
       </Routes>
+
+      {/* Footer */}
+
     </div>
   );
 }

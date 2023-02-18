@@ -4,8 +4,10 @@ export const initialUser = {
     user: {
         name: "Devil",
         rollno: "FS58",
-        submittedTask: 2,
-        pendingTasks: 1
+        totalTasks: 20,
+        submittedTasks: 14,
+        pendingTasks: 3,
+        rejectedTasks: 1,
     }
 }
 
