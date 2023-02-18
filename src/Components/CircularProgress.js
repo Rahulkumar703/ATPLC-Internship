@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import './CircularProgress.css'
 
 export default function CircularProgress({ width, percentage }) {

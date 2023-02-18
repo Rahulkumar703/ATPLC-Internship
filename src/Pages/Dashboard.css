@@ -5,7 +5,7 @@
 .dashboard-page .score-card {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(33rem, 1fr));
     gap: 1rem;
 }
 

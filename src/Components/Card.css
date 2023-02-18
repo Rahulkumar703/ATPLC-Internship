@@ -17,6 +17,7 @@
     background: var(--button-color);
     border-radius: .3rem;
     font-size: var(--large-font);
+    user-select: none;
 }
 
 .card .card-middle {

@@ -6,8 +6,7 @@ export const initialUser = {
         rollno: "FS58",
         totalTasks: 20,
         submittedTasks: 14,
-        pendingTasks: 3,
-        rejectedTasks: 1,
+        pendingTasks: 6,
     }
 }
 
