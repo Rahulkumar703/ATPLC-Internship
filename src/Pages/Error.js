@@ -3,9 +3,9 @@ import './CommonPage.css'
 
 function Error() {
     return (
-        <div className='page error-page'>
+        <main className='page error-page'>
             <h1>404 not Found</h1>
-        </div>
+        </main>
     )
 }
 

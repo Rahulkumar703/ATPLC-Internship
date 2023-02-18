@@ -6,6 +6,7 @@
     position: sticky;
     top: 0;
     z-index: 5;
+    background: var(--bg-dark);
 }
 
 header .heading {
@@ -26,29 +27,7 @@ header .heading {
 
 .header-actions {
     display: flex;
-
 }
-
-.hamburger {
-    width: 4rem;
-    height: 3rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    cursor: pointer;
-    display: none;
-}
-
-.hamburger span {
-    display: block;
-    height: .5rem;
-    border-radius: .3rem;
-    background: var(--text);
-    pointer-events: none;
-}
-
-
-
 
 
 
@@ -60,30 +39,22 @@ header .heading {
 /* Responsive */
 
 @media screen and (max-width: 650px) {
-    html {
-        font-size: 60%;
-    }
-
-    .hamburger {
-        display: flex;
-    }
 
     .header-actions {
         position: absolute;
+        z-index: 5;
         top: 10rem;
         left: 0;
         display: none;
         width: 100%;
         justify-content: flex-end;
+        background: var(--bg);
     }
 
     .header-actions.active {
         display: flex;
-        padding: 0 3rem;
-    }
-
-    .account .profile-popup.active {
-        left: -30%;
+        padding: 1rem 3rem;
+        background: var(--bg-dark);
     }
 
 }

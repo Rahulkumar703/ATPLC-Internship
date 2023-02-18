@@ -1,6 +1,5 @@
 .account {
     padding: 0 1rem;
-    position: relative;
 }
 
 .account .header-profile {
@@ -12,14 +11,15 @@
 }
 
 .header-profile .profile-pic {
-    width: 5rem;
-    height: 5rem;
+    width: 4.5rem;
+    height: 4.5rem;
     display: grid;
     place-items: center;
     border-radius: 50%;
     background: linear-gradient(#c18bff, #8499ff);
-    font-size: var(--heading);
+    font-size: var(--large-font);
     font-weight: bold;
+    user-select: none;
     pointer-events: none;
 }
 
@@ -29,23 +29,25 @@
 }
 
 .account .profile-popup {
-    z-index: 4;
-    width: 150%;
+    z-index: 5;
+    width: 30%;
+    min-width: 30rem;
     position: absolute;
-    top: 120%;
-    left: -25%;
-    backdrop-filter: blur(20px);
-    background: linear-gradient(to left, #8499ff, #c18bff);
+    top: 10.5rem;
+    right: .5rem;
+    background: var(--bg-dark);
+    padding: 1rem 0;
     border-radius: .5rem;
     visibility: hidden;
     transform: translateY(50%);
     transition: visiblity .3s, transform .1s;
+    pointer-events: none;
 }
 
 .account .profile-popup.active {
     transform: translate(0%);
     visibility: visible;
-    transition: transform .3s, visiblity .1s;
+    pointer-events: all;
 }
 
 .profile-popup ul {
@@ -53,19 +55,33 @@
     flex-direction: column;
 }
 
-.profile-popup ul li {
+.profile-popup ul li,
+.profile-popup ul li a {
     padding: 1rem;
     cursor: pointer;
     user-select: none;
     font-size: var(--medium-font);
     text-align: center;
     position: relative;
-    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.profile-popup ul li a {
+    padding: 0;
+    flex: 1;
+}
+
+li .text {
+    color: var(--text);
     font-weight: 400;
 }
 
-.profile-popup ul li#user-id {
+.profile-popup ul li#user-id .text {
     color: var(--primary);
+    font-weight: 600;
 }
 
 .profile-popup ul li#user-id:hover {
@@ -74,13 +90,13 @@
 }
 
 .profile-popup ul li:hover {
-    background: linear-gradient(to left, transparent, rgba(255, 255, 255, .3), transparent);
+    background: linear-gradient(to left, transparent, var(--bg-light), transparent);
 }
 
-.profile-popup ul li:last-child {
-    border-bottom: none;
+.profile-popup ul li:hover .text,
+.profile-popup ul li:hover .icon {
+    color: var(--primary);
 }
-
 
 .account .header-login {
     padding: .5rem;
@@ -88,10 +104,31 @@
 
 .header-login .login-button {
     font-size: var(--medium-font);
-    padding: 1rem 3rem;
+    padding: .5rem 1.5rem;
     background: linear-gradient(to left, #8499ff, #c18bff);
     border: none;
     border-radius: .3rem;
     cursor: pointer;
     font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.login-button .text {
+    font-weight: 600;
+}
+
+
+
+
+/* Responsive */
+
+@media screen and (max-width: 650px) {
+
+    .account .profile-popup.active {
+        top: 8rem;
+    }
+
 }

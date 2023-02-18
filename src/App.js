@@ -8,7 +8,7 @@ import Header from './Components/Header';
 // Pages
 import Dashboard from './Pages/Dashboard'
 import Home from './Pages/Home'
-import Login from './Pages/Login'
+import Profile from './Pages/Profile'
 import Error from './Pages/Error'
 
 function App() {
@@ -26,8 +26,8 @@ function App() {
             :
             <Route exact path="/" element={<Home />} />
         }
-        {/* Route For LogIn */}
-        <Route exact path="/login" element={<Login />} />
+        {/* Route For Profile */}
+        <Route exact path="/profile" element={<Profile />} />
         {/* 404 Page Route */}
         <Route exact path="*" element={<Error />} />
       </Routes>

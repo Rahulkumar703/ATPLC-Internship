@@ -33,11 +33,11 @@ export default function Theme() {
         <div className="theme">
             {
                 isDarkTheme ?
-                    <span className="material-symbols-outlined icon" onClick={setLightTheme}>
+                    <span className="material-symbols-rounded icon" onClick={setLightTheme}>
                         light_mode
                     </span >
                     :
-                    <span className="material-symbols-outlined icon" onClick={setDarkTheme}>
+                    <span className="material-symbols-rounded icon" onClick={setDarkTheme}>
                         dark_mode
                     </span>
             }

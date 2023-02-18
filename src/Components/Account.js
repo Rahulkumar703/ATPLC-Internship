@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom';
 import userContext from '../Context/User/userContext'
 import './Account.css'
 
-export default function Account() {
+export default function Account({ accountRef }) {
 
     const { userState, dispatch } = useContext(userContext);
     const [popUpStatus, setPopUpStatus] = useState(false);
@@ -10,9 +11,10 @@ export default function Account() {
 
     useEffect(() => {
         document.addEventListener('click', (e) => {
-            if (e.target !== popUpRef.current) setPopUpStatus(false);
+            if (e.target !== popUpRef.current)
+                setPopUpStatus(false);
         })
-    })
+    }, [])
 
     const logOut = () => {
         dispatch({ type: "LOG_OUT" });
@@ -24,7 +26,7 @@ export default function Account() {
         setPopUpStatus(!popUpStatus);
     }
     return (
-        <div className="account">
+        <div className="account" ref={accountRef}>
             {
                 userState.isLoggedIn
                     ?
@@ -37,17 +39,48 @@ export default function Account() {
                         </div>
                         <div className={`profile-popup ${popUpStatus ? 'active' : ''}`}>
                             <ul>
-                                <li id='user-id'>Id : {userState.user.rollno}</li>
-                                <li>Profile</li>
-                                <li onClick={logOut}>Log Out</li>
+                                <li id='user-id'>
+                                    <div className="icon">
+
+                                    </div>
+                                    <div className="text">Id : {userState.user.rollno}</div>
+                                </li>
+                                <li>
+                                    <Link to="/profile">
+                                        <div className="icon">
+                                            <span className="material-symbols-rounded">
+                                                person
+                                            </span>
+                                        </div>
+                                        <div className="text">Profile
+                                        </div>
+                                    </Link>
+                                </li>
+                                <li onClick={logOut}>
+                                    <Link to="/">
+                                        <div className="icon">
+                                            <span className="material-symbols-rounded">
+                                                logout
+                                            </span>
+                                        </div>
+                                        <div className="text">Log Out</div>
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
                     </>
                     :
                     <div className="header-login">
-                        <button className="login-button" onClick={logIn}>Log in</button>
+                        <button className="login-button" onClick={logIn}>
+                            <div className="icon">
+                                <span className="material-symbols-rounded">
+                                    login
+                                </span>
+                            </div>
+                            <div className="text">Log In</div>
+                        </button>
                     </div>
             }
-        </div>
+        </div >
     )
 }

@@ -1,0 +1,45 @@
+.hamburger {
+    width: 4rem;
+    height: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    cursor: pointer;
+    display: none;
+}
+
+.hamburger span {
+    display: block;
+    height: .5rem;
+    border-radius: .3rem;
+    background: var(--text);
+    pointer-events: none;
+    transition: .1s ease;
+    transform-origin: center left;
+}
+
+.hamburger:hover span {
+    background: var(--primary);
+}
+
+.hamburger.active span:nth-child(2) {
+    transform: translateX(5%);
+    visibility: hidden;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translateY(-50%);
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translateY(50%);
+}
+
+
+/* Responsive */
+
+@media screen and (max-width: 650px) {
+    .hamburger {
+        display: flex;
+    }
+}

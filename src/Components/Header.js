@@ -1,19 +1,18 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Header.css'
 import Theme from './Theme'
 import Account from './Account'
+import Hamburger from './Hamburger'
 
 function Header() {
 
+    const headerRef = useRef();
     const [hamburgerStatus, setHamburgerStatus] = useState(false);
 
-    const toggleHamburger = () => {
-        setHamburgerStatus(!hamburgerStatus);
-    }
 
     return (
-        <header className='header row'>
+        <header className='header row' ref={headerRef}>
             <div className="heading row">
                 <div className="logo">
                     <figure>
@@ -28,15 +27,11 @@ function Header() {
                     </Link>
                 </div>
             </div>
-            <div className={`header-actions ${hamburgerStatus ? 'active' : ''}`}>
+            <div className={`header-actions ${hamburgerStatus ? 'active' : ''}`} >
                 <Theme />
                 <Account />
             </div>
-            <div className={`hamburger ${hamburgerStatus ? 'active' : ''}`} onClick={toggleHamburger}>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <Hamburger hamburgerStatus={hamburgerStatus} setHamburgerStatus={setHamburgerStatus} />
         </header>
     )
 }
