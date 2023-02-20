@@ -36,14 +36,14 @@
     position: absolute;
     top: 8.5rem;
     right: .5rem;
-    background: var(--secondary);
+    background: var(--bg-light);
     padding: 1rem 0;
     border-radius: .5rem;
     visibility: hidden;
     transform: translateY(50%);
     transition: visiblity .3s, transform .1s;
     pointer-events: none;
-    box-shadow: 0 10px 50px rgba(0, 0, 0, .3), inset 0 -5px 20px rgba(70, 70, 70, 0.3);
+    box-shadow: 0 1rem 5rem -2rem var(--black);
 }
 
 .account .profile-popup.active {
@@ -74,12 +74,13 @@
 .profile-popup ul li a {
     padding: 0;
     flex: 1;
+    color: var(--text);
 }
 
 li .text {
-    color: var(--text);
     font-weight: 400;
 }
+
 
 .profile-popup ul li#user-id .text {
     color: var(--primary);
@@ -92,11 +93,11 @@ li .text {
 }
 
 .profile-popup ul li:hover {
-    background: linear-gradient(to left, transparent, var(--bg-light), transparent);
+    background: linear-gradient(to left, transparent, var(--bg), transparent);
 }
 
 .profile-popup ul li:hover .text,
-.profile-popup ul li:hover .icon {
+.profile-popup ul li:hover .icon span {
     color: var(--primary);
 }
 
@@ -105,6 +106,7 @@ li .text {
 }
 
 .header-login .login-button {
+    min-width: max-content;
     font-size: var(--medium-font);
     padding: 1rem 1.5rem;
     background: var(--primary);
@@ -116,7 +118,7 @@ li .text {
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    color: var(--white);
+    /* color: var(--white); */
 }
 
 .login-button .text {
@@ -128,7 +130,7 @@ li .text {
 
 /* Responsive */
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 1200px) {
 
     .account .profile-popup.active {
         top: 8rem;

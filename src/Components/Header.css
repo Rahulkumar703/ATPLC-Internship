@@ -2,20 +2,23 @@
     position: sticky;
     top: 0;
     z-index: 5;
+    transition: box-shadow .3s;
 }
 
 .header .row {
-    width: 100%;
     height: 8rem;
-    padding: 1rem 3%;
+    padding: 1rem 2%;
     align-items: center;
-    transition: .3s;
 }
 
 .header.active {
     background: var(--secondary);
-    box-shadow: 0 10px 50px var(--bg-dark);
+    box-shadow: 0 1rem 5rem -2rem var(--black);
     color: var(--white);
+}
+
+.header.active .hamburger span {
+    background: var(--white);
 }
 
 header .heading {
@@ -37,6 +40,8 @@ header .heading {
 .header-actions {
     display: flex;
     align-items: center;
+    justify-content: end;
+    flex: 5;
 }
 
 
@@ -48,7 +53,7 @@ header .heading {
 
 /* Responsive */
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 1200px) {
 
     .header-actions {
         position: absolute;
@@ -57,6 +62,11 @@ header .heading {
         left: 0;
         flex-direction: column-reverse;
         display: none;
+        width: 100%;
+        box-shadow: inset 0 1rem 5rem -2rem var(--black);
+    }
+
+    .header .row {
         width: 100%;
     }
 

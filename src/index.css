@@ -101,10 +101,16 @@ img {
 }
 
 .icon span {
-  font-size: inherit;
-  color: inherit;
+  font-size: var(--large-font);
+  color: var(--text);
   user-select: none;
 }
+
+.icon~.text {
+  color: var(--text);
+  font-size: var(--medium-font);
+}
+
 
 .col {
   display: flex;
@@ -137,9 +143,12 @@ img {
 
 /* Responsive */
 
-@media screen and (max-width:600px) {
+@media screen and (max-width:650px) {
   .dashboard-page {
     grid-template-columns: 1fr;
   }
 
+  :root {
+    --medium-font: 1.8rem;
+  }
 }

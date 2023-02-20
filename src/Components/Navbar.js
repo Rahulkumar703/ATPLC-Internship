@@ -9,7 +9,7 @@ export default function Navbar({ hamburgerStatus, setHamburgerStatus }) {
     }
 
     return (
-        <nav className={`navbar`}>
+        <nav className={`navbar ${hamburgerStatus ? 'active' : ''}`}>
             <ul className="nav-list">
                 <li className="nav-items">
                     <Link onClick={handleLinkClick} to="/" className="nav-links">

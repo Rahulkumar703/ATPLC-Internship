@@ -13,6 +13,7 @@ function Header() {
 
     useEffect(() => {
         window.onscroll = () => {
+            setHamburgerStatus(false)
             if (window.scrollY > 50) {
                 headerRef.current.classList.add('active');
             }
@@ -20,6 +21,14 @@ function Header() {
                 headerRef.current.classList.remove('active');
         }
     }, [])
+
+    useEffect(() => {
+        if (hamburgerStatus) {
+            headerRef.current.classList.add('active');
+        }
+        else
+            headerRef.current.classList.remove('active');
+    }, [hamburgerStatus])
 
 
     return (

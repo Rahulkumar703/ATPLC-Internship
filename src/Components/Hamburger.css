@@ -22,6 +22,7 @@
     background: var(--primary);
 }
 
+
 .hamburger.active span:nth-child(2) {
     transform: translateX(5%);
     visibility: hidden;
@@ -38,7 +39,7 @@
 
 /* Responsive */
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 1200px) {
     .hamburger {
         display: flex;
     }
