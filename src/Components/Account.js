@@ -49,7 +49,10 @@ export default function Account({ accountRef }) {
                             <div className="profile-pic">
                                 {userState.name[0]}
                             </div>
-                            <div className="profile-name">{userState.name}</div>
+                            <div className="profile-details col">
+                                <div className="profile-name">{userState.name}</div>
+                                <div className="profile-email">{userState.email}</div>
+                            </div>
                         </div>
                         <div className={`profile-popup ${popUpStatus ? 'active' : ''}`}>
                             <ul>

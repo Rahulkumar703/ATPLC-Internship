@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import Card from '../Components/Card'
 import './CommonPage.css'
 import './Dashboard.css'
@@ -9,15 +9,12 @@ import TaskCard from '../Components/TaskCard'
 export default function Dashboard() {
 
 
-    const { userState, setUserState } = useContext(userContext);
-    const { taskState, setTaskState } = useContext(taskContext);
-    const { totalTaskState, setTotalTaskState } = useState();
-    const { pendingTaskState, setPendingTaskState } = useState();
+    const { userState } = useContext(userContext);
+    const { taskState } = useContext(taskContext);
 
 
 
     const totalTasks = taskState.length;
-    setTotalTaskState(totalTasks);
 
 
 
@@ -25,7 +22,6 @@ export default function Dashboard() {
         return task.status === 'pending';
     }).length;
 
-    setPendingTaskState(pendingTasks);
 
 
     return (

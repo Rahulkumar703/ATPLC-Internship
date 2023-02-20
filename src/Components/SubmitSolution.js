@@ -1,13 +1,12 @@
 import React, { useContext, useState } from 'react'
 import './SubmitSolution.css'
-import userContext from '../Context/User/userContext'
+// import userContext from '../Context/User/userContext'
 import taskContext from '../Context/Tasks/taskContext';
-import TaskState from '../Context/Tasks/TaskState';
 
 
 export default function SubmitSolution({ id, value, type, placeholder }) {
 
-    const { userState, setUserState } = useContext(userContext);
+    // const { userState, setUserState } = useContext(userContext);
     const { taskState, setTaskState } = useContext(taskContext);
 
     const [inputValue, setInputValue] = useState(value);

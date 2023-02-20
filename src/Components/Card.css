@@ -10,7 +10,7 @@
 
 .card:hover {
     transform: scale(1.005);
-    box-shadow: 0 1rem 5rem -4.5rem var(--button-color);
+    box-shadow: 0 1rem 5rem -3rem var(--button-color);
 }
 
 .card .card-top {

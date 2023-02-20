@@ -22,7 +22,7 @@ export default function Navbar({ hamburgerStatus, setHamburgerStatus }) {
                     </Link>
                 </li>
                 <li className="nav-items">
-                    <Link onClick={handleLinkClick} to="#about" className="nav-links">
+                    <Link onClick={handleLinkClick} to="/#about" className="nav-links">
                         <div className="icon">
                             <span className="material-symbols-rounded">
                                 help
@@ -32,7 +32,7 @@ export default function Navbar({ hamburgerStatus, setHamburgerStatus }) {
                     </Link>
                 </li>
                 <li className="nav-items">
-                    <Link onClick={handleLinkClick} to="#our-expertise" className="nav-links">
+                    <Link onClick={handleLinkClick} to="/#our-expertise" className="nav-links">
                         <div className="icon">
                             <span className="material-symbols-rounded">
                                 local_library
@@ -52,7 +52,7 @@ export default function Navbar({ hamburgerStatus, setHamburgerStatus }) {
                     </Link>
                 </li>
                 <li className="nav-items">
-                    <Link onClick={handleLinkClick} to="#feedback" className="nav-links">
+                    <Link onClick={handleLinkClick} to="/#feedback" className="nav-links">
                         <div className="icon">
                             <span className="material-symbols-rounded">
                                 forum

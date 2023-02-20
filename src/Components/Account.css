@@ -24,9 +24,16 @@
     color: var(--white);
 }
 
-.header-profile .profile-name {
-    font-size: var(--large-font);
+.header-profile .profile-details {
     pointer-events: none;
+}
+
+.profile-details .profile-name {
+    font-size: var(--large-font);
+}
+
+.profile-details .profile-email {
+    font-size: var(--small-font);
 }
 
 .account .profile-popup {

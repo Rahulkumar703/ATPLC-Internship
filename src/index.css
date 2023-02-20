@@ -37,8 +37,8 @@ html {
 /* Body */
 
 body {
-  --bg-light: hsl(0, 0%, 98%);
-  --bg: hsl(0, 0%, 93%);
+  --bg-light: hsl(330, 100%, 99%);
+  --bg: hsl(0, 0%, 94%);
   --bg-dark: hsl(0, 0%, 88%);
   --text: #101010;
   --faded-text: rgba(0, 0, 0, 0.3);
