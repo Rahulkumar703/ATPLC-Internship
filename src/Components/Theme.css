@@ -11,6 +11,7 @@
     border-radius: 50%;
     font-size: var(--large-font);
     user-select: none;
-    background: var(--bg);
+    background: var(--text);
+    color: var(--bg);
     box-shadow: 0 1px 5px -2px var(--black), inset 0 1px 2px -5px var(--black);
 }

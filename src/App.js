@@ -10,6 +10,7 @@ import Dashboard from './Pages/Dashboard'
 import Home from './Pages/Home'
 import Profile from './Pages/Profile'
 import Error from './Pages/Error'
+import Footer from './Components/Footer';
 
 function App() {
 
@@ -25,22 +26,18 @@ function App() {
       <Routes>
 
         {/* Route For Home */}
-        {
-          userState.isLoggedIn ?
-            <Route exact path="/" element={<Dashboard />} />
-            :
-            <Route exact path="/" element={<Home />} />
-        }
+        <Route exact path="/" element={Object.entries(userState).length ? <Dashboard /> : <Home />} />
 
         {/* Route For Profile */}
-        <Route exact path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<Profile />} />
 
         {/* Route For 404 Error Page */}
-        <Route exact path="*" element={<Error />} />
+        <Route path="*" element={<Error />} />
 
       </Routes>
 
       {/* Footer */}
+      <Footer />
 
     </div>
   );

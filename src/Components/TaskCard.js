@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import SubmitSolution from './SubmitSolution';
 import './TaskCard.css'
 
-export default function RecentTask({ isRecent, no, name, desc, date, isPending, solution }) {
+export default function TaskCard({ isRecent, id, name, desc, date, status, solution }) {
 
     const newDate = new Date(date);
 
@@ -12,7 +12,7 @@ export default function RecentTask({ isRecent, no, name, desc, date, isPending, 
 
             <div className="top row">
                 <div className="left">
-                    <div className="task-number">{no < 10 ? ` 0${no}` : no}</div>
+                    <div className="task-number">{id < 10 ? ` 0${id}` : id}</div>
                 </div>
                 <div className="right col">
                     <div className="task-name">
@@ -47,7 +47,7 @@ export default function RecentTask({ isRecent, no, name, desc, date, isPending, 
                                 <div className="text">Not Submitted</div>
                             </div>
                             :
-                            isPending ?
+                            status === "pending" ?
                                 <div className="status-label pending row">
                                     <div className="icon">
                                         <span className="material-symbols-rounded">
@@ -78,7 +78,7 @@ export default function RecentTask({ isRecent, no, name, desc, date, isPending, 
                 {
                     cardToggle
                     &&
-                    < SubmitSolution value={solution} type="url" placeholder={`Ex - https://github.com/<your_username>/ATPLC-Training-Daily_Tasks`} />
+                    < SubmitSolution id={id} value={solution} type="url" placeholder={`Ex - https://github.com/<your_username>/ATPLC-Training-Daily_Tasks`} />
                 }
 
             </div>

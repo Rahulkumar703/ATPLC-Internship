@@ -1,27 +1,36 @@
 import React, { useContext, useState } from 'react'
 import './SubmitSolution.css'
 import userContext from '../Context/User/userContext'
+import taskContext from '../Context/Tasks/taskContext';
+import TaskState from '../Context/Tasks/TaskState';
 
 
-export default function SubmitSolution({ value, type, placeholder }) {
-    const { dispatch } = useContext(userContext);
+export default function SubmitSolution({ id, value, type, placeholder }) {
+
+    const { userState, setUserState } = useContext(userContext);
+    const { taskState, setTaskState } = useContext(taskContext);
+
     const [inputValue, setInputValue] = useState(value);
     const [isDisabled, setisDisabled] = useState(value !== '');
+
     const handleChange = (e) => {
         setInputValue(e.target.value)
 
     }
     const handleEdit = () => {
-        setisDisabled(false)
+        setisDisabled(false);
     }
     const handleSubmit = () => {
+        let updatedList = taskState.map(task => {
+            if (task.id === id && task.solution !== inputValue) {
+                return { ...task, solution: inputValue, status: 'pending' }; //gets everything that was already in task, and updates "done"
+            }
+            return task; // else return unmodified item 
+        });
+        setTaskState(updatedList);
         setisDisabled(true);
-        if (value !== inputValue) {
-            dispatch({ type: "UPDATE_SOLUTION", payload: inputValue })
-
-        }
-
     }
+
     return (
         <div className="submit-solution">
             <div className="input-box">

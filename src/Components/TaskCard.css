@@ -119,11 +119,14 @@
 
 .bottom .toogle-button:hover {
     background: var(--primary);
+    color: var(--white);
 }
 
 .bottom .toogle-button.active {
     background: var(--bg);
+    color: var(--text);
 }
+
 
 .toogle-button .text {
     font-size: var(--medium-font);
@@ -131,7 +134,7 @@
 
 .toogle-button .icon span {
     font-size: var(--large-font);
-    transition: .3s;
+    transition: .3s, color 0;
 }
 
 .bottom .toogle-button.active .icon span {

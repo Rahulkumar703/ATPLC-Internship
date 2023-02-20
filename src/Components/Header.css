@@ -1,12 +1,21 @@
 .header {
-    width: 100%;
-    height: 10rem;
-    padding: 1rem 5%;
-    align-items: center;
     position: sticky;
     top: 0;
     z-index: 5;
-    background: var(--bg-dark);
+}
+
+.header .row {
+    width: 100%;
+    height: 8rem;
+    padding: 1rem 3%;
+    align-items: center;
+    transition: .3s;
+}
+
+.header.active {
+    background: var(--secondary);
+    box-shadow: 0 10px 50px var(--bg-dark);
+    color: var(--white);
 }
 
 header .heading {
@@ -27,6 +36,7 @@ header .heading {
 
 .header-actions {
     display: flex;
+    align-items: center;
 }
 
 
@@ -43,18 +53,21 @@ header .heading {
     .header-actions {
         position: absolute;
         z-index: 5;
-        top: 10rem;
+        top: 8rem;
         left: 0;
+        flex-direction: column-reverse;
         display: none;
         width: 100%;
-        justify-content: flex-end;
-        background: var(--bg);
     }
 
     .header-actions.active {
         display: flex;
         padding: 1rem 3rem;
-        background: var(--bg-dark);
+        background: var(--secondary);
+    }
+
+    .header-actions.active .row {
+        justify-content: space-between;
     }
 
 }

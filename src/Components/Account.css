@@ -21,6 +21,7 @@
     font-weight: bold;
     user-select: none;
     pointer-events: none;
+    color: var(--white);
 }
 
 .header-profile .profile-name {
@@ -33,15 +34,16 @@
     width: 30%;
     min-width: 30rem;
     position: absolute;
-    top: 10.5rem;
+    top: 8.5rem;
     right: .5rem;
-    background: var(--bg-dark);
+    background: var(--secondary);
     padding: 1rem 0;
     border-radius: .5rem;
     visibility: hidden;
     transform: translateY(50%);
     transition: visiblity .3s, transform .1s;
     pointer-events: none;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, .3), inset 0 -5px 20px rgba(70, 70, 70, 0.3);
 }
 
 .account .profile-popup.active {
@@ -104,8 +106,8 @@ li .text {
 
 .header-login .login-button {
     font-size: var(--medium-font);
-    padding: .5rem 1.5rem;
-    background: linear-gradient(to left, #8499ff, #c18bff);
+    padding: 1rem 1.5rem;
+    background: var(--primary);
     border: none;
     border-radius: .3rem;
     cursor: pointer;
@@ -114,6 +116,7 @@ li .text {
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    color: var(--white);
 }
 
 .login-button .text {

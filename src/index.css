@@ -4,7 +4,8 @@
 :root {
   --white: #ffffff;
   --black: #000000;
-  --primary: #6075ff;
+  --primary: #9c394b;
+  --secondary: #4a4e5a;
   --success: #41f1b6;
   --success-tint: #a8ffe2;
   --warning: #ffbb55;
@@ -69,7 +70,7 @@ ul {
 
 a {
   text-decoration: none;
-  color: var(--text);
+  color: inherit;
 }
 
 img {
@@ -97,12 +98,11 @@ img {
 .icon {
   display: grid;
   place-items: center;
-  padding: 0 .5rem;
 }
 
 .icon span {
-  font-size: var(--medium-font);
-  color: var(--text);
+  font-size: inherit;
+  color: inherit;
   user-select: none;
 }
 

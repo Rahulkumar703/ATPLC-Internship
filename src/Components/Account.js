@@ -5,7 +5,7 @@ import './Account.css'
 
 export default function Account({ accountRef }) {
 
-    const { userState, dispatch } = useContext(userContext);
+    const { userState, setUserState } = useContext(userContext);
     const [popUpStatus, setPopUpStatus] = useState(false);
     const popUpRef = useRef();
 
@@ -16,26 +16,40 @@ export default function Account({ accountRef }) {
         })
     }, [])
 
-    const logOut = () => {
-        dispatch({ type: "LOG_OUT" });
-    }
-    const logIn = () => {
-        dispatch({ type: "LOG_IN" });
-    }
     const togglePopUp = () => {
         setPopUpStatus(!popUpStatus);
+    }
+    const logOut = async () => {
+        await setUserState({});
+    }
+    const logIn = () => {
+
+        setUserState({
+            id: "FS57",
+            name: "Rahul",
+            email: "rahulkumar703@outlook.com",
+            course: "Full Stack",
+            course_type: "training",
+            tasks: [
+                { id: 1, status: "pending", solution: "https://github.com" },
+                { id: 3, status: "verified", solution: "https://github.com" },
+            ]
+        });
+
+        window.location.assign('/');
+
     }
     return (
         <div className="account" ref={accountRef}>
             {
-                userState.isLoggedIn
+                Object.entries(userState).length
                     ?
                     <>
                         <div className="header-profile row" ref={popUpRef} onClick={togglePopUp}>
                             <div className="profile-pic">
-                                {userState.user.name.slice(0, 1)}
+                                {userState.name[0]}
                             </div>
-                            <div className="profile-name">Devil</div>
+                            <div className="profile-name">{userState.name}</div>
                         </div>
                         <div className={`profile-popup ${popUpStatus ? 'active' : ''}`}>
                             <ul>
@@ -43,7 +57,7 @@ export default function Account({ accountRef }) {
                                     <div className="icon">
 
                                     </div>
-                                    <div className="text">Id : {userState.user.rollno}</div>
+                                    <div className="text">Id : {userState.id}</div>
                                 </li>
                                 <li>
                                     <Link to="/profile">
@@ -57,14 +71,12 @@ export default function Account({ accountRef }) {
                                     </Link>
                                 </li>
                                 <li onClick={logOut}>
-                                    <Link to="/">
-                                        <div className="icon">
-                                            <span className="material-symbols-rounded">
-                                                logout
-                                            </span>
-                                        </div>
-                                        <div className="text">Log Out</div>
-                                    </Link>
+                                    <div className="icon">
+                                        <span className="material-symbols-rounded">
+                                            logout
+                                        </span>
+                                    </div>
+                                    <div className="text">Log Out</div>
                                 </li>
                             </ul>
                         </div>

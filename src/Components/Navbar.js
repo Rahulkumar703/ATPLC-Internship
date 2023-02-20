@@ -1,0 +1,67 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+import './Navbar.css'
+
+export default function Navbar({ hamburgerStatus, setHamburgerStatus }) {
+
+    const handleLinkClick = () => {
+        setHamburgerStatus(false)
+    }
+
+    return (
+        <nav className={`navbar`}>
+            <ul className="nav-list">
+                <li className="nav-items">
+                    <Link onClick={handleLinkClick} to="/" className="nav-links">
+                        <div className="icon">
+                            <span className="material-symbols-rounded">
+                                home
+                            </span>
+                        </div>
+                        <div className="text">Home</div>
+                    </Link>
+                </li>
+                <li className="nav-items">
+                    <Link onClick={handleLinkClick} to="#about" className="nav-links">
+                        <div className="icon">
+                            <span className="material-symbols-rounded">
+                                help
+                            </span>
+                        </div>
+                        <div className="text">About</div>
+                    </Link>
+                </li>
+                <li className="nav-items">
+                    <Link onClick={handleLinkClick} to="#our-expertise" className="nav-links">
+                        <div className="icon">
+                            <span className="material-symbols-rounded">
+                                local_library
+                            </span>
+                        </div>
+                        <div className="text">Our Expertise</div>
+                    </Link>
+                </li>
+                <li className="nav-items">
+                    <Link onClick={handleLinkClick} to="/gallery" className="nav-links">
+                        <div className="icon">
+                            <span className="material-symbols-rounded">
+                                gallery_thumbnail
+                            </span>
+                        </div>
+                        <div className="text">Gallery</div>
+                    </Link>
+                </li>
+                <li className="nav-items">
+                    <Link onClick={handleLinkClick} to="#feedback" className="nav-links">
+                        <div className="icon">
+                            <span className="material-symbols-rounded">
+                                forum
+                            </span>
+                        </div>
+                        <div className="text">Feedback</div>
+                    </Link>
+                </li>
+            </ul>
+        </nav>
+    )
+}
