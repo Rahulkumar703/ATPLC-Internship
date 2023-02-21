@@ -35,8 +35,9 @@ export default function Account({ accountRef }) {
                 { id: 3, status: "verified", solution: "https://github.com" },
             ]
         });
-
-        window.location.assign('/');
+        if (window.location !== '/') {
+            window.location.assign('/');
+        }
 
     }
     return (

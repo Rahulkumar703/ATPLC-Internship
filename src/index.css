@@ -73,6 +73,11 @@ a {
   color: inherit;
 }
 
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
 img {
   width: 100%;
   height: 100%;
