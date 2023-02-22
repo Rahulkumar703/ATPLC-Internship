@@ -23,7 +23,6 @@ export default function Account({ accountRef }) {
         await setUserState({});
     }
     const logIn = () => {
-
         setUserState({
             id: "FS57",
             name: "Rahul",
@@ -35,9 +34,6 @@ export default function Account({ accountRef }) {
                 { id: 3, status: "verified", solution: "https://github.com" },
             ]
         });
-        if (window.location !== '/') {
-            window.location.assign('/');
-        }
 
     }
     return (

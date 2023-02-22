@@ -4,8 +4,13 @@ import './Home.css'
 
 function Home() {
     return (
-        <main className='page home-page'>
-            <div className="hero-section">
+        <section className='page home-page'>
+            {/* <div className="hero-section">
+                <div className="hero-section-images">
+                    <img src="/Assets/Illustrator/female.png" alt="hero" />
+                    <img src="/Assets/Illustrator/hand.png" alt="hero" />
+                    <img src="/Assets/Illustrator/male.png" alt="hero" />
+                </div>
                 <div className="hero-section-content">
                     <h1 className="hero-section-heading">ATPLC</h1>
                     <h2 className="hero-section-sub-heading">A Practical Learning Platform</h2>
@@ -21,8 +26,8 @@ function Home() {
                         <div className="text">Go Down</div>
                     </button>
                 </div>
-            </div >
-        </main >
+            </div > */}
+        </section >
     )
 }
 

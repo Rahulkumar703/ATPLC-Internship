@@ -11,6 +11,7 @@ import Home from './Pages/Home'
 import Profile from './Pages/Profile'
 import Error from './Pages/Error'
 import Footer from './Components/Footer';
+import Courses from './Pages/Courses';
 
 function App() {
 
@@ -23,18 +24,23 @@ function App() {
       <Header />
 
       {/* Main */}
-      <Routes>
+      <main>
+        <Routes>
 
-        {/* Route For Home */}
-        <Route exact path="/" element={Object.entries(userState).length ? <Dashboard /> : <Home />} />
+          {/* Route For Home */}
+          <Route exact path="/" element={Object.entries(userState).length ? <Dashboard /> : <Home />} />
 
-        {/* Route For Profile */}
-        <Route path="/profile" element={<Profile />} />
+          {/* Route For Profile */}
+          <Route path="/courses" element={<Courses />} />
 
-        {/* Route For 404 Error Page */}
-        <Route path="*" element={<Error />} />
+          {/* Route For Profile */}
+          <Route path="/profile" element={<Profile />} />
 
-      </Routes>
+          {/* Route For 404 Error Page */}
+          <Route path="*" element={<Error />} />
+
+        </Routes>
+      </main>
 
       {/* Footer */}
       <Footer />

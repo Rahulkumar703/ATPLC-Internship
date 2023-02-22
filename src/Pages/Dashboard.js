@@ -25,7 +25,7 @@ export default function Dashboard() {
 
 
     return (
-        <main className='page dashboard-page'>
+        <section className='page dashboard-page'>
             <div className="title">
                 <h3>Dashboard</h3>
             </div>
@@ -66,6 +66,6 @@ export default function Dashboard() {
                     }).reverse()
                 }
             </div>
-        </main>
+        </section>
     )
 }

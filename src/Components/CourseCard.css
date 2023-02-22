@@ -1,0 +1,87 @@
+.course-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    border-radius: .5rem;
+    transition: .3s;
+    overflow: hidden;
+    gap: 1rem;
+    border: .1rem solid var(--bg-dark);
+}
+
+.course-card:hover {
+    box-shadow: 0 1rem 5rem -3rem var(--black);
+}
+
+.course-card .course-image {
+    flex: .6;
+}
+
+.course-card .course-heading {
+    flex: .4;
+    padding: 3rem 1rem;
+    padding-top: 1rem;
+}
+
+.course-heading .course-name {
+    font-size: var(--large-font);
+    padding: .5rem 0 .2rem 0;
+    font-weight: 600;
+}
+
+.course-heading .course-duration {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+}
+
+.course-duration .icon span,
+.course-duration .text {
+    color: var(--faded-text);
+    font-size: var(--medium-font);
+}
+
+.course-heading .course-techs {
+    display: flex;
+    gap: .5rem;
+    flex-wrap: wrap;
+    padding: 1rem 0 0 0;
+}
+
+.course-techs .tech {
+    background: var(--bg-dark);
+    font-size: var(--small-font);
+    border: 1px solid var(--bg-light);
+    padding: .5rem 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.course-techs .tech:hover {
+    border: 1px solid var(--primary);
+    box-shadow: 0 .5rem 2rem -1rem var(--black);
+}
+
+.course-card .enroll-course {
+    background: transparent;
+}
+
+.enroll-course .enroll-course-btn {
+    background: var(--secondary);
+    display: block;
+    text-align: center;
+    font-size: var(--medium-font);
+    border: none;
+    padding: 1rem 2rem;
+    color: var(--white);
+    transition: .3s;
+    width: 100%;
+}
+
+.enroll-course .enroll-course-btn:hover {
+    background: var(--primary);
+    box-shadow: 0 1rem 2rem -1rem var(--black);
+    cursor: pointer;
+
+}

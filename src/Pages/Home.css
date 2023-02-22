@@ -6,26 +6,37 @@
 .hero-section {
     min-height: calc(100vh - 10rem);
     width: 100%;
-    background: url('../Assets/Illustrator/hero.png');
-    background-position: 60% 0;
-    background-size: contain;
-    background-repeat: no-repeat;
     display: flex;
+    flex-direction: column;
+    position: relative;
+    background: #000;
+}
+
+.hero-section .hero-section-images {
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    overflow: hidden;
+    background: #f18f8f;
+}
+
+.hero-section .hero-section-images img {
+    object-fit: contain;
 }
 
 .hero-section .hero-section-content {
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    height: 100%;
-    flex: .5;
-    transform: translateX(50%);
     text-align: center;
 
 }
 
 .hero-section-content .hero-section-heading {
-    font-size: 6.4rem;
+    font-size: 5rem;
     color: var(--primary);
     text-shadow: -1px 1px 1px var(--black);
 }
@@ -42,8 +53,10 @@
 }
 
 .hero-section .scroll-down {
-    align-self: flex-end;
-    margin-bottom: 2rem;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .scroll-down .scroll-down-btn {
@@ -71,9 +84,3 @@
 
 
 /* Responsive */
-
-@media screen and (max-width:700px) {
-    .hero-section {
-        min-height: 50vh;
-    }
-}

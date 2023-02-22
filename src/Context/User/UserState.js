@@ -13,7 +13,7 @@ const UserState = (props) => {
             { id: 3, status: "verified", solution: "https://github.com" },
         ]
     }
-    const [userState, setUserState] = useState(initialUser);
+    const [userState, setUserState] = useState({});
 
     return (
         <UserContext.Provider value={{ userState, setUserState }}>
