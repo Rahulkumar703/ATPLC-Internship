@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom';
 import userContext from '../Context/User/userContext'
 import './Account.css'
 import LogInWithGithub from './LogInWithGithub';
@@ -50,7 +49,7 @@ export default function Account({ accountRef }) {
                                     <div className="text">Id : {userState.id}</div>
                                 </li>
                                 <li>
-                                    <a href={userState.githubProfile} target="_blank">
+                                    <a href={userState.githubProfile} target="_blank" rel="noreferrer">
                                         <div className="icon">
                                             <span className="material-symbols-rounded">
                                                 person

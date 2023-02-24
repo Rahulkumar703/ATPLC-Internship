@@ -6,7 +6,7 @@ import axios from 'axios';
 
 
 export default function LogInWithGithub() {
-    const { userState, setUserState } = useContext(userContext);
+    const { setUserState } = useContext(userContext);
 
     const getRestData = async (email) => {
         try {

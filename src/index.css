@@ -73,8 +73,7 @@ a {
   color: inherit;
 }
 
-a,
-button {
+* {
   -webkit-tap-highlight-color: transparent;
 }
 
