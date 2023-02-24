@@ -35,10 +35,10 @@ export default function Navbar({ hamburgerStatus, setHamburgerStatus }) {
                     <Link onClick={handleLinkClick} to="/courses" className="nav-links">
                         <div className="icon">
                             <span className="material-symbols-rounded">
-                                local_library
+                                book
                             </span>
                         </div>
-                        <div className="text">Our Expertise</div>
+                        <div className="text">Courses</div>
                     </Link>
                 </li>
                 <li className="nav-items">

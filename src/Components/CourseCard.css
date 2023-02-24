@@ -1,11 +1,11 @@
 .course-card {
     display: flex;
     flex-direction: column;
-    background: var(--bg);
+    /* background: var(--bg); */
     border-radius: .5rem;
     transition: .3s;
     overflow: hidden;
-    gap: 1rem;
+    position: relative;
 }
 
 .course-card:hover {
@@ -13,22 +13,50 @@
 }
 
 .course-card .course-image {
-    flex: .6;
+    height: 50%;
+    font-size: 10rem;
+    font-weight: 800;
+    text-align: center;
+    color: var(--bg-light);
+    font-family: 'Poppins', sans-serif;
+    padding-block: 3rem;
+    text-shadow: .5rem .5rem .5rem var(--bg-dark), .6rem .6rem .5rem var(--bg-light), 1rem 1rem .5rem var(--bg-dark);
+    font-size: italic;
+    transform: translateY(50%);
+    z-index: 1;
+    background: var(--bg);
+    transition: .3s;
 }
 
-.course-card .course-heading {
-    flex: .4;
+.course-card .course-content {
+    height: 50%;
     padding: 3rem 1rem;
     padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    transition: .3s;
+    background: var(--bg);
+    transform: translateY(-50%);
+    z-index: -1;
 }
 
-.course-heading .course-name {
+.course-card:hover .course-content,
+.course-card:hover .course-image {
+    transform: translateY(0%);
+    z-index: 1;
+}
+
+
+
+.course-name {
     font-size: var(--large-font);
-    padding: .5rem 0 .2rem 0;
+    padding: .5rem 0 .5rem 0;
     font-weight: 600;
+    text-align: center;
 }
 
-.course-heading .course-duration {
+.course-content .course-duration {
     display: flex;
     gap: .5rem;
     align-items: center;
@@ -40,7 +68,7 @@
     font-size: var(--medium-font);
 }
 
-.course-heading .course-techs {
+.course-content .course-techs {
     display: flex;
     gap: .5rem;
     flex-wrap: wrap;
@@ -57,13 +85,12 @@
     transition: .3s;
 }
 
-.course-techs .tech:hover {
-    border: 1px solid var(--primary);
-    box-shadow: 0 .5rem 2rem -1rem var(--black);
-}
 
-.course-card .enroll-course {
+.course-content .enroll-course {
     background: transparent;
+    margin-top: 1rem;
+    border-radius: .3rem;
+    overflow: hidden;
 }
 
 .enroll-course .enroll-course-btn {

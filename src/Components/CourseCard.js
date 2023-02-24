@@ -6,14 +6,12 @@ export default function CourseCard({ courseName, courseDuration, coverImage }) {
     return (
         <div className='course-card'>
             <div className="course-image">
-                <figure>
-                    <img src={coverImage} alt="Course Cover" />
-                </figure>
+                {"</>"}
             </div>
-            <div className="course-heading">
-                <div className="course-name">
-                    {courseName}
-                </div>
+            <div className="course-name">
+                {courseName}
+            </div>
+            <div className="course-content">
                 <div className="course-duration">
                     <div className="icon">
                         <span className="material-symbols-rounded">
@@ -31,9 +29,9 @@ export default function CourseCard({ courseName, courseDuration, coverImage }) {
                     <div className="tech">PHP</div>
                     <div className="tech">MySQL</div>
                 </div>
-            </div>
-            <div className="enroll-course">
-                <Link to='/' className="enroll-course-btn">Enroll Now</Link>
+                <div className="enroll-course">
+                    <Link to='/' className="enroll-course-btn">Enroll Now</Link>
+                </div>
             </div>
         </div>
     )
