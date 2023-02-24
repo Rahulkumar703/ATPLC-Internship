@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
 import userContext from '../Context/User/userContext'
 import './Account.css'
+import LogInWithGithub from './LogInWithGithub';
 
 export default function Account({ accountRef }) {
 
@@ -22,20 +23,9 @@ export default function Account({ accountRef }) {
     const logOut = async () => {
         await setUserState({});
     }
-    const logIn = () => {
-        setUserState({
-            id: "FS57",
-            name: "Rahul",
-            email: "rahulkumar703@outlook.com",
-            course: "Full Stack",
-            course_type: "training",
-            tasks: [
-                { id: 1, status: "pending", solution: "https://github.com" },
-                { id: 3, status: "verified", solution: "https://github.com" },
-            ]
-        });
 
-    }
+
+
     return (
         <div className="account" ref={accountRef}>
             {
@@ -44,7 +34,7 @@ export default function Account({ accountRef }) {
                     <>
                         <div className="header-profile row" ref={popUpRef} onClick={togglePopUp}>
                             <div className="profile-pic">
-                                {userState.name[0]}
+                                <img src={userState.profileImg} alt="profile" />
                             </div>
                             <div className="profile-details col">
                                 <div className="profile-name">{userState.name}</div>
@@ -60,7 +50,7 @@ export default function Account({ accountRef }) {
                                     <div className="text">Id : {userState.id}</div>
                                 </li>
                                 <li>
-                                    <Link to="/profile">
+                                    <a href={userState.githubProfile} target="_blank">
                                         <div className="icon">
                                             <span className="material-symbols-rounded">
                                                 person
@@ -68,7 +58,7 @@ export default function Account({ accountRef }) {
                                         </div>
                                         <div className="text">Profile
                                         </div>
-                                    </Link>
+                                    </a>
                                 </li>
                                 <li onClick={logOut}>
                                     <div className="icon">
@@ -83,14 +73,7 @@ export default function Account({ accountRef }) {
                     </>
                     :
                     <div className="header-login">
-                        <button className="login-button" onClick={logIn}>
-                            <div className="icon">
-                                <span className="material-symbols-rounded">
-                                    login
-                                </span>
-                            </div>
-                            <div className="text">Log In</div>
-                        </button>
+                        <LogInWithGithub />
                     </div>
             }
         </div >

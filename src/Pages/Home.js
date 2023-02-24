@@ -5,7 +5,7 @@ import './Home.css'
 function Home() {
     return (
         <section className='page home-page'>
-            {/* <div className="hero-section">
+            <div className="hero-section">
                 <div className="hero-section-images">
                     <img src="/Assets/Illustrator/female.png" alt="hero" />
                     <img src="/Assets/Illustrator/hand.png" alt="hero" />
@@ -26,7 +26,7 @@ function Home() {
                         <div className="text">Go Down</div>
                     </button>
                 </div>
-            </div > */}
+            </div >
         </section >
     )
 }

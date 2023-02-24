@@ -18,9 +18,7 @@ export default function Dashboard() {
 
 
 
-    const pendingTasks = userState.tasks.filter((task) => {
-        return task.status === 'pending';
-    }).length;
+    const pendingTasks = 1
 
 
 

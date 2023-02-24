@@ -6,7 +6,6 @@
     transition: .3s;
     overflow: hidden;
     gap: 1rem;
-    border: .1rem solid var(--bg-dark);
 }
 
 .course-card:hover {

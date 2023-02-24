@@ -1,0 +1,46 @@
+.login-button {
+    min-width: max-content;
+    font-size: var(--medium-font);
+    padding: 1rem 1.5rem;
+    background: transparent;
+    border: none;
+    border-radius: .3rem;
+    cursor: pointer;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    border: .2rem solid var(--text);
+    transition: .3s;
+}
+
+.login-button:hover .text,
+.login-button:hover .icon span {
+    color: var(--white);
+}
+
+.login-button:hover {
+    border-color: var(--primary);
+    background: var(--primary);
+    box-shadow: 0 1rem 2rem -1rem var(--black);
+}
+
+.login-button .text,
+.login-button .icon span {
+    color: var(--text);
+    font-weight: 600;
+}
+
+
+
+
+/* Responsive */
+
+@media screen and (max-width: 1200px) {
+
+    .account .profile-popup.active {
+        top: 8rem;
+    }
+
+}

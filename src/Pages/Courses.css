@@ -1,7 +1,8 @@
 .courses-page {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
-    grid-auto-rows: 50rem;
+    /* grid-auto-rows: 50rem; */
     align-items: flex-start;
     padding: 2rem 5%;
+    gap: 2rem;
 }

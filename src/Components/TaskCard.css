@@ -93,6 +93,7 @@
     align-items: center;
     padding: .5rem 1rem;
     border-radius: 1rem;
+    gap: .5rem;
 }
 
 .status-label .icon span {
@@ -106,7 +107,7 @@
 }
 
 .bottom .toogle-button {
-    padding: .8rem 1rem;
+    padding: 1rem 1rem;
     align-items: center;
     justify-content: center;
     gap: .5rem;
@@ -119,11 +120,19 @@
 
 .bottom .toogle-button:hover {
     background: var(--primary);
+}
+
+.bottom .toogle-button:hover .icon span,
+.bottom .toogle-button:hover .text {
     color: var(--white);
 }
 
 .bottom .toogle-button.active {
     background: var(--bg);
+}
+
+.bottom .toogle-button.active:hover .icon span,
+.bottom .toogle-button.active:hover .text {
     color: var(--text);
 }
 

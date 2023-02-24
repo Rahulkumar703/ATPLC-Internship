@@ -51,7 +51,7 @@ export default function TaskCard({ isRecent, id, name, desc, date, status, solut
                                 <div className="status-label pending row">
                                     <div className="icon">
                                         <span className="material-symbols-rounded">
-                                            timer
+                                            schedule
                                         </span>
                                     </div>
                                     <div className="text">Verification Pending</div>
