@@ -15,9 +15,8 @@
     transition: .3s;
 }
 
-.login-button:hover .text,
-.login-button:hover .icon span {
-    color: var(--white);
+header.active .login-button {
+    border: .2rem solid var(--white);
 }
 
 .login-button:hover {
@@ -26,12 +25,25 @@
     box-shadow: 0 1rem 2rem -1rem var(--black);
 }
 
+header.active .login-button:hover {
+    border-color: var(--primary);
+}
+
 .login-button .text,
 .login-button .icon span {
     color: var(--text);
     font-weight: 600;
 }
 
+.login-button:hover .text,
+.login-button:hover .icon span {
+    color: var(--white);
+}
+
+header.active .login-button .text,
+header.active .login-button .icon span {
+    color: var(--white);
+}
 
 
 

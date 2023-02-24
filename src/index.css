@@ -32,6 +32,13 @@ html {
   /* font-family: 'Babylonica', cursive;
   font-family: 'Poppins', sans-serif; */
   font-family: 'Inter', sans-serif;
+  scroll-behavior: smooth;
+
+}
+
+::selection {
+  color: var(--bg-dark);
+  background: var(--bg-dark);
 }
 
 /* Body */

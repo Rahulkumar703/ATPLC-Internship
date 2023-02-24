@@ -23,7 +23,7 @@ function Home() {
                                 keyboard_double_arrow_down
                             </span>
                         </div>
-                        <div className="text">Go Down</div>
+                        <a href='#footer' className="text" onClick={() => window.scrollTo(0, 500)}>Go Down</a>
                     </button>
                 </div>
             </div >
