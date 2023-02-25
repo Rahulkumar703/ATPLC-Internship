@@ -11,6 +11,7 @@ export default function LogInWithGithub() {
         console.log(process.env.GITHUB_CLIENT_ID);
         const params = new URLSearchParams(window.location.search)
         let code = params.get('code')
+        console.log(code);
         if (code) {
 
             const data = getData(code);
@@ -31,7 +32,7 @@ export default function LogInWithGithub() {
     }
 
     return (
-        <a href='https://github.com/login/oauth/authorize?client_id=3110d0751356961f272d' className="login-button">
+        <a href='https://github.com/login/oauth/authorize?client_id=090bc39471397c0d7bff' className="login-button">
             <div className="icon">
                 <span className="material-symbols-rounded">
                     login
