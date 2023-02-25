@@ -2,52 +2,36 @@
 // import userContext from '../Context/User/userContext';
 import './LogInWithGithub.css'
 // import { auth, provider, signInWithPopup } from '../Firebase/config'
-// import axios from 'axios';
-
+import axios from 'axios';
+import { useEffect } from 'react';
 
 export default function LogInWithGithub() {
-    // const { setUserState } = useContext(userContext);
 
-    // const getRestData = async (email) => {
-    //     try {
-    //         const res = await axios.get(`https://api.github.com/search/users?q=${email}`)
-    //         const data = res.data.items;
-    //         if (data.length) {
-    //             const user = data[0];
-    //             console.log(data);
-    //             return { username: user.login, githubProfile: user.html_url, }
-    //         }
+    useEffect(() => {
+        console.log(process.env.GITHUB_CLIENT_ID);
+        const params = new URLSearchParams(window.location.search)
+        let code = params.get('code')
+        if (code) {
 
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
+            const data = getData(code);
 
-    const logIn = async () => {
+            console.log(data);
+        }
+    })
 
-        window.location.assign('https://google.com');
-        // try {
-        //     const res = await signInWithPopup(auth, provider);
-        //     const user = res.user;
-        //     const { username, githubProfile, } = await getRestData(user.email);
-        //     console.log(githubProfile);
-        //     setUserState({
-        //         id: username,
-        //         name: user.displayName,
-        //         email: user.email,
-        //         phone: user.phoneNumber,
-        //         profileImg: user.photoURL,
-        //         githubProfile: githubProfile
-        //     });
-
-        // } catch (error) {
-        //     console.log(error);
-        // }
+    const getData = async (code) => {
+        const url = "https://atplc20.pythonanywhere.com/github-login";
+        try {
+            const response = await axios.post(url, { auth_token: code })
+            return response.data;
+        } catch (error) {
+            console.log(error);
+        }
 
     }
 
     return (
-        <a href='https://atplc20.pythonanywhere.com/github-login' className="login-button" onClick={logIn}>
+        <a href='https://github.com/login/oauth/authorize?client_id=3110d0751356961f272d' className="login-button">
             <div className="icon">
                 <span className="material-symbols-rounded">
                     login

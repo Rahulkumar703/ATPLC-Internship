@@ -11,7 +11,7 @@ export default function Courses() {
         try {
             setIsLoading(true);
             const response = await axios.get('https://atplc20.pythonanywhere.com/courses?format=json');
-            setCourses(response.data)
+            setCourses(response.data.courses)
             setIsLoading(false);
         } catch (error) {
             console.log(error);

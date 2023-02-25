@@ -11,17 +11,16 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    border: .2rem solid var(--text);
     transition: .3s;
+    background: var(--bg-dark);
 }
 
 header.active .login-button {
-    border: .2rem solid var(--white);
+    color: var(--text);
 }
 
 .login-button:hover {
-    border-color: var(--primary);
-    background: var(--primary);
+    color: var(--primary);
     box-shadow: 0 1rem 2rem -1rem var(--black);
 }
 
@@ -37,19 +36,19 @@ header.active .login-button:hover {
 
 .login-button:hover .text,
 .login-button:hover .icon span {
-    color: var(--white);
+    color: var(--primary);
 }
 
 header.active .login-button .text,
 header.active .login-button .icon span {
-    color: var(--white);
+    /* color: var(--text); */
 }
 
 
 
 /* Responsive */
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1050px) {
 
     .account .profile-popup.active {
         top: 8rem;

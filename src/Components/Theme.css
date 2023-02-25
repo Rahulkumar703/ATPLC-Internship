@@ -5,14 +5,22 @@
     padding: 0 1rem;
 }
 
+header.active .theme .icon {
+    color: var(--white);
+}
+
 .theme .icon {
     cursor: pointer;
     padding: .5rem;
     border-radius: 50%;
     font-size: var(--large-font);
     user-select: none;
-    background: var(--text);
-    color: var(--bg);
+    color: var(--text);
     /* box-shadow: 0 1px 5px -2px var(--black), inset 0 1px 2px -5px var(--black); */
-    box-shadow: 0 .5rem 1rem -.2rem var(--black);
+    transition: box-shadow .3s ease;
+}
+
+.theme .icon:hover {
+    box-shadow: 0 .5rem 1rem -.5rem var(--black);
+
 }

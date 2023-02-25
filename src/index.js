@@ -9,13 +9,13 @@ import TaskState from './Context/Tasks/TaskState';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <UserState>
-        <TaskState>
-          <App />
-        </TaskState>
-      </UserState>
-    </BrowserRouter>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <BrowserRouter>
+    <UserState>
+      <TaskState>
+        <App />
+      </TaskState>
+    </UserState>
+  </BrowserRouter>
+  // </React.StrictMode>
 );

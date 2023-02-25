@@ -24,7 +24,7 @@
 header .heading {
     align-items: center;
     gap: 1rem;
-    /* flex: 1; */
+    flex: 1;
 }
 
 .heading .logo {
@@ -53,7 +53,7 @@ header .heading {
 
 /* Responsive */
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1050px) {
 
     .header-actions {
         position: absolute;

@@ -17,7 +17,7 @@
 }
 
 .nav-list .nav-items {
-    width: 100%;
+    width: auto;
 }
 
 .nav-items .nav-links {
@@ -27,7 +27,7 @@
     align-items: center;
     justify-content: center;
     min-width: max-content;
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     gap: .5rem;
     transition: .3s;
     font-size: var(--small-font);
@@ -45,20 +45,19 @@
 
 
 .nav-items .nav-links:hover {
-    background: var(--primary);
-    color: var(--white);
+    background: var(--bg-dark);
 }
 
 .nav-items .nav-links:hover .icon span,
 .nav-items .nav-links:hover .text {
-    color: var(--white);
+    color: var(--primary);
 }
 
 
 
 /* Resposive */
 
-@media screen and (max-width:750px) {
+@media screen and (max-width:500px) {
     .navbar .nav-list {
         flex-wrap: wrap;
     }
