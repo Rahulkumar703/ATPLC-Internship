@@ -11,6 +11,7 @@ export default function Courses() {
         try {
             setIsLoading(true);
             const response = await axios.get('https://atplc20.pythonanywhere.com/courses?format=json');
+            console.log(response.data);
             setCourses(response.data.courses)
             setIsLoading(false);
         } catch (error) {
@@ -30,7 +31,7 @@ export default function Courses() {
                             key={course.id}
                             courseName={course.Course_Name}
                             courseDuration={`${course.Course_Duration} Month`}
-                            coverImage="https://100offdeal.online/wp-content/uploads/2020/07/Become-a-complete-developer.jpg"
+                            coverImage={course.Course_Thumbnail}
                         />
                     })
             }

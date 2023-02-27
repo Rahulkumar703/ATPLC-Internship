@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { HashRouter, Link } from 'react-router-dom'
 import './Navbar.css'
 
 export default function Navbar({ hamburgerStatus, setHamburgerStatus }) {
@@ -22,17 +22,17 @@ export default function Navbar({ hamburgerStatus, setHamburgerStatus }) {
                     </Link>
                 </li>
                 <li className="nav-items">
-                    <Link onClick={handleLinkClick} to="/#about" className="nav-links">
+                    <a onClick={handleLinkClick} href="/#about" className="nav-links">
                         <div className="icon">
                             <span className="material-symbols-rounded">
                                 help
                             </span>
                         </div>
                         <div className="text">About</div>
-                    </Link>
+                    </a>
                 </li>
                 <li className="nav-items">
-                    <Link onClick={handleLinkClick} to="/courses" className="nav-links">
+                    <Link onClick={handleLinkClick} to="/my-courses" className="nav-links">
                         <div className="icon">
                             <span className="material-symbols-rounded">
                                 book

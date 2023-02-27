@@ -12,6 +12,7 @@ import Profile from './Pages/Profile'
 import Error from './Pages/Error'
 import Footer from './Components/Footer';
 import Courses from './Pages/Courses';
+import Login from './Pages/Login';
 
 function App() {
 
@@ -30,8 +31,11 @@ function App() {
           {/* Route For Home */}
           <Route exact path="/" element={Object.entries(userState).length ? <Dashboard /> : <Home />} />
 
-          {/* Route For Profile */}
-          <Route path="/courses" element={<Courses />} />
+          {/* Route For Login */}
+          <Route path="/login" element={<Login />} />
+
+          {/* Route For Courses */}
+          <Route path="/my-courses" element={<Courses />} />
 
           {/* Route For Profile */}
           <Route path="/profile" element={<Profile />} />

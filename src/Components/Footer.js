@@ -5,7 +5,7 @@ import './Footer.css';
 export default function Footer() {
     const date = new Date();
     return (
-        <footer className='footer'>
+        <footer className='footer' id='about'>
             <div className="footer-main-section">
                 <div className="section">
                     <div className="heading">Address</div>
