@@ -23,7 +23,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
 }
 
 
@@ -38,6 +37,7 @@
 }
 
 .course-cover .cover-image img {
+    align-self: center;
     width: 100%;
     height: auto;
     object-fit: contain;
