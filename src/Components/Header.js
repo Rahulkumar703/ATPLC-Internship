@@ -53,7 +53,7 @@ function Header() {
                         <Navbar hamburgerStatus={hamburgerStatus} setHamburgerStatus={setHamburgerStatus} />
                         <div className="row">
                             <Theme />
-                            <Account />
+                            <Account setHamburgerStatus={setHamburgerStatus} />
                         </div>
                     </div>
                     <Hamburger hamburgerStatus={hamburgerStatus} setHamburgerStatus={setHamburgerStatus} />

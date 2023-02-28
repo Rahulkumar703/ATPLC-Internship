@@ -10,8 +10,10 @@ export default function Footer() {
                 <div className="section">
                     <div className="heading">Address</div>
                     <div className="content">
-                        <p> Motihari College Of Engineering Motihari,Motihari</p>
-                        <p>Bariyarpur, Near FCI </p>
+                        <p>3/365,Aryan Bhawan</p>
+                        <p>Lakho Binda Campus,Santunagar,</p>
+                        <p>Madhubani (Bihar)-India</p>
+                        <p>Pin-847211</p>
                     </div>
                 </div>
                 <div className="section">

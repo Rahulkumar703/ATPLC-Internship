@@ -75,12 +75,37 @@
     background: var(--primary);
     color: var(--white);
     border: .1rem solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
 }
 
 .login-inputs .login-button:hover {
     color: var(--text);
     background: transparent;
     border: .1rem solid var(--primary);
+}
+
+.login-inputs .login-button:hover .loader span {
+    color: var(--primary);
+}
+
+.login-button .loader {
+    display: grid;
+    place-items: center;
+    animation: rotate 2s ease-in-out infinite;
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.login-button .loader span {
+    font-weight: bold;
+    font-size: var(--medium-font);
 }
 
 

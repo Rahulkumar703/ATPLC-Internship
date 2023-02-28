@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom';
 import userContext from '../Context/User/userContext'
 import './Account.css'
 import LogInWithGithub from './LogInWithGithub';
 
-export default function Account({ accountRef }) {
+export default function Account({ accountRef, setHamburgerStatus }) {
 
     const { userState, setUserState } = useContext(userContext);
     const [popUpStatus, setPopUpStatus] = useState(false);
@@ -21,6 +22,8 @@ export default function Account({ accountRef }) {
     }
     const logOut = async () => {
         await setUserState({});
+        localStorage.removeItem('user')
+        window.location.assign('/');
     }
 
 
@@ -28,15 +31,15 @@ export default function Account({ accountRef }) {
     return (
         <div className="account" ref={accountRef}>
             {
-                Object.entries(userState).length
+                JSON.parse(localStorage.getItem('user'))
                     ?
                     <>
                         <div className="header-profile row" ref={popUpRef} onClick={togglePopUp}>
                             <div className="profile-pic">
-                                <img src={userState.profileImg} alt="profile" />
+                                {JSON.parse(localStorage.getItem('user')).username.slice(-2)}
                             </div>
                             <div className="profile-details col">
-                                <div className="profile-name">{userState.name}</div>
+                                <div className="profile-name">{JSON.parse(localStorage.getItem('user')).username}</div>
                                 <div className="profile-email">{userState.email}</div>
                             </div>
                         </div>
@@ -46,10 +49,10 @@ export default function Account({ accountRef }) {
                                     <div className="icon">
 
                                     </div>
-                                    <div className="text">Id : {userState.id}</div>
+                                    <div className="text">Id : {JSON.parse(localStorage.getItem('user')).username}</div>
                                 </li>
                                 <li>
-                                    <a href={userState.githubProfile} target="_blank" rel="noreferrer">
+                                    <Link to="/profile">
                                         <div className="icon">
                                             <span className="material-symbols-rounded">
                                                 person
@@ -57,7 +60,18 @@ export default function Account({ accountRef }) {
                                         </div>
                                         <div className="text">Profile
                                         </div>
-                                    </a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/my-courses">
+                                        <div className="icon">
+                                            <span className="material-symbols-rounded">
+                                                library_books
+                                            </span>
+                                        </div>
+                                        <div className="text">My Courses
+                                        </div>
+                                    </Link>
                                 </li>
                                 <li onClick={logOut}>
                                     <div className="icon">
@@ -71,7 +85,7 @@ export default function Account({ accountRef }) {
                         </div>
                     </>
                     :
-                    <div className="header-login">
+                    <div className="header-login" onClick={() => setHamburgerStatus(false)}>
                         <LogInWithGithub />
                     </div>
             }

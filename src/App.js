@@ -11,7 +11,7 @@ import Home from './Pages/Home'
 import Profile from './Pages/Profile'
 import Error from './Pages/Error'
 import Footer from './Components/Footer';
-import Courses from './Pages/Courses';
+import MyCourses from './Pages/MyCourses';
 import Login from './Pages/Login';
 
 function App() {
@@ -29,13 +29,15 @@ function App() {
         <Routes>
 
           {/* Route For Home */}
-          <Route exact path="/" element={Object.entries(userState).length ? <Dashboard /> : <Home />} />
+          <Route exact path="/" element={<Home />} />
 
           {/* Route For Login */}
           <Route path="/login" element={<Login />} />
 
           {/* Route For Courses */}
-          <Route path="/my-courses" element={<Courses />} />
+          <Route path="/my-courses" element={<MyCourses />} />
+          {/* Route For Courses */}
+          <Route path="/my-courses/:id" element={<Dashboard />} />
 
           {/* Route For Profile */}
           <Route path="/profile" element={<Profile />} />
