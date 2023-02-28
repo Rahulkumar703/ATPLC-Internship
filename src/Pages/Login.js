@@ -1,10 +1,29 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useState } from 'react'
 import './Login.css'
 
 export default function Login() {
 
-    const login = () => {
-        console.log('logged in');
+    const [loginDetails, setLoginDetails] = useState({
+        Username: "",
+        Password: "",
+    });
+
+    const handelChange = (e) => {
+        setLoginDetails({
+            ...loginDetails,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const login = async () => {
+        try {
+            const response = await axios.get('https://atplc20.pythonanywhere.com/login', { loginDetails });
+            console.log(response.data);
+        } catch (error) {
+
+            console.log(error);
+        }
     }
 
     return (
@@ -15,11 +34,11 @@ export default function Login() {
                 </div>
                 <div className="login-inputs">
                     <div className="input-container">
-                        <input type="text" id='username' placeholder=' ' />
+                        <input type="text" id='username' value={loginDetails.Username} placeholder=' ' name='Username' onChange={handelChange} />
                         <label htmlFor="username">username / email</label>
                     </div>
                     <div className="input-container">
-                        <input type="password" id='password' placeholder=' ' />
+                        <input type="password" id='password' value={loginDetails.Password} placeholder=' ' name='Password' onChange={handelChange} />
                         <label htmlFor="password">Password</label>
                     </div>
                     <button className="login-button" onClick={login}>Login</button>
