@@ -1,8 +1,11 @@
+import axios from 'axios'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './CourseCard.css'
 
 export default function CourseCard({ id, courseName, courseDuration, coverImage, courseCompletionStatus }) {
+
+
     return (
         <div className='course-card'>
             <div className="course-cover">
@@ -33,7 +36,7 @@ export default function CourseCard({ id, courseName, courseDuration, coverImage,
                     </div>
                 }
                 <div className="enroll-course">
-                    <Link to={`/my-courses/${id}`} className="enroll-course-btn">Continue to Dashboard</Link>
+                    <Link to={`/my-courses/${courseName}`} state={{ id, courseName }} className="enroll-course-btn">Continue to Dashboard</Link>
                 </div>
             </div>
             {courseCompletionStatus && <div className="course-status">Completed</div>}

@@ -1,8 +1,9 @@
 import React from 'react'
-import { HashRouter, Link } from 'react-router-dom'
+import { Link, } from 'react-router-dom'
 import './Navbar.css'
 
 export default function Navbar({ hamburgerStatus, setHamburgerStatus }) {
+
 
     const handleLinkClick = () => {
         setHamburgerStatus(false)
@@ -22,14 +23,14 @@ export default function Navbar({ hamburgerStatus, setHamburgerStatus }) {
                     </Link>
                 </li>
                 <li className="nav-items">
-                    <a onClick={handleLinkClick} href="/#about" className="nav-links">
+                    <Link onClick={handleLinkClick} to="/#about" className="nav-links">
                         <div className="icon">
                             <span className="material-symbols-rounded">
                                 help
                             </span>
                         </div>
                         <div className="text">About</div>
-                    </a>
+                    </Link>
                 </li>
                 <li className="nav-items">
                     <Link onClick={handleLinkClick} to="/my-courses" className="nav-links">

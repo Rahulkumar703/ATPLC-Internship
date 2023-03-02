@@ -5,6 +5,7 @@
     flex-direction: column;
     flex-wrap: wrap;
     color: var(--white);
+    justify-self: flex-end;
 }
 
 .footer .footer-main-section {

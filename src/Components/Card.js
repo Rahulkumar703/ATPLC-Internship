@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Card.css'
 import CircularProgress from './CircularProgress'
 
 export default function Card({ heading, icon, obtainedScore, totalScore }) {
+    const [overallPercentage, setOverallPercentage] = useState(0);
+    useEffect(() => {
 
-    const overallPercentage = (obtainedScore / totalScore * 100).toFixed(1);
+        setOverallPercentage((obtainedScore / totalScore * 100).toFixed(1));
+
+    })
 
     return (
         <div className='card col'>

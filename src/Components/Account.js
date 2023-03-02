@@ -23,6 +23,7 @@ export default function Account({ accountRef, setHamburgerStatus }) {
     const logOut = async () => {
         await setUserState({});
         localStorage.removeItem('user')
+        localStorage.removeItem('tasks')
         window.location.assign('/');
     }
 

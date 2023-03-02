@@ -41,6 +41,7 @@
     background: var(--bg-light);
     border-radius: .3rem;
     color: var(--text);
+    text-transform: uppercase;
 }
 
 .input-container input~label {

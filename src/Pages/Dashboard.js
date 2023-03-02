@@ -1,107 +1,108 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Card from '../Components/Card'
 import './CommonPage.css'
 import './Dashboard.css'
-import taskContext from '../Context/Tasks/taskContext'
 import TaskCard from '../Components/TaskCard'
-import userContext from '../Context/User/userContext'
-import { useParams } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import Loader from '../Components/Loader'
 
-export default function Dashboard() {
+export default function Dashboard({ id, courseName }) {
 
-    const params = useParams();
-    const { taskState, setTaskState } = useContext(taskContext);
+    const location = useLocation();
+    const navigate = useNavigate();
+
     const [isLoading, setIsloading] = useState(false);
+    const [taskData, setTaskData] = useState([]);
 
 
-    let totalTasks = 0;
-
-    let completedTasks = 0;
 
 
-    const fetchData = async () => {
-        setIsloading(true);
+
+    async function getTasks() {
         try {
-            const response = await axios.post('https://atplc20.pythonanywhere.com/dashboard', {
-                course: params.id,
+            setIsloading(true);
+            const id = location.state.id;
+            const { data } = await axios.post('https://atplc20.pythonanywhere.com/dashboard', {
+                course: id,
                 Username: JSON.parse(localStorage.getItem('user')).userId
-            });
-
-
-            console.log(response.data);
-
-            await setTaskState(response.data)
-
-
-            totalTasks = response.data.Tasks.length;
-
-            completedTasks = response.data.Completed_Tasks[0].No_of_Completed_Tasks;
-
+            })
+            setTaskData(data);
+            setIsloading(false);
+            // Logging API Data
+            console.log(data);
+        } catch (e) {
+            console.log(e);
         }
-        catch (error) {
-            console.log(error);
-        }
-
-        setIsloading(false);
-
     }
 
     useEffect(() => {
         if (!localStorage.getItem('user')) {
-            window.location.assign('/')
+            navigate('/', { replace: true })
         }
-        console.log(params.id);
-        fetchData();
+    }, [])
 
+    useEffect(() => {
+        getTasks();
+        // Logging task State
+        console.log(taskData);
     }, [])
 
 
 
 
     return (
-        !isLoading &&
-        <section className='page dashboard-page'>
-            <div className="title">
-                <h3>Dashboard</h3>
-            </div>
-            <div className="score-card-container grid">
-                <Card
-                    heading='Verified Submission'
-                    icon="insights"
-                    obtainedScore={completedTasks}
-                    totalScore={totalTasks}
-                />
-                <Card
-                    heading='Pending Tasks'
-                    icon="pending"
-                    obtainedScore={totalTasks - completedTasks}
-                    totalScore={totalTasks}
-                />
-            </div>
-            <div className="title">
-                <h3>Recent Task</h3>
-            </div>
-            <div className="recent-task-container">
-                <TaskCard
-                    isRecent={1}
-                    {...taskState[totalTasks - 1]}
-                />
-            </div>
-            <div className="title">
-                <h3>Previous Tasks</h3>
-            </div>
-            <div className="task-list-container grid">
-                {/* {
-                    taskState.slice(0, totalTasks - 1).map(task => {
-                        return <TaskCard
-                            isRecent={0}
-                            key={task.id}
-                            {...task}
-                        />
-                    }).reverse()
-                } */}
-            </div>
-        </section>
+        isLoading ? <Loader /> :
+            <section className='page dashboard-page'>
+                <div className="title">
+                    <h3>{location.state.courseName}</h3>
+                </div>
+                <div className="score-card-container grid">
+                    <Card
+                        heading='Verified Submission'
+                        icon="insights"
+                    // obtainedScore={JSON.parse(localStorage.getItem('tasks')).Completed_Tasks[0].No_of_Completed_Tasks}
+                    // totalScore={JSON.parse(localStorage.getItem('tasks')).Tasks.length}
+                    />
+                    <Card
+                        heading='Pending Tasks'
+                        icon="pending"
+                    // obtainedScore={JSON.parse(localStorage.getItem('tasks')).Tasks.length - JSON.parse(localStorage.getItem('tasks')).Completed_Tasks[0].No_of_Completed_Tasks}
+                    // totalScore={JSON.parse(localStorage.getItem('tasks')).Tasks.length}
+                    />
+                </div>
+                <div className="title">
+                    <h3>Course Tasks</h3>
+                </div>
+                <div className="task-list-container grid">
+                    {
+                        // JSON.parse(localStorage.getItem('tasks')).Tasks.map(task => {
+                        //     return JSON.parse(localStorage.getItem('tasks')).Submissions.map(submittedTask => {
+                        //         if (submittedTask.Task_No_id === task.Task_No)
+
+                        //             return <TaskCard
+                        //                 isRecent={0}
+                        //                 key={task.Task_No}
+                        //                 {...task}
+                        //                 Task_Status={submittedTask.Task_Status}
+                        //                 Submission_Link={submittedTask.Submission_Link}
+                        //                 Remarks={submittedTask.Remarks}
+
+                        //             />
+                        //         else
+                        //             return <TaskCard
+                        //                 isRecent={0}
+                        //                 key={task.Task_No}
+                        //                 {...task}
+                        //                 Task_Status={''}
+                        //                 Submission_Link={''}
+                        //                 Remarks={''}
+                        //             />
+
+                        //     })
+                        // })
+                    }
+                </div>
+            </section>
     )
 }

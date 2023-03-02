@@ -1,10 +1,17 @@
 import axios from 'axios';
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Login.css'
 import userContext from '../Context/User/userContext';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function Login() {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (localStorage.getItem('user')) {
+            navigate('/', { replace: true });
+        }
+    })
 
     const { userState, setUserState } = useContext(userContext)
     const location = useLocation();
@@ -29,7 +36,7 @@ export default function Login() {
             setIsLoading(true);
             try {
                 setIsLoading(true);
-                const response = await axios.post('https://atplc20.pythonanywhere.com/login', loginDetails);
+                const response = await axios.post('https://atplc20.pythonanywhere.com/login', { ...loginDetails, Username: loginDetails.Username.toUpperCase() });
                 seterror(response.data.response);
 
                 await setUserState({
@@ -40,10 +47,10 @@ export default function Login() {
 
                 localStorage.setItem('user', JSON.stringify({
                     userId: response.data.user_id[0].id,
-                    username: loginDetails.Username,
+                    username: loginDetails.Username.toUpperCase(),
                 }));
 
-                window.location.assign('/dashboard');
+                window.location.assign('/my-courses');
 
             } catch (err) {
                 seterror(err.response.data.response);

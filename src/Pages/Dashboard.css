@@ -4,12 +4,14 @@
 }
 
 .dashboard-page .score-card-container,
-.dashboard-page .recent-task-container,
 .dashboard-page .task-list-container {
     width: 100%;
     padding: 1rem;
 }
 
+.dashboard-page .task-list-container {
+    grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+}
 
 .score-card-container .card:nth-child(1) {
     --button-color: var(--success);

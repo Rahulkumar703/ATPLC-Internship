@@ -2,41 +2,33 @@ import React, { useState } from 'react'
 import SubmitSolution from './SubmitSolution';
 import './TaskCard.css'
 
-export default function TaskCard({ isRecent, id, name, desc, date, status, solution }) {
+export default function TaskCard({ Task_No, Task_Topic, Task_Content, Task_Status, submissionLink }) {
 
-    const newDate = new Date(date);
+    // console.log(submissionLink);
+    // console.log(status);
 
-    const [cardToggle, setCardToggle] = useState(false);
     return (
-        <div className={`task-card ${isRecent ? 'recent' : ''}`}>
+        <div className={`task-card`}>
 
             <div className="top row">
                 <div className="left">
-                    <div className="task-number">{id < 10 ? ` 0${id}` : id}</div>
+                    <div className="task-number">{Task_No < 10 ? ` 0${Task_No}` : Task_No}</div>
                 </div>
                 <div className="right col">
                     <div className="task-name">
-                        {name}
-                    </div>
-                    <div className="task-date row">
-                        <div className="icon">
-                            <span className="material-symbols-rounded">
-                                calendar_month
-                            </span>
-                        </div>
-                        <div className="text">{newDate.toLocaleString()}</div>
+                        {Task_Topic}
                     </div>
                 </div>
             </div>
 
             <div className="middle">
-                <div className="task-description">{desc}</div>
+                <div className="task-description">{Task_Content}</div>
             </div>
 
             <div className="bottom col" >
                 <div className="status">
                     {
-                        solution === ''
+                        submissionLink === ''
                             ?
                             <div className="status-label danger row">
                                 <div className="icon">
@@ -47,14 +39,14 @@ export default function TaskCard({ isRecent, id, name, desc, date, status, solut
                                 <div className="text">Not Submitted</div>
                             </div>
                             :
-                            status === "pending" ?
+                            Task_Status === "Under Review" ?
                                 <div className="status-label pending row">
                                     <div className="icon">
                                         <span className="material-symbols-rounded">
                                             schedule
                                         </span>
                                     </div>
-                                    <div className="text">Verification Pending</div>
+                                    <div className="text">Under Review</div>
                                 </div>
                                 :
                                 <div className="status-label success row">
@@ -67,19 +59,6 @@ export default function TaskCard({ isRecent, id, name, desc, date, status, solut
                                 </div>
                     }
                 </div>
-                <div className={`toogle-button row ${cardToggle ? 'active' : ''}`} onClick={() => { setCardToggle(!cardToggle) }}>
-                    <div className="text">Submit Solution</div>
-                    <div className="icon">
-                        <span className="material-symbols-rounded">
-                            expand_more
-                        </span>
-                    </div>
-                </div>
-                {
-                    cardToggle
-                    &&
-                    < SubmitSolution id={id} value={solution} type="url" placeholder={`Ex - https://github.com/<your_username>/ATPLC-Training-Daily_Tasks`} />
-                }
 
             </div>
             <div className="label">Recent Task</div>
