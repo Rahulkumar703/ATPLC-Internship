@@ -61,14 +61,14 @@ export default function Dashboard({ id, courseName }) {
                     <Card
                         heading='Verified Submission'
                         icon="insights"
-                    // obtainedScore={JSON.parse(localStorage.getItem('tasks')).Completed_Tasks[0].No_of_Completed_Tasks}
-                    // totalScore={JSON.parse(localStorage.getItem('tasks')).Tasks.length}
+                        obtainedScore={taskData.Completed_Tasks[0].No_of_Completed_Tasks}
+                        totalScore={taskData.Tasks.length}
                     />
                     <Card
                         heading='Pending Tasks'
                         icon="pending"
-                    // obtainedScore={JSON.parse(localStorage.getItem('tasks')).Tasks.length - JSON.parse(localStorage.getItem('tasks')).Completed_Tasks[0].No_of_Completed_Tasks}
-                    // totalScore={JSON.parse(localStorage.getItem('tasks')).Tasks.length}
+                        obtainedScore={taskData.Tasks.length - taskData.Completed_Tasks[0].No_of_Completed_Tasks}
+                        totalScore={taskData.Tasks.length}
                     />
                 </div>
                 <div className="title">
@@ -76,31 +76,31 @@ export default function Dashboard({ id, courseName }) {
                 </div>
                 <div className="task-list-container grid">
                     {
-                        // JSON.parse(localStorage.getItem('tasks')).Tasks.map(task => {
-                        //     return JSON.parse(localStorage.getItem('tasks')).Submissions.map(submittedTask => {
-                        //         if (submittedTask.Task_No_id === task.Task_No)
+                        taskData.Tasks.map(task => {
+                            return taskData.Submissions.map(submittedTask => {
+                                if (submittedTask.Task_No_id === task.Task_No)
 
-                        //             return <TaskCard
-                        //                 isRecent={0}
-                        //                 key={task.Task_No}
-                        //                 {...task}
-                        //                 Task_Status={submittedTask.Task_Status}
-                        //                 Submission_Link={submittedTask.Submission_Link}
-                        //                 Remarks={submittedTask.Remarks}
+                                    return <TaskCard
+                                        isRecent={0}
+                                        key={task.Task_No}
+                                        {...task}
+                                        Task_Status={submittedTask.Task_Status}
+                                        Submission_Link={submittedTask.Submission_Link}
+                                        Remarks={submittedTask.Remarks}
 
-                        //             />
-                        //         else
-                        //             return <TaskCard
-                        //                 isRecent={0}
-                        //                 key={task.Task_No}
-                        //                 {...task}
-                        //                 Task_Status={''}
-                        //                 Submission_Link={''}
-                        //                 Remarks={''}
-                        //             />
+                                    />
+                                else
+                                    return <TaskCard
+                                        isRecent={0}
+                                        key={task.Task_No}
+                                        {...task}
+                                        Task_Status={''}
+                                        Submission_Link={''}
+                                        Remarks={''}
+                                    />
 
-                        //     })
-                        // })
+                            })
+                        })
                     }
                 </div>
             </section>
