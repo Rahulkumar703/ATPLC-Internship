@@ -8,14 +8,15 @@ import { useNavigate } from 'react-router-dom';
 export default function Courses() {
 
     const [isloading, setIsLoading] = useState(true);
-    const [courses, setCourses] = useState([]);
+    const [myCourses, setMyCourses] = useState([]);
     const navigate = useNavigate();
 
     const fetchCourses = async () => {
         setIsLoading(true);
         try {
             const response = await axios.post('https://atplc20.pythonanywhere.com/my-courses', { Username: JSON.parse(localStorage.getItem('user')).username });
-            setCourses(response.data)
+            setMyCourses(response.data)
+            console.log(myCourses);
         } catch (error) {
             console.log(error);
         }
@@ -29,20 +30,22 @@ export default function Courses() {
     }, [])
     return (
 
-        <section className='page courses-page'>
-            {
-                isloading ? <Loader /> :
-                    courses.map(course => {
-                        return <CourseCard
-                            key={course.Course_id}
-                            id={course.Course_id}
-                            courseName={course.Course__Course_Name}
-                            courseDuration={0}
-                            courseCompletionStatus={course.Course_Completed}
-                            coverImage={course.Course__Course_Thumbnail}
-                        />
-                    })
-            }
+        <section className='page my-courses-page'>
+            <div className="page-heading">My Courses</div>
+            <div className="courses-grid">
+                {
+                    isloading ? <Loader /> :
+                        myCourses.map(course => {
+                            return <CourseCard
+                                key={course.Course_id}
+                                id={course.Course_id}
+                                courseName={course.Course__Course_Name}
+                                courseDuration={0}
+                                courseCompletionStatus={course.Course_Completed}
+                                coverImage={course.Course__Course_Thumbnail}
+                            />
+                        })
+                }</div>
         </section>
     )
 }

@@ -13,6 +13,7 @@ import Error from './Pages/Error'
 import Footer from './Components/Footer';
 import MyCourses from './Pages/MyCourses';
 import Login from './Pages/Login';
+import Courses from './Pages/Courses';
 
 function App() {
 
@@ -35,8 +36,11 @@ function App() {
           <Route path="/login" element={<Login />} />
 
           {/* Route For Courses */}
+          <Route path="/courses" element={<Courses />} />
+
+          {/* Route For My-Courses */}
           <Route path="/my-courses" element={<MyCourses />} />
-          {/* Route For Courses */}
+          {/* Route For My Specific Courses */}
           <Route path="/my-courses/:id" element={<Dashboard />} />
 
           {/* Route For Profile */}

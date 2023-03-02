@@ -1,4 +1,3 @@
-import axios from 'axios'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './CourseCard.css'
@@ -31,12 +30,17 @@ export default function CourseCard({ id, courseName, courseDuration, coverImage,
                             </span>
                         </div>
                         <div className="text">
-                            {courseDuration}
+                            {courseDuration} Month
                         </div>
                     </div>
                 }
                 <div className="enroll-course">
-                    <Link to={`/my-courses/${courseName}`} state={{ id, courseName }} className="enroll-course-btn">Continue to Dashboard</Link>
+                    {
+                        courseCompletionStatus !== undefined ?
+                            <Link to={`/my-courses/${courseName}`} state={{ id, courseName }} className="enroll-course-btn">Continue to Dashboard</Link>
+                            :
+                            <Link to={`/enroll`} state={{ id, courseName }} className="enroll-course-btn">Enroll Now</Link>
+                    }
                 </div>
             </div>
             {courseCompletionStatus && <div className="course-status">Completed</div>}

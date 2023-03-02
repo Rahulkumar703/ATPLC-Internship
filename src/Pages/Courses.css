@@ -1,4 +1,4 @@
-.my-courses-page .page-heading {
+.courses-page .page-heading {
     align-self: flex-start;
     font-size: 4rem;
     padding: 1rem 3rem;
@@ -7,7 +7,7 @@
     font-weight: 700;
 }
 
-.my-courses-page .courses-grid {
+.courses-page .courses-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
     padding: 2rem 5%;
