@@ -10,7 +10,7 @@ export default function CourseCard({ id, courseName, courseDuration, coverImage,
             <div className="course-cover">
                 <div className='cover-image'>
                     {
-                        !coverImage ?
+                        coverImage ?
                             <img src={`https://atplc20.pythonanywhere.com/${coverImage}`} alt="course thumbnail" />
                             :
                             <div className='cover-default-image'> {'</>'}</div>

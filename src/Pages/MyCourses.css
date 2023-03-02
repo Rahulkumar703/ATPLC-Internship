@@ -1,6 +1,5 @@
 .my-courses-page .page-heading {
-    align-self: flex-start;
-    font-size: 4rem;
+    font-size: 3rem;
     padding: 1rem 3rem;
     margin: 1rem 0;
     color: var(--text);
@@ -11,7 +10,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
     padding: 2rem 5%;
-    align-items: flex-start;
+    align-items: center;
     align-self: flex-start;
     gap: 2rem;
 }

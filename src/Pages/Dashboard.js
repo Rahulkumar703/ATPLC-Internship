@@ -23,7 +23,7 @@ export default function Dashboard() {
         if (!localStorage.getItem('user')) {
             navigate('/', { replace: true })
         }
-    }, [])
+    })
 
 
 

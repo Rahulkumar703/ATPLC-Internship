@@ -6,6 +6,7 @@
     transition: .3s;
     place-self: flex-start;
     /* width: 100%; */
+    cursor: pointer;
 }
 
 

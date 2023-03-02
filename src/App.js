@@ -1,8 +1,5 @@
 import './App.css';
-import { useContext } from 'react';
 import { Route, Routes } from 'react-router-dom';
-// Contexts
-import userContext from './Context/User/userContext';
 // Components
 import Header from './Components/Header';
 // Pages
@@ -14,10 +11,10 @@ import Footer from './Components/Footer';
 import MyCourses from './Pages/MyCourses';
 import Login from './Pages/Login';
 import Courses from './Pages/Courses';
+import Task from './Pages/Task';
 
 function App() {
 
-  const { userState } = useContext(userContext);
 
   return (
     <div className="App">
@@ -41,7 +38,10 @@ function App() {
           {/* Route For My-Courses */}
           <Route path="/my-courses" element={<MyCourses />} />
           {/* Route For My Specific Courses */}
-          <Route path="/my-courses/:id" element={<Dashboard />} />
+          <Route path="/my-courses/:courseName" element={<Dashboard />} />
+
+          {/* Route For Specific Task */}
+          <Route path="/task" element={<Task />} />
 
           {/* Route For Profile */}
           <Route path="/profile" element={<Profile />} />

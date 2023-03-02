@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
 import './Login.css'
 import userContext from '../Context/User/userContext';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
     const navigate = useNavigate();
@@ -13,8 +13,7 @@ export default function Login() {
         }
     })
 
-    const { userState, setUserState } = useContext(userContext)
-    const location = useLocation();
+    const { userState, setUserState } = useContext(userContext);
 
     const [loginDetails, setLoginDetails] = useState({
         Username: "",

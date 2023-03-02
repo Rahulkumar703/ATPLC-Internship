@@ -1,9 +1,12 @@
 import React from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 import './TaskCard.css';
 
-export default function TaskCard({ Task_No, Task_Topic, Task_Content, Task_Status, submissionLink, Remarks, isRecent }) {
+export default function TaskCard({ Task_No, Task_Topic, Task_Content, Task_Status, submissionLink, Remarks }) {
 
     const taskNumber = Task_No < 10 ? `0${Task_No}` : Task_No;
+
+    const navigate = useNavigate();
 
     let statusLabel;
     if (submissionLink === '') {
@@ -41,8 +44,13 @@ export default function TaskCard({ Task_No, Task_Topic, Task_Content, Task_Statu
         );
     }
 
+
+    const openTask = () => {
+        navigate('/task', { Task_No, Task_Topic, Task_Content, Task_Status, submissionLink, Remarks });
+    }
+
     return (
-        <div className={`task-card`}>
+        <div className={`task-card`} onClick={openTask}>
 
             <div className="top row">
                 <div className="left">
@@ -65,7 +73,6 @@ export default function TaskCard({ Task_No, Task_Topic, Task_Content, Task_Statu
                 </div>
 
             </div>
-            <div className="label">{isRecent ? 'Recent Task' : ''}</div>
         </div>
     );
 }

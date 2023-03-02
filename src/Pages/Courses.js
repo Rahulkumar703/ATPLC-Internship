@@ -13,11 +13,6 @@ export default function Courses() {
 
 
 
-    useEffect(() => {
-        if (!localStorage.getItem('user')) {
-            navigate('/', { replace: true })
-        }
-    }, [])
 
     useEffect(() => {
         fetchCourses();
@@ -28,7 +23,7 @@ export default function Courses() {
         try {
             const { data } = await axios.get('https://atplc20.pythonanywhere.com/courses?format=json');
             setCourses(data.courses);
-            console.log(data.courses);
+            console.log(data.courses[0].Course_Thumbnail);
 
         } catch (error) {
             console.log(error);

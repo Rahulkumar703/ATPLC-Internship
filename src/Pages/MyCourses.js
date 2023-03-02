@@ -16,7 +16,6 @@ export default function Courses() {
         try {
             const response = await axios.post('https://atplc20.pythonanywhere.com/my-courses', { Username: JSON.parse(localStorage.getItem('user')).username });
             setMyCourses(response.data)
-            console.log(myCourses);
         } catch (error) {
             console.log(error);
         }
