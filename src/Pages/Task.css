@@ -99,6 +99,7 @@
 .input-box input {
     font-size: var(--medium-font);
     width: 100%;
+    height: 5rem;
     padding: 1rem 1.5rem;
     padding-top: 2rem;
     border: none;
@@ -122,24 +123,24 @@
     color: var(--text);
     transform: translateY(-50%);
     font-size: var(--medium-font);
-    background: var(--bg-light);
     border-radius: .3rem;
     pointer-events: none;
     user-select: none;
     transition: .3s;
     filter: opacity(.7);
-    padding: 0 .5rem;
+    padding: .5rem;
 }
 
 .input-box input:focus~label,
 .input-box input:not(:placeholder-shown)~label {
-    top: .5rem;
+    top: 0;
     font-size: var(--small-font);
     color: var(--primary);
     transform: translateY(0%);
     font-weight: 600;
     line-height: 1rem;
     filter: opacity(1);
+    background: var(--bg-light);
 }
 
 .input-box .edit {

@@ -18,20 +18,29 @@ export default function Task() {
 
 
     const submitLink = async (e) => {
-        e.preventDefault()
-        setIsLoading(true);
-        if (link !== Submission_Link && link !== '') {
-            try {
-
-                const { data } = await axios.post('https://atlc20.pythonanywhere.com/task-submission', {
-                    course: courseId,
-                    Username: JSON.parse(localStorage.getItem('user')).userId,
-                    Task_No: Task_No,
-                    Submission_Link: "https://google.com"
-                })
-                setMessage(data)
-            } catch (e) {
-                setMessage(e.message);
+        e.preventDefault();
+        if (link !== Submission_Link) {
+            if (link === '') {
+                setMessage('Enter you task link to procede')
+                console.log(Submission_Link);
+            }
+            else {
+                try {
+                    setIsLoading(true);
+                    const { data } = await axios.post('https://atplc20.pythonanywhere.com/task-submission', {
+                        course: courseId,
+                        Username: JSON.parse(localStorage.getItem('user')).userId,
+                        Task_No: Task_No,
+                        Submission_Link: link
+                    })
+                    setMessage(data.response)
+                } catch (e) {
+                    setMessage(e.message);
+                }
+                finally {
+                    setIsLoading(false);
+                    setShowEdit(true)
+                }
             }
         }
         else {
@@ -134,22 +143,25 @@ export default function Task() {
                             </div>
 
                         </div>
-                        <button type='submit' className={`submit-button ${submitLink === link ? 'hidden' : ''}`}>
-                            <div className="icon
-                            ">
-                                {
-                                    isLoading &&
-                                    <div className="loader">
-                                        <span className="material-symbols-rounded">
-                                            hourglass_empty
-                                        </span>
-                                    </div>
-                                }
-                            </div>
-                            <div className="text">
-                                {Submission_Link ? 'Update' : 'Submit'}
-                            </div>
-                        </button>
+                        {
+                            !showEdit
+                            &&
+                            <button type='submit' className='submit-button'>
+                                <div className="icon">
+                                    {
+                                        isLoading &&
+                                        <div className="loader">
+                                            <span className="material-symbols-rounded">
+                                                hourglass_empty
+                                            </span>
+                                        </div>
+                                    }
+                                </div>
+                                <div className="text">
+                                    {Submission_Link && submitLink !== '' ? 'Update' : 'Submit'}
+                                </div>
+                            </button>
+                        }
                     </form>
                 </div>
             </div>
