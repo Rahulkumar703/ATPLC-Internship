@@ -40,7 +40,7 @@ export default function Account({ accountRef, setHamburgerStatus }) {
                                 {JSON.parse(localStorage.getItem('user')).fullName[0]}
                             </div>
                             <div className="profile-details col">
-                                <div className="profile-name">{JSON.parse(localStorage.getItem('user')).fullName}</div>
+                                <div className="profile-name">{JSON.parse(localStorage.getItem('user')).fullName.split(' ')[0]}</div>
                                 <div className="profile-email">{JSON.parse(localStorage.getItem('user'))?.email}</div>
                             </div>
                         </div>

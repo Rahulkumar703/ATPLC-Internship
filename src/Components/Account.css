@@ -23,11 +23,9 @@
     pointer-events: none;
     color: var(--white);
     overflow: hidden;
+    flex-shrink: 0;
 }
 
-.header-profile .profile-pic img {
-    width: 100%;
-}
 
 .header-profile .profile-details {
     pointer-events: none;
