@@ -3,7 +3,7 @@
     flex-direction: column;
     /* background: var(--bg); */
     border-radius: .5rem;
-    transition: .3s;
+    transition: all .3s, border 0s;
     overflow: hidden;
     position: relative;
     z-index: 2;
@@ -38,8 +38,8 @@
 .course-cover .cover-image img {
     align-self: center;
     width: 100%;
-    height: auto;
-    object-fit: contain;
+    height: 100%;
+    object-fit: cover;
     object-position: center 0;
 }
 
@@ -63,7 +63,7 @@
 
 .course-cover .course-name {
     font-size: var(--large-font);
-    text-shadow: .5rem .5rem .5rem var(--bg-dark), .6rem .6rem .5rem var(--bg-light), 1rem 1rem .5rem var(--bg-dark);
+    text-shadow: none;
     padding: 1rem;
     font-weight: 600;
     color: var(--primary);
@@ -89,6 +89,9 @@
     z-index: -1;
 }
 
+.course-card:hover {
+    border: 1px solid var(--secondary);
+}
 
 .course-card:hover .course-content,
 .course-card:hover .course-cover {

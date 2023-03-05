@@ -41,7 +41,7 @@ function App() {
           <Route path="/my-courses/:courseName" element={<Dashboard />} />
 
           {/* Route For Specific Task */}
-          <Route path="/task" element={<Task />} />
+          <Route path="/task/:taskName" element={<Task />} />
 
           {/* Route For Profile */}
           <Route path="/profile" element={<Profile />} />

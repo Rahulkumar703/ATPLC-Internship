@@ -6,8 +6,10 @@
   --black: #000000;
   --primary: #9c394b;
   --secondary: #4a4e5a;
+  --info: #41c5f1;
+  --info-tint: #87edff;
   --success: #41f1b6;
-  --success-tint: #a8ffe2;
+  --success-tint: #60ffca;
   --warning: #ffbb55;
   --warning-tint: #ffdeac;
   --danger: #ff7782;
@@ -99,6 +101,10 @@ img {
 
 .success {
   background: var(--success-tint);
+}
+
+.info {
+  background: var(--info-tint);
 }
 
 .danger {

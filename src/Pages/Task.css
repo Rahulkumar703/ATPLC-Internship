@@ -1,0 +1,184 @@
+.task-page {
+    padding: 1rem 3rem;
+}
+
+.task-page .page-heading {
+    font-size: 3rem;
+    padding: 1rem 3rem;
+    margin: 1rem 0;
+    color: var(--text);
+    font-weight: 700;
+}
+
+.task-page .page-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.page-content .content-heading {
+    gap: 2rem;
+    align-items: center;
+}
+
+.content-heading .task-no {
+    font-size: 5rem;
+    font-weight: 600;
+    color: var(--faded-text);
+}
+
+.content-heading .task-title {
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.page-content .task-content {
+    font-size: var(--medium-font);
+    padding: 1rem;
+    padding-left: 2rem;
+    margin-bottom: 2rem;
+}
+
+.page-content .task-submisssion {
+    padding: 2rem;
+}
+
+.task-submisssion .submission-status-remarks {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    gap: 1rem;
+}
+
+.submission-status-remarks .status-label {
+    padding: .5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    border-radius: .3rem;
+    width: fit-content;
+}
+
+.submission-status-remarks .remarks {
+    padding: 1rem;
+    background: var(--bg-dark);
+}
+
+
+.submission-status-remarks .remarks .remarks-heading {
+    font-size: var(--large-font);
+    font-weight: 500;
+}
+
+.submission-status-remarks .remarks .remarks-body {
+    font-size: var(--medium-font);
+    color: var(--warning);
+    font-weight: 500;
+    margin-left: 1rem;
+    padding: .5rem 0;
+}
+
+.task-submisssion .submission-form {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0;
+}
+
+.submission-form .input-box {
+    position: relative;
+    padding: 1rem 0;
+}
+
+
+.submission-form .input-box {
+    position: relative;
+    border-radius: .3rem;
+
+}
+
+.input-box input {
+    font-size: var(--medium-font);
+    width: 100%;
+    padding: 1rem 1.5rem;
+    padding-top: 2rem;
+    border: none;
+    background: var(--bg-light);
+    border-radius: .3rem;
+    color: var(--text);
+    border: .1rem solid var(--secondary);
+
+}
+
+.input-box input~label {
+    position: absolute;
+    left: .5rem;
+    top: 50%;
+    color: var(--text);
+    transform: translateY(-50%);
+    font-size: var(--medium-font);
+    background: var(--bg-light);
+    border-radius: .3rem;
+    pointer-events: none;
+    user-select: none;
+    transition: .3s;
+    filter: opacity(.7);
+    padding: 0 .5rem;
+}
+
+.input-box input:focus~label,
+.input-box input:not(:placeholder-shown)~label {
+    top: .5rem;
+    font-size: var(--small-font);
+    color: var(--primary);
+    transform: translateY(0%);
+    font-weight: 600;
+    line-height: 1rem;
+    filter: opacity(1);
+}
+
+
+.submission-form .submit-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--primary);
+    border: .1rem solid transparent;
+    cursor: pointer;
+}
+
+.submission-form .submit-button .text {
+    color: var(--white);
+}
+
+.submission-form .submit-button:hover {
+    color: var(--text);
+    background: transparent;
+    border: .1rem solid var(--primary);
+}
+
+.submission-form .submit-button:hover .text {
+    color: var(--text);
+}
+
+.submission-form .submit-button:hover .loader span {
+    color: var(--primary);
+}
+
+.submit-button .loader {
+    display: grid;
+    place-items: center;
+    animation: rotate 2s ease-in-out infinite;
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.submit-button .loader span {
+    font-weight: bold;
+    font-size: var(--medium-font);
+}

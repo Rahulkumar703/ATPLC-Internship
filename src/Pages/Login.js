@@ -19,18 +19,19 @@ export default function Login() {
         Username: "",
         Password: "",
     });
-    const [error, seterror] = useState('Fill All Fields');
+    const [error, seterror] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
-    const handelChange = (e) => {
+    const handelChange = (e, name) => {
         setLoginDetails({
             ...loginDetails,
-            [e.target.name]: e.target.value
+            [name]: e.target.value
         })
     }
 
-    const login = async () => {
-        if (loginDetails.Username !== '' && loginDetails.Password !== '') {
+    const login = async (e) => {
+        e.preventDefault();
+        if (loginDetails.Username !== '') {
             seterror('')
             setIsLoading(true);
             try {
@@ -56,7 +57,7 @@ export default function Login() {
             }
         }
         else {
-            seterror("Fill All Details")
+            seterror("All fields are mandatory")
         }
         setIsLoading(false);
     }
@@ -74,25 +75,27 @@ export default function Login() {
                     </div>
                 }
                 <div className="login-inputs">
-                    <div className="input-container">
-                        <input type="text" id='username' value={loginDetails.Username} placeholder=' ' name='Username' onChange={handelChange} />
-                        <label htmlFor="username">username / email</label>
-                    </div>
-                    <div className="input-container">
-                        <input type="password" id='password' value={loginDetails.Password} placeholder=' ' name='Password' onChange={handelChange} />
-                        <label htmlFor="password">Password</label>
-                    </div>
-                    <button className="login-button" onClick={login}>
-                        {
-                            isLoading &&
-                            <div className="loader">
-                                <span className="material-symbols-rounded">
-                                    hourglass_empty
-                                </span>
-                            </div>
-                        }
-                        <div className="text">Login</div>
-                    </button>
+                    <form action="" onSubmit={login}>
+                        <div className="input-container">
+                            <input type="text" id='username' value={loginDetails.Username} placeholder=' ' onChange={(e) => handelChange(e, 'Username')} />
+                            <label htmlFor="username">username / email</label>
+                        </div>
+                        {/* <div className="input-container">
+                            <input type="password" id='password' value={loginDetails.Password} placeholder=' ' onChange={(e) => handelChange(e, 'Password')} />
+                            <label htmlFor="password">password</label>
+                        </div> */}
+                        <button className="login-button">
+                            {
+                                isLoading &&
+                                <div className="loader">
+                                    <span className="material-symbols-rounded">
+                                        hourglass_empty
+                                    </span>
+                                </div>
+                            }
+                            <div className="text">Login</div>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

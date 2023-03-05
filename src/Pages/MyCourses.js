@@ -30,7 +30,9 @@ export default function Courses() {
     return (
 
         <section className='page my-courses-page'>
-            <div className="page-heading">My Courses</div>
+            <div className="page-heading">
+                <h3>My Courses</h3>
+            </div>
             <div className="courses-grid">
                 {
                     isloading ? <Loader /> :
@@ -41,7 +43,7 @@ export default function Courses() {
                                 courseName={course.Course__Course_Name}
                                 courseDuration={0}
                                 courseCompletionStatus={course.Course_Completed}
-                                coverImage={course.Course__Course_Thumbnail}
+                                coverImage={course.Course__Course_Thumbnail.startsWith('/media') ? course.Course__Course_Thumbnail : '/media/' + course.Course__Course_Thumbnail}
                             />
                         })
                 }</div>

@@ -1,28 +1,18 @@
 import React from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import './TaskCard.css';
 
-export default function TaskCard({ Task_No, Task_Topic, Task_Content, Task_Status, submissionLink, Remarks }) {
+export default function TaskCard({ courseId, Task_No, Task_Topic, Task_Content, Task_Status, Submission_Link, Remarks }) {
 
     const taskNumber = Task_No < 10 ? `0${Task_No}` : Task_No;
+
 
     const navigate = useNavigate();
 
     let statusLabel;
-    if (submissionLink === '') {
+    if (Task_Status === "Under Review") {
         statusLabel = (
-            <div className="status-label danger row">
-                <div className="icon">
-                    <span className="material-symbols-rounded">
-                        report
-                    </span>
-                </div>
-                <div className="text">Not Submitted</div>
-            </div>
-        );
-    } else if (Task_Status === "Under Review") {
-        statusLabel = (
-            <div className="status-label pending row">
+            <div className="status-label info row">
                 <div className="icon">
                     <span className="material-symbols-rounded">
                         schedule
@@ -31,7 +21,19 @@ export default function TaskCard({ Task_No, Task_Topic, Task_Content, Task_Statu
                 <div className="text">Under Review</div>
             </div>
         );
-    } else {
+    } else if (Task_Status === "Rejected") {
+        statusLabel = (
+            <div className="status-label danger row">
+                <div className="icon">
+                    <span className="material-symbols-rounded">
+                        block
+                    </span>
+                </div>
+                <div className="text">Rejected</div>
+            </div>
+        );
+    }
+    else if (Task_Status === "Approved") {
         statusLabel = (
             <div className="status-label success row">
                 <div className="icon">
@@ -43,14 +45,21 @@ export default function TaskCard({ Task_No, Task_Topic, Task_Content, Task_Statu
             </div>
         );
     }
-
-
-    const openTask = () => {
-        navigate('/task', { Task_No, Task_Topic, Task_Content, Task_Status, submissionLink, Remarks });
+    else {
+        statusLabel = (
+            <div className="status-label pending row">
+                <div className="icon">
+                    <span className="material-symbols-rounded">
+                        cancel
+                    </span>
+                </div>
+                <div className="text">Not Submitted</div>
+            </div>
+        );
     }
 
     return (
-        <div className={`task-card`} onClick={openTask}>
+        <Link to={`/task/${Task_Topic}`} className={`task-card`} state={{ courseId, Task_No, Task_Topic, Task_Content, Task_Status, Submission_Link, Remarks }}>
 
             <div className="top row">
                 <div className="left">
@@ -63,9 +72,9 @@ export default function TaskCard({ Task_No, Task_Topic, Task_Content, Task_Statu
                 </div>
             </div>
 
-            <div className="middle">
-                <div className="task-description">{Task_Content}</div>
-            </div>
+            {/* <div className="middle">
+                    <div className="task-description">{Task_Content}</div>
+                </div> */}
 
             <div className="bottom col">
                 <div className="status">
@@ -73,6 +82,6 @@ export default function TaskCard({ Task_No, Task_Topic, Task_Content, Task_Statu
                 </div>
 
             </div>
-        </div>
+        </Link>
     );
 }

@@ -14,6 +14,7 @@ export default function Dashboard() {
 
     const [isLoading, setIsloading] = useState(true);
     const [taskData, setTaskData] = useState([]);
+    const [completedTask, setCompletedTask] = useState(0);
 
     useEffect(() => {
         getTasks();
@@ -35,6 +36,16 @@ export default function Dashboard() {
                 Username: JSON.parse(localStorage.getItem('user')).userId
             })
             setTaskData(data);
+
+            data?.Submissions?.forEach(sub => {
+                if (sub.Task_Status === "Approved") {
+                    setCompletedTask(completedTask + 1)
+                }
+            })
+
+
+            // console.log(data);
+            // console.log(location.state.id, JSON.parse(localStorage.getItem('user')).userId);
         } catch (e) {
             console.log(e);
         }
@@ -51,13 +62,13 @@ export default function Dashboard() {
                     <Card
                         heading='Verified Submission'
                         icon="insights"
-                        obtainedScore={taskData.Completed_Tasks[0].No_of_Completed_Tasks}
+                        obtainedScore={(completedTask)}
                         totalScore={taskData.Tasks.length}
                     />
                     <Card
                         heading='Pending Tasks'
                         icon="pending"
-                        obtainedScore={taskData.Tasks.length - taskData.Completed_Tasks[0].No_of_Completed_Tasks}
+                        obtainedScore={taskData.Tasks.length - completedTask}
                         totalScore={taskData.Tasks.length}
                     />
                 </div>
@@ -66,10 +77,12 @@ export default function Dashboard() {
                 </div>
                 <div className="task-list-container grid">
                     {taskData.Tasks.map(task => {
-                        const submittedTask = taskData.Submissions.find(sub => sub.Task_No_id === task.Task_No);
+                        const submittedTask = taskData.Submissions.find(sub => {
+                            return (sub.Task_No_id === task.Task_No)
+                        })
                         return <TaskCard
                             key={task.Task_No}
-
+                            courseId={location.state.id}
                             Task_No={task.Task_No}
                             Task_Topic={task.Task_Topic}
                             Task_Content={task.Task_Content}

@@ -35,7 +35,9 @@ export default function Courses() {
     return (
 
         <section className='page courses-page'>
-            <div className="page-heading">Courses</div>
+            <div className="page-heading">
+                <h3>Courses</h3>
+            </div>
             {
                 isloading ? <Loader /> :
                     <div className="courses-grid">
