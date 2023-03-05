@@ -39,10 +39,10 @@ header.active .login-button:hover {
     color: var(--primary);
 }
 
-/* header.active .login-button .text,
+header.active .login-button .text,
 header.active .login-button .icon span {
     color: var(--text);
-} */
+}
 
 
 

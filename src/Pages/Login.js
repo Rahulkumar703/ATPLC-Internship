@@ -1,56 +1,48 @@
 import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Login.css'
-import userContext from '../Context/User/userContext';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (localStorage.getItem('user')) {
-            navigate('/', { replace: true });
-        }
-    })
 
-    const { userState, setUserState } = useContext(userContext);
-
+    const [error, seterror] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const [loginDetails, setLoginDetails] = useState({
         Username: "",
         Password: "",
     });
-    const [error, seterror] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
+
+
+
+    useEffect(() => {
+        if (localStorage.getItem('user') && JSON.parse(localStorage.getItem('user'))?.userId !== undefined) {
+            navigate('/', { replace: true });
+        }
+    })
 
     const handelChange = (e, name) => {
         setLoginDetails({
             ...loginDetails,
-            [name]: e.target.value
+            [name]: e.target.value.toUpperCase()
         })
     }
 
     const login = async (e) => {
         e.preventDefault();
         if (loginDetails.Username !== '' && loginDetails.Password !== '') {
-            seterror('')
-            setIsLoading(true);
             try {
                 setIsLoading(true);
-                const response = await axios.post('https://atplc20.pythonanywhere.com/login', { ...loginDetails, Username: loginDetails.Username.toUpperCase() });
-                seterror(response.data.response);
-
-                await setUserState({
-                    ...userState,
-                    userId: response.data.user_id[0].id,
-                    username: loginDetails.Username,
-                });
+                const { data } = await axios.post('https://atplc20.pythonanywhere.com/login', { ...loginDetails, Username: loginDetails.Username.toUpperCase() });
 
                 localStorage.setItem('user', JSON.stringify({
-                    userId: response.data.user_id[0].id,
-                    username: loginDetails.Username.toUpperCase(),
+                    userId: data.user_id[0].id,
+                    username: loginDetails.Username,
+                    fullName: data.user_id[0].first_name,
                 }));
 
-                window.location.assign('/my-courses');
+                // window.location.assign('/my-courses');
 
             } catch (err) {
                 seterror(err?.response?.data?.response || err?.message);

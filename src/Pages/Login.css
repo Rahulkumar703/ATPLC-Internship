@@ -101,7 +101,6 @@
 
 .login-inputs .login-button {
     background: var(--primary);
-    color: var(--white);
     border: .1rem solid transparent;
     display: flex;
     align-items: center;
@@ -122,10 +121,15 @@
 .login-button .loader {
     display: grid;
     place-items: center;
+    color: var(--white);
 }
 
 .login-button .loader.loading {
     animation: rotate 2s ease-in-out infinite;
+}
+
+.login-button .text {
+    color: var(--white);
 }
 
 @keyframes rotate {

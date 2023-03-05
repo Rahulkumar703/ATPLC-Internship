@@ -96,6 +96,14 @@ export default function Footer() {
                                 <div className="text">Facebook</div>
                             </a>
                         </div>
+                        <div className="social-links">
+                            <a href="https://www.youtube.com/channel/UCMb7k6Re-zCo1M4HjptvG6g" target="_blank" rel="noreferrer">
+                                <div className="icon">
+                                    <i className="fi fi-brands-youtube"></i>
+                                </div>
+                                <div className="text">Youtube</div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

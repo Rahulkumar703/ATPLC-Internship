@@ -1,14 +1,13 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom';
-import userContext from '../Context/User/userContext'
+import React, { useEffect, useRef, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
 import './Account.css'
 import LogInWithGithub from './LogInWithGithub';
 
 export default function Account({ accountRef, setHamburgerStatus }) {
 
-    const { userState, setUserState } = useContext(userContext);
     const [popUpStatus, setPopUpStatus] = useState(false);
     const popUpRef = useRef();
+    const navigate = useNavigate();
 
     useEffect(() => {
         document.addEventListener('click', (e) => {
@@ -21,10 +20,9 @@ export default function Account({ accountRef, setHamburgerStatus }) {
         setPopUpStatus(!popUpStatus);
     }
     const logOut = async () => {
-        await setUserState({});
         localStorage.removeItem('user')
-        localStorage.removeItem('tasks')
-        window.location.assign('/');
+        navigate('/', { replace: true });
+
     }
 
 
@@ -39,11 +37,11 @@ export default function Account({ accountRef, setHamburgerStatus }) {
                     <>
                         <div className="header-profile row" ref={popUpRef} onClick={togglePopUp}>
                             <div className="profile-pic">
-                                {JSON.parse(localStorage.getItem('user')).username.slice(-2)}
+                                {JSON.parse(localStorage.getItem('user')).fullName[0]}
                             </div>
                             <div className="profile-details col">
-                                <div className="profile-name">{JSON.parse(localStorage.getItem('user')).username}</div>
-                                <div className="profile-email">{userState.email}</div>
+                                <div className="profile-name">{JSON.parse(localStorage.getItem('user')).fullName}</div>
+                                <div className="profile-email">{JSON.parse(localStorage.getItem('user'))?.email}</div>
                             </div>
                         </div>
                         <div className={`profile-popup ${popUpStatus ? 'active' : ''}`}>
