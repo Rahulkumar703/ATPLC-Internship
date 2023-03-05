@@ -3,13 +3,30 @@
     justify-content: start;
 }
 
-.dashboard-page .score-card-container,
-.dashboard-page .task-list-container {
+.dashboard-page .page-heading {
+    font-size: var(--heading);
+    align-self: center;
+    padding: 1rem 3rem;
+    margin: 1rem 0;
+}
+
+.page-body .page-body-heading {
+    font-size: var(--heading);
+    align-self: center;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.dashboard-page .page-body {
     width: 100%;
+}
+
+.page-body .score-card-container,
+.page-body .task-list-container {
     padding: 1rem;
 }
 
-.dashboard-page .task-list-container {
+.page-body .task-list-container {
     grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
 }
 
@@ -25,11 +42,6 @@
     --button-color: var(--danger);
 }
 
-.dashboard-page .title {
-    font-size: var(--heading);
-    padding: 1rem;
-    margin-top: 5rem;
-}
 
 
 

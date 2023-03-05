@@ -3,13 +3,13 @@ import axios from 'axios'
 import CourseCard from '../Components/CourseCard'
 import './Courses.css'
 import Loader from '../Components/Loader';
-import { useNavigate } from 'react-router-dom';
+import Error from '../Components/Error';
 
 export default function Courses() {
 
     const [isloading, setIsLoading] = useState(true);
+    const [error, setError] = useState('');
     const [courses, setCourses] = useState([]);
-    const navigate = useNavigate();
 
 
 
@@ -23,12 +23,13 @@ export default function Courses() {
         try {
             const { data } = await axios.get('https://atplc20.pythonanywhere.com/courses?format=json');
             setCourses(data.courses);
-            console.log(data.courses[0].Course_Thumbnail);
 
         } catch (error) {
-            console.log(error);
+            setError(error.message)
         }
-        setIsLoading(false);
+        finally {
+            setIsLoading(false);
+        }
     }
 
 
@@ -39,7 +40,7 @@ export default function Courses() {
                 <h3>Courses</h3>
             </div>
             {
-                isloading ? <Loader /> :
+                error === '' ? isloading ? <Loader /> :
                     <div className="courses-grid">
                         {courses.map(course => {
                             return <CourseCard
@@ -51,6 +52,8 @@ export default function Courses() {
                             />
                         })}
                     </div>
+                    :
+                    <Error message={error} />
             }
         </section>
     )

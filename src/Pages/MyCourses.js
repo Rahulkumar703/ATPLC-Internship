@@ -1,52 +1,71 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import CourseCard from '../Components/CourseCard'
-import './MyCourses.css'
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import axios from 'axios';
+import CourseCard from '../Components/CourseCard';
+import './MyCourses.css';
 import Loader from '../Components/Loader';
 import { useNavigate } from 'react-router-dom';
+import Error from '../Components/Error';
 
 export default function Courses() {
-
-    const [isloading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
     const [myCourses, setMyCourses] = useState([]);
+    const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const fetchCourses = async () => {
-        setIsLoading(true);
+    const fetchCourses = useCallback(async () => {
         try {
-            const response = await axios.post('https://atplc20.pythonanywhere.com/my-courses', { Username: JSON.parse(localStorage.getItem('user')).username });
-            setMyCourses(response.data)
+            const response = await axios.post('https://atplc20.pythonanywhere.com/my-courses', {
+                Username: JSON.parse(localStorage.getItem('user')).username,
+            });
+            setMyCourses(response.data);
         } catch (error) {
-            console.log(error);
+            setError(error.message);
+        } finally {
+            setIsLoading(false);
         }
-        setIsLoading(false);
-    }
+    }, []);
+
     useEffect(() => {
         if (!localStorage.getItem('user')) {
-            navigate('/', { replace: true })
+            navigate('/', { replace: true });
         }
         fetchCourses();
-    }, [])
-    return (
+    }, [fetchCourses, navigate]);
 
+    const courseCards = useMemo(
+        () =>
+            myCourses.map((course) => (
+                <CourseCard
+                    key={course.Course_id}
+                    id={course.Course_id}
+                    courseName={course.Course__Course_Name}
+                    courseDuration={0}
+                    courseCompletionStatus={course.Course_Completed}
+                    coverImage={
+                        course.Course__Course_Thumbnail.startsWith('/media')
+                            ? course.Course__Course_Thumbnail
+                            : '/media/' + course.Course__Course_Thumbnail
+                    }
+                />
+            )),
+        [myCourses]
+    );
+
+    return (
         <section className='page my-courses-page'>
-            <div className="page-heading">
+            <div className='page-heading'>
                 <h3>My Courses</h3>
             </div>
-            <div className="courses-grid">
-                {
-                    isloading ? <Loader /> :
-                        myCourses.map(course => {
-                            return <CourseCard
-                                key={course.Course_id}
-                                id={course.Course_id}
-                                courseName={course.Course__Course_Name}
-                                courseDuration={0}
-                                courseCompletionStatus={course.Course_Completed}
-                                coverImage={course.Course__Course_Thumbnail.startsWith('/media') ? course.Course__Course_Thumbnail : '/media/' + course.Course__Course_Thumbnail}
-                            />
-                        })
-                }</div>
+
+            {error === '' ? (
+                isLoading ? (
+                    <Loader />
+                ) : (
+                    <div className='courses-grid'>{courseCards}</div>
+                )
+            ) : (
+                <Error message={error} />
+            )}
         </section>
-    )
+    );
 }

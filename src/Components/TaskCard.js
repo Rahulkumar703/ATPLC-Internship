@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './TaskCard.css';
 
 export default function TaskCard({ courseId, Task_No, Task_Topic, Task_Content, Task_Status, Submission_Link, Remarks }) {
@@ -7,7 +7,6 @@ export default function TaskCard({ courseId, Task_No, Task_Topic, Task_Content, 
     const taskNumber = Task_No < 10 ? `0${Task_No}` : Task_No;
 
 
-    const navigate = useNavigate();
 
     let statusLabel;
     if (Task_Status === "Under Review") {

@@ -7,6 +7,7 @@
     overflow: hidden;
     position: relative;
     z-index: 2;
+    padding: 1rem;
 }
 
 .course-card:hover {
@@ -17,11 +18,12 @@
     z-index: 1;
     transition: .3s;
     user-select: none;
-    transform: translateY(50%);
+    transform: translateY(25%);
     border-radius: .5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
 }
 
 
@@ -69,7 +71,7 @@
     color: var(--primary);
     font-family: 'Poppins', sans-serif;
     font-size: italic;
-    background: var(--bg);
+    background: var(--bg-light);
     width: 100%;
     padding: .5rem;
     text-align: center;
@@ -78,19 +80,20 @@
 
 .course-card .course-content {
     flex: 1;
-    padding: 3rem 1rem;
+    padding: 0 1rem;
     padding-top: 1rem;
     display: flex;
     flex-direction: column;
     gap: .5rem;
     transition: .3s;
-    background: var(--bg);
+    /* background: var(--bg); */
     transform: translateY(-50%);
     z-index: -1;
 }
 
 .course-card:hover {
     border: 1px solid var(--secondary);
+    background: var(--bg);
 }
 
 .course-card:hover .course-content,

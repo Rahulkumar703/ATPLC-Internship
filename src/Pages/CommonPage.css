@@ -5,4 +5,5 @@
     padding: 1rem;
     align-items: center;
     min-height: calc(100dvh - 8rem);
+    position: relative;
 }

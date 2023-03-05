@@ -4,6 +4,11 @@ import { useLocation } from 'react-router-dom'
 import './Task.css'
 
 export default function Task() {
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    })
+
     const { state: { courseId, Task_No, Task_Topic, Task_Content, Task_Status, Submission_Link, Remarks } } = useLocation();
     const [link, setLink] = useState(Submission_Link || '');
     const [isLoading, setIsLoading] = useState(false);

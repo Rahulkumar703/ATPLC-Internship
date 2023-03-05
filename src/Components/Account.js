@@ -28,7 +28,9 @@ export default function Account({ accountRef, setHamburgerStatus }) {
     }
 
 
-
+    const scrollToTop = () => {
+        window.scrollTo(0, 0)
+    }
     return (
         <div className="account" ref={accountRef}>
             {
@@ -53,7 +55,7 @@ export default function Account({ accountRef, setHamburgerStatus }) {
                                     <div className="text">Id : {JSON.parse(localStorage.getItem('user')).username}</div>
                                 </li>
                                 <li>
-                                    <Link to="/profile">
+                                    <Link to="/profile" onClick={scrollToTop} >
                                         <div className="icon">
                                             <span className="material-symbols-rounded">
                                                 person
@@ -64,7 +66,7 @@ export default function Account({ accountRef, setHamburgerStatus }) {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/my-courses">
+                                    <Link to="/my-courses" onClick={scrollToTop}>
                                         <div className="icon">
                                             <span className="material-symbols-rounded">
                                                 library_books
