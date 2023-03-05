@@ -19,7 +19,7 @@ export default function Courses() {
             });
             setMyCourses(response.data);
         } catch (error) {
-            setError(error.message);
+            setError(error);
         } finally {
             setIsLoading(false);
         }
@@ -32,22 +32,21 @@ export default function Courses() {
         fetchCourses();
     }, [fetchCourses, navigate]);
 
-    const courseCards = useMemo(
-        () =>
-            myCourses.map((course) => (
-                <CourseCard
-                    key={course.Course_id}
-                    id={course.Course_id}
-                    courseName={course.Course__Course_Name}
-                    courseDuration={0}
-                    courseCompletionStatus={course.Course_Completed}
-                    coverImage={
-                        course.Course__Course_Thumbnail.startsWith('/media')
-                            ? course.Course__Course_Thumbnail
-                            : '/media/' + course.Course__Course_Thumbnail
-                    }
-                />
-            )),
+    const courseCards = useMemo(() =>
+        myCourses.map((course) => (
+            <CourseCard
+                key={course.Course_id}
+                id={course.Course_id}
+                courseName={course.Course__Course_Name}
+                courseDuration={0}
+                courseCompletionStatus={course.Course_Completed}
+                coverImage={
+                    course.Course__Course_Thumbnail.startsWith('/media')
+                        ? course.Course__Course_Thumbnail
+                        : '/media/' + course.Course__Course_Thumbnail
+                }
+            />
+        )),
         [myCourses]
     );
 
@@ -64,7 +63,7 @@ export default function Courses() {
                     <div className='courses-grid'>{courseCards}</div>
                 )
             ) : (
-                <Error message={error} />
+                <Error error={error} />
             )}
         </section>
     );

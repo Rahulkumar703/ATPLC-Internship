@@ -25,7 +25,7 @@ export default function Courses() {
             setCourses(data.courses);
 
         } catch (error) {
-            setError(error.message)
+            setError(error)
         }
         finally {
             setIsLoading(false);
@@ -53,7 +53,7 @@ export default function Courses() {
                         })}
                     </div>
                     :
-                    <Error message={error} />
+                    <Error error={error} />
             }
         </section>
     )

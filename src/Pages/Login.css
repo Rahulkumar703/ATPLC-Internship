@@ -3,8 +3,6 @@
 }
 
 .login-container {
-    width: 50vw;
-    max-width: 50rem;
     display: flex;
     flex-direction: column;
     background: var(--bg);
@@ -28,10 +26,11 @@
     padding: 1rem;
     margin-bottom: 1rem;
     text-align: center;
-    background: linear-gradient(to right, transparent, var(--bg-dark), transparent);
+    background: linear-gradient(to right, transparent, var(--bg), transparent);
     color: var(--text);
     font-weight: 600;
     font-size: var(--small-font);
+    transition: .3s;
 }
 
 .login-container .login-inputs,
@@ -44,14 +43,27 @@
 .login-inputs .input-container {
     position: relative;
     border-radius: .3rem;
+    width: 50rem;
 
+}
+
+.input-container .icon {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 5rem;
+    height: 5rem;
+    border-radius: .3rem;
+    border-right: .2rem solid var(--bg-dark);
 }
 
 .input-container input {
     font-size: var(--medium-font);
     width: 100%;
     padding: 1rem 1.5rem;
-    padding-top: 2rem;
+    padding-left: 6rem;
+    padding-top: 2.5rem;
     border: none;
     background: var(--bg-light);
     border-radius: .3rem;
@@ -61,7 +73,7 @@
 
 .input-container input~label {
     position: absolute;
-    left: .5rem;
+    left: 6rem;
     top: 50%;
     color: var(--text);
     transform: translateY(-50%);
@@ -110,6 +122,9 @@
 .login-button .loader {
     display: grid;
     place-items: center;
+}
+
+.login-button .loader.loading {
     animation: rotate 2s ease-in-out infinite;
 }
 

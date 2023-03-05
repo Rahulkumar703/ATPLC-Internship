@@ -44,9 +44,10 @@ export default function Dashboard() {
                     Username: JSON.parse(localStorage.getItem('user')).userId
                 });
                 setTaskData(data);
-                setIsloading(false);
             } catch (e) {
-                setError(e.message);
+                setError(e);
+            }
+            finally {
                 setIsloading(false);
             }
         }
@@ -103,7 +104,7 @@ export default function Dashboard() {
                         </div>
                     </div>
                     :
-                    <Error message={error} />
+                    <Error error={error} />
                 }
             </section>
 

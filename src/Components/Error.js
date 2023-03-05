@@ -1,17 +1,21 @@
 import React from 'react'
 import './Error.css'
 
-export default function Error({ message }) {
+export default function Error({ error }) {
+    console.log(error);
     return (
 
         <div className="error-message">
             <div className="icon">
                 <span className="material-symbols-rounded">
-                    signal_disconnected
+                    cloud_off
                 </span>
             </div>
             <div className="text">
-                {message}
+                {error?.response?.statusText || error.message}
+            </div>
+            <div className="status-code">
+                {error?.response?.status || 408}
             </div>
         </div>
     )

@@ -64,6 +64,7 @@
 
 
 .course-cover .course-name {
+    width: 100%;
     font-size: var(--large-font);
     text-shadow: none;
     padding: 1rem;

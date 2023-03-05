@@ -22,41 +22,31 @@ export default function Footer() {
                         <div className="quick-links">
                             <Link to="/">
                                 <div className="icon">
-                                    <span className="material-symbols-rounded">
-                                        home
-                                    </span>
+                                    <i className="fi fi-rr-home"></i>
                                 </div>
                                 <div className="text">Home</div>
                             </Link>
                             <Link to="/#about">
                                 <div className="icon">
-                                    <span className="material-symbols-rounded">
-                                        help
-                                    </span>
+                                    <i className="fi fi-rr-info"></i>
                                 </div>
                                 <div className="text">About</div>
                             </Link>
                             <Link to="/courses">
                                 <div className="icon">
-                                    <span className="material-symbols-rounded">
-                                        book
-                                    </span>
+                                    <i className="fi fi-rr-e-learning"></i>
                                 </div>
                                 <div className="text">Courses</div>
                             </Link>
                             <Link to="/gallery">
                                 <div className="icon">
-                                    <span className="material-symbols-rounded">
-                                        gallery_thumbnail
-                                    </span>
+                                    <i className="fi fi-rr-layout-fluid"></i>
                                 </div>
                                 <div className="text">Gallery</div>
                             </Link>
                             <Link to="/#feedback">
                                 <div className="icon">
-                                    <span className="material-symbols-rounded">
-                                        forum
-                                    </span>
+                                    <i className="fi fi-rr-comment"></i>
                                 </div>
                                 <div className="text">Feedback</div>
                             </Link>
@@ -69,7 +59,7 @@ export default function Footer() {
                         <div className="social-links">
                             <a href="mailto:contact2atplc@gmail.com" target="_blank" rel="noreferrer">
                                 <div className="icon">
-                                    <img src="https://img.icons8.com/fluency/48/null/mail.png" alt="mail" />
+                                    <i className="fi fi-rr-envelope"></i>
                                 </div>
                                 <div className="text">contact2atplc@gmail.com</div>
                             </a>
@@ -77,7 +67,7 @@ export default function Footer() {
                         <div className="social-links">
                             <a href="tel:+916205695667" target="_blank" rel="noreferrer">
                                 <div className="icon">
-                                    <img src="https://img.icons8.com/parakeet/48/null/phone.png" alt="phone" />
+                                    <i className="fi fi-rr-phone-call"></i>
                                 </div>
                                 <div className="text">+91 6205695667</div>
                             </a>
@@ -85,7 +75,7 @@ export default function Footer() {
                         <div className="social-links">
                             <a href="https://github.com/atplc" target="_blank" rel="noreferrer">
                                 <div className="icon">
-                                    <img src="https://img.icons8.com/material-outlined/24/null/github.png" alt='github' />
+                                    <i className="fi fi-brands-github"></i>
                                 </div>
                                 <div className="text">GitHub</div>
                             </a>
@@ -93,17 +83,17 @@ export default function Footer() {
                         <div className="social-links">
                             <a href="https://in.linkedin.com/company/atplc" target="_blank" rel="noreferrer">
                                 <div className="icon">
-                                    <img src="https://img.icons8.com/color/48/null/linkedin.png" alt='linkedin' />
+                                    <i className="fi fi-brands-linkedin"></i>
                                 </div>
                                 <div className="text">LinkedIn</div>
                             </a>
                         </div>
                         <div className="social-links">
-                            <a href="https://play.google.com/store/apps/details?id=com.bcebhagalpur.atplc&gl=US&pli=1" target="_blank" rel="noreferrer">
+                            <a href="https://www.facebook.com/people/ATPLC/100063604494243/" target="_blank" rel="noreferrer">
                                 <div className="icon">
-                                    <img src="https://img.icons8.com/fluency/48/null/google-play.png" alt='playstore' />
+                                    <i className="fi fi-brands-facebook"></i>
                                 </div>
-                                <div className="text">Playstore</div>
+                                <div className="text">Facebook</div>
                             </a>
                         </div>
                     </div>

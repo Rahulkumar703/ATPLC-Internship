@@ -12,6 +12,7 @@ export default function Task() {
     const { state: { courseId, Task_No, Task_Topic, Task_Content, Task_Status, Submission_Link, Remarks } } = useLocation();
     const [link, setLink] = useState(Submission_Link || '');
     const [isLoading, setIsLoading] = useState(false);
+    const [showEdit, setShowEdit] = useState(true);
 
     const [message, setMessage] = useState('');
 
@@ -101,24 +102,39 @@ export default function Task() {
                 <div className="task-submisssion">
                     <div className="submission-status-remarks">
                         {statusLabel}
-                        <div className="remarks">
-                            <div className="remarks-heading">
-                                <h4>Remarks</h4>
+                        {
+                            Remarks &&
+                            <div className="remarks">
+                                <div className="remarks-heading">
+                                    <h4>Remarks</h4>
+                                </div>
+                                <div className="remarks-body">
+                                    {Remarks}
+                                </div>
                             </div>
-                            <div className="remarks-body">
-                                {Remarks}
-                            </div>
-                        </div>
+                        }
                     </div>
                     <form className="submission-form" action="" onSubmit={submitLink}>
-                        <div className="message-box">
-                            {message}
-                        </div>
+                        {
+                            message !== '' &&
+                            <div className="message-box">
+                                {message}
+                            </div>
+                        }
                         <div className="input-box">
-                            <input id='submition-link' type="text" placeholder=' ' required value={link} onChange={(e) => { setLink(e.target.value) }} />
+                            <input id='submition-link' type="text" placeholder=' ' disabled={showEdit} required value={link} onChange={(e) => { setLink(e.target.value) }} />
                             <label htmlFor="submition-link">Submission Link</label>
+
+                            <div className="edit" onClick={() => setShowEdit(!showEdit)}>
+                                <div className="icon">
+                                    <span className="material-symbols-rounded">
+                                        {showEdit ? 'edit' : 'done'}
+                                    </span>
+                                </div>
+                            </div>
+
                         </div>
-                        <button type='submit' className='submit-button'>
+                        <button type='submit' className={`submit-button ${submitLink === link ? 'hidden' : ''}`}>
                             <div className="icon
                             ">
                                 {

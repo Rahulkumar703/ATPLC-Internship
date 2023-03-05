@@ -32,34 +32,32 @@ function Header() {
 
 
     return (
-        <>
-            <header className='header col' ref={headerRef}>
-                <div className="row">
-                    <div className="heading row">
-                        <div className="logo">
-                            <figure>
-                                <Link to="/">
-                                    <img src="/Assets/Images/atplc_logo.png" alt="ATPLC logo" />
-                                </Link>
-                            </figure>
-                        </div>
-                        <div className="text">
+        <header className='header col' ref={headerRef}>
+            <div className="row">
+                <div className="heading row">
+                    <div className="logo">
+                        <figure>
                             <Link to="/">
-                                <h1>ATPLC</h1>
+                                <img src="/Assets/Images/atplc_logo.png" alt="ATPLC logo" />
                             </Link>
-                        </div>
+                        </figure>
                     </div>
-                    <div className={`header-actions ${hamburgerStatus ? 'active' : ''}`} >
-                        <Navbar hamburgerStatus={hamburgerStatus} setHamburgerStatus={setHamburgerStatus} />
-                        <div className="row">
-                            <Theme />
-                            <Account setHamburgerStatus={setHamburgerStatus} />
-                        </div>
+                    <div className="text">
+                        <Link to="/">
+                            <h1>ATPLC</h1>
+                        </Link>
                     </div>
-                    <Hamburger hamburgerStatus={hamburgerStatus} setHamburgerStatus={setHamburgerStatus} />
                 </div>
-            </header>
-        </>
+                <div className={`header-actions ${hamburgerStatus ? 'active' : ''}`} >
+                    <Navbar hamburgerStatus={hamburgerStatus} setHamburgerStatus={setHamburgerStatus} />
+                    <div className="row">
+                        <Theme />
+                        <Account setHamburgerStatus={setHamburgerStatus} />
+                    </div>
+                </div>
+                <Hamburger hamburgerStatus={hamburgerStatus} setHamburgerStatus={setHamburgerStatus} />
+            </div>
+        </header>
     )
 }
 

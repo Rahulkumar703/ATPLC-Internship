@@ -31,7 +31,7 @@ export default function Login() {
 
     const login = async (e) => {
         e.preventDefault();
-        if (loginDetails.Username !== '') {
+        if (loginDetails.Username !== '' && loginDetails.Password !== '') {
             seterror('')
             setIsLoading(true);
             try {
@@ -53,13 +53,15 @@ export default function Login() {
                 window.location.assign('/my-courses');
 
             } catch (err) {
-                seterror(err.response.data.response);
+                seterror(err?.response?.data?.response || err?.message);
+            }
+            finally {
+                setIsLoading(false);
             }
         }
         else {
             seterror("All fields are mandatory")
         }
-        setIsLoading(false);
     }
 
     return (
@@ -77,21 +79,37 @@ export default function Login() {
                 <div className="login-inputs">
                     <form action="" onSubmit={login}>
                         <div className="input-container">
+                            <div className="icon">
+                                <span className="material-symbols-rounded">
+                                    person
+                                </span>
+                            </div>
                             <input type="text" id='username' value={loginDetails.Username} placeholder=' ' onChange={(e) => handelChange(e, 'Username')} />
                             <label htmlFor="username">username / email</label>
                         </div>
-                        {/* <div className="input-container">
+                        <div className="input-container">
+                            <div className="icon">
+                                <span className="material-symbols-rounded">
+                                    password
+                                </span>
+                            </div>
                             <input type="password" id='password' value={loginDetails.Password} placeholder=' ' onChange={(e) => handelChange(e, 'Password')} />
                             <label htmlFor="password">password</label>
-                        </div> */}
+                        </div>
                         <button className="login-button">
                             {
-                                isLoading &&
-                                <div className="loader">
-                                    <span className="material-symbols-rounded">
-                                        hourglass_empty
-                                    </span>
-                                </div>
+                                isLoading ?
+                                    <div className="loader loading">
+                                        <span className="material-symbols-rounded">
+                                            donut_large
+                                        </span>
+                                    </div>
+                                    :
+                                    <div className="loader">
+                                        <span className="material-symbols-rounded">
+                                            send
+                                        </span>
+                                    </div>
                             }
                             <div className="text">Login</div>
                         </button>

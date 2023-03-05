@@ -6,14 +6,22 @@
     justify-content: center;
     font-size: 3rem;
     gap: 2rem;
+    position: relative;
 }
 
 .error-message .icon span {
     font-size: 10rem;
-    color: var(--faded-text);
 }
 
 .error-message .text {
     font-size: 5rem;
-    color: var(--faded-text);
+}
+
+.error-message .status-code {
+    position: absolute;
+    font-size: 30vw;
+    opacity: .03;
+    font-weight: 900;
+    padding: 1rem;
+    z-index: -1;
 }

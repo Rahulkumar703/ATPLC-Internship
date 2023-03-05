@@ -102,7 +102,7 @@
     color: var(--black);
 }
 
-.status-label .text {
+.status-label .icon~.text {
     font-weight: 500;
     color: var(--black);
     font-size: var(--small-font);
