@@ -7,10 +7,11 @@
 }
 
 .courses-page .courses-grid {
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
     padding: 2rem 5%;
-    align-items: flex-start;
+    /* align-items: flex-start; */
     align-self: flex-start;
     gap: 2rem;
 }

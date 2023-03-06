@@ -42,7 +42,7 @@ export default function Login() {
                     fullName: data.user_id[0].first_name,
                 }));
 
-                // window.location.assign('/my-courses');
+                window.location.assign('/my-courses');
 
             } catch (err) {
                 seterror(err?.response?.data?.response || err?.message);

@@ -26,7 +26,7 @@
     padding: 1rem;
     margin-bottom: 1rem;
     text-align: center;
-    background: linear-gradient(to right, transparent, var(--bg), transparent);
+    background: linear-gradient(to right, transparent, var(--bg-dark), transparent);
     color: var(--text);
     font-weight: 600;
     font-size: var(--small-font);
@@ -78,7 +78,6 @@
     color: var(--text);
     transform: translateY(-50%);
     font-size: var(--medium-font);
-    background: var(--bg-light);
     border-radius: .3rem;
     pointer-events: none;
     user-select: none;

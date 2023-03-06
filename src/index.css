@@ -121,7 +121,8 @@ img {
   place-items: center;
 }
 
-.icon span {
+.icon span,
+.icon i {
   font-size: var(--large-font);
   color: var(--text);
   user-select: none;

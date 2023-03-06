@@ -1,0 +1,46 @@
+.error-page {
+    position: relative;
+}
+
+.error-page .error-code {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30vw;
+    z-index: -1;
+    user-select: none;
+    font-weight: 900;
+    opacity: .02;
+    justify-content: center;
+}
+
+.error-page .error-message {
+    font-size: 5rem
+}
+
+.error-page .navigation-buttton {
+    display: flex;
+    gap: 1rem;
+}
+
+.navigation-buttton button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background: var(--bg);
+    border: 1px solid var(--bg-dark);
+    padding: 1rem 2rem;
+    cursor: pointer;
+    border-radius: .5rem;
+    transition: .3s;
+}
+
+.navigation-buttton button:hover {
+    box-shadow: 0 1rem 2rem -1rem var(--black);
+}
+
+.navigation-buttton button .icon i {
+    font-size: var(--medium-font);
+}

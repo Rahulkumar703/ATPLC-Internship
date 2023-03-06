@@ -36,7 +36,7 @@ export default function CourseCard({ id, courseName, courseDuration, coverImage,
                 }
                 <div className="enroll-course">
                     {
-                        courseCompletionStatus !== undefined ?
+                        courseDuration === 0 ?
                             <Link to={`/my-courses/${courseName}`} state={{ id, courseName }} className="enroll-course-btn">Continue to Dashboard</Link>
                             :
                             <Link to={`/enroll`} state={{ id, courseName }} className="enroll-course-btn">Enroll Now</Link>
