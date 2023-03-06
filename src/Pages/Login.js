@@ -17,8 +17,9 @@ export default function Login() {
 
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         if (localStorage.getItem('user') && JSON.parse(localStorage.getItem('user'))?.userId !== undefined) {
-            navigate('/', { replace: true });
+            navigate('/login', { replace: true });
         }
     })
 

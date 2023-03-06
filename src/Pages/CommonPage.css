@@ -4,6 +4,6 @@
     flex-direction: column;
     padding: 1rem;
     align-items: center;
-    min-height: calc(100dvh - 8rem);
+    min-height: calc(100svh - 8rem);
     position: relative;
 }

@@ -26,8 +26,9 @@ export default function Courses() {
     }, []);
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         if (!localStorage.getItem('user')) {
-            navigate('/', { replace: true });
+            navigate('/login', { replace: true });
         }
         fetchCourses();
     }, [fetchCourses, navigate]);

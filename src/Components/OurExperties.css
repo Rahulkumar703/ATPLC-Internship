@@ -1,0 +1,106 @@
+.our-experties-section {
+    margin-top: 5rem;
+    min-height: calc(100svh - 8rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    width: 100%;
+}
+
+.our-experties-section .section-heading {
+    font-size: var(--heading);
+    align-self: center;
+    color: var(--primary);
+    margin-bottom: 3rem;
+}
+
+.our-experties-section .section-body {
+    padding: 1rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+
+.section-body .image-box {
+    display: flex;
+}
+
+
+.image-box img {
+    width: auto;
+    height: 100%;
+}
+
+.section-body .card-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    grid-auto-rows: 30rem;
+    padding: 0 5rem;
+    gap: 3rem;
+}
+
+.card-container .facility-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: .3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-container .facility-card:hover h3 {
+    transform: scale(1.5);
+}
+
+.card-container .facility-card:hover img {
+    transform: scale(1.2);
+}
+
+.card-container .facility-card h3 {
+    position: relative;
+    transition: .3s;
+    z-index: 1;
+    font-size: var(--heading);
+    color: var(--white);
+}
+
+
+.card-container .facility-card img {
+    position: absolute;
+    opacity: .3;
+    object-position: center;
+    transition: .3s;
+    object-fit: contain;
+}
+
+.card-container .facility-card.training {
+    background: var(--primary);
+}
+
+.card-container .facility-card.internship {
+    background: var(--secondary);
+}
+
+@media screen and (max-width:920px) {
+
+    .section-body .image-box {
+        display: none;
+    }
+}
+
+@media screen and (max-width:600px) {
+
+    .section-body .image-box {
+        display: none;
+    }
+
+    .section-body .card-container {
+        padding: 0 1rem;
+    }
+
+}

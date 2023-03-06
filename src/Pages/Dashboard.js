@@ -19,7 +19,7 @@ export default function Dashboard() {
 
     useEffect(() => {
         if (!localStorage.getItem('user')) {
-            navigate('/', { replace: true })
+            navigate('/login', { replace: true })
         }
     }, [navigate])
 

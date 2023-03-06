@@ -6,13 +6,13 @@
     border: none;
     border-radius: .3rem;
     cursor: pointer;
-    font-weight: 400;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1rem;
     transition: .3s;
     background: var(--bg-dark);
+    font-weight: 600;
 }
 
 header.active .login-button {
@@ -28,10 +28,9 @@ header.active .login-button:hover {
     border-color: var(--primary);
 }
 
-.login-button .text,
-.login-button .icon span {
+header.login-button .text,
+header.login-button .icon span {
     color: var(--text);
-    font-weight: 600;
 }
 
 .login-button:hover .text,

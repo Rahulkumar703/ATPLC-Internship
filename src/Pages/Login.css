@@ -71,6 +71,10 @@
     text-transform: uppercase;
 }
 
+.input-container input::placeholder {
+    user-select: none;
+}
+
 .input-container input~label {
     position: absolute;
     left: 6rem;
@@ -105,6 +109,7 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    font-weight: 600;
 }
 
 .login-inputs .login-button:hover {
@@ -114,6 +119,10 @@
 }
 
 .login-inputs .login-button:hover .loader span {
+    color: var(--primary);
+}
+
+.login-inputs .login-button:hover .text {
     color: var(--primary);
 }
 
@@ -127,7 +136,7 @@
     animation: rotate 2s ease-in-out infinite;
 }
 
-.login-button .text {
+.login-inputs .login-button .text {
     color: var(--white);
 }
 
