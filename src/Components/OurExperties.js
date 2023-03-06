@@ -6,7 +6,7 @@ export default function Facilities() {
     return (
         <section className="our-experties-section">
             <div className="section-heading">
-                <h2>Our Expertiese</h2>
+                <h2>Our Expertise</h2>
             </div>
             <div className="section-body">
                 <div className="left image-box">
@@ -19,7 +19,7 @@ export default function Facilities() {
                     </Link>
                     <Link to="/internship" className="internship facility-card">
                         <img src="/Assets/Illustrator/Internship.png" alt="Internship" />
-                        <h3>Intership</h3>
+                        <h3>Internship</h3>
                     </Link>
                 </div>
                 <div className="right image-box">
