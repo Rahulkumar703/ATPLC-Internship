@@ -8,7 +8,7 @@ export default function Profile() {
 
         try {
 
-            const { data } = await axios.post('https://atplc20.pythonanywhere.com/', {
+            const { data } = await axios.post('https://atplc20.pythonanywhere.com//change-password', {
                 Username: JSON.parse(localStorage.getItem('user')).userId,
                 Password: newPassword
             })
