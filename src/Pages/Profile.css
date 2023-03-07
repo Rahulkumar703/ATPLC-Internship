@@ -53,9 +53,10 @@
 }
 
 .courses.profile-info .course {
-    padding: .5rem 1rem;
+    padding: 1rem;
     background: var(--bg-dark);
     border-radius: 5rem;
+    white-space: nowrap;
 }
 
 .seciton-body .edit-profile {
@@ -96,7 +97,6 @@
     gap: 1rem;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
 }
 
 .field-body .row .input-container {
@@ -104,18 +104,19 @@
 }
 
 .field-body .row .input-container input {
-    min-width: 30rem;
     background: var(--bg);
+    width: 100%;
+    height: 5rem;
 }
 
 
 
 .field-body .row button {
+    flex: .3;
     height: 5rem;
     padding: 1rem;
     border-radius: .5rem;
     cursor: pointer;
-    flex: .3;
     color: var(--white);
     background: var(--primary);
     border: .1rem solid transparent;
@@ -124,6 +125,7 @@
     justify-content: center;
     gap: 1rem;
     font-weight: 600;
+    transition: .3s;
 }
 
 .field-body .row button:hover {
@@ -139,5 +141,22 @@
 @keyframes rotate {
     to {
         transform: rotate(360deg);
+    }
+}
+
+
+@media screen and (max-width:400px) {
+
+    .field-body .row {
+        flex-direction: column;
+    }
+
+    .field-body .row .input-container {
+        width: 100%;
+    }
+
+
+    .field-body .row button {
+        width: 100%;
     }
 }

@@ -85,7 +85,7 @@ export default function Profile() {
                             <div className="row">
                                 <div className="input-container">
                                     <div className="icon">
-                                        <span class="material-symbols-rounded">
+                                        <span className="material-symbols-rounded">
                                             key
                                         </span>
                                     </div>

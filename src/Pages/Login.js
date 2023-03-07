@@ -26,7 +26,7 @@ export default function Login() {
     const handelChange = (e, name) => {
         setLoginDetails({
             ...loginDetails,
-            [name]: e.target.value.toUpperCase()
+            [name]: e.target.value
         })
     }
 
@@ -36,13 +36,14 @@ export default function Login() {
             try {
                 setIsLoading(true);
                 const { data } = await axios.post('https://atplc20.pythonanywhere.com/login', {
-                    ...loginDetails,
+                    Password: loginDetails.Password,
                     Username: loginDetails.Username.toUpperCase()
                 });
 
+
                 localStorage.setItem('user', JSON.stringify({
                     userId: data.user_id[0].id,
-                    username: loginDetails.Username,
+                    username: loginDetails.Username.toUpperCase(),
                     fullName: data.user_id[0].first_name,
                 }));
 
