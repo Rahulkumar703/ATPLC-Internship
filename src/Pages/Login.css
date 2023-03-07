@@ -47,6 +47,10 @@
 
 }
 
+.input-container {
+    position: relative;
+}
+
 .input-container .icon {
     position: absolute;
     top: 50%;

@@ -35,7 +35,10 @@ export default function Login() {
         if (loginDetails.Username !== '' && loginDetails.Password !== '') {
             try {
                 setIsLoading(true);
-                const { data } = await axios.post('https://atplc20.pythonanywhere.com/login', { ...loginDetails, Username: loginDetails.Username.toUpperCase() });
+                const { data } = await axios.post('https://atplc20.pythonanywhere.com/login', {
+                    ...loginDetails,
+                    Username: loginDetails.Username.toUpperCase()
+                });
 
                 localStorage.setItem('user', JSON.stringify({
                     userId: data.user_id[0].id,
