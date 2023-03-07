@@ -76,9 +76,12 @@ export default function Profile() {
                             <h4>Change Password</h4>
                         </div>
                         <form className='field-body' onSubmit={changePassword}>
-                            <div className="message-box">
-                                {message}
-                            </div>
+                            {
+                                message !== '' &&
+                                <div className="message-box">
+                                    {message}
+                                </div>
+                            }
                             <div className="row">
                                 <div className="input-container">
                                     <div className="icon">
@@ -86,7 +89,7 @@ export default function Profile() {
                                             key
                                         </span>
                                     </div>
-                                    <input type="password" placeholder=' ' required id='password' onChange={(e) => { setNewPassword(e.target.value) }} />
+                                    <input type="password" placeholder=' ' required id='password' onChange={(e) => { setNewPassword(e.target.value); setMessage('') }} />
                                     <label htmlFor="password">New Password</label>
                                 </div>
                                 <button type='submit'>
