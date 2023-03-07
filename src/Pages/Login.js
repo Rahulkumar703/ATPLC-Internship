@@ -21,7 +21,7 @@ export default function Login() {
         if (localStorage.getItem('user') && JSON.parse(localStorage.getItem('user'))?.userId !== undefined) {
             navigate('/login', { replace: true });
         }
-    })
+    }, [])
 
     const handelChange = (e, name) => {
         setLoginDetails({
@@ -82,7 +82,7 @@ export default function Login() {
                                 </span>
                             </div>
                             <input type="text" id='username' value={loginDetails.Username} placeholder=' ' onChange={(e) => handelChange(e, 'Username')} />
-                            <label htmlFor="username">username / email</label>
+                            <label htmlFor="username">username</label>
                         </div>
                         <div className="input-container">
                             <div className="icon">
