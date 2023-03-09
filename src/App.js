@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { createBrowserRouter, Route, Routes } from 'react-router-dom';
 // Components
 import Header from './Components/Header';
 // Pages
@@ -12,8 +12,26 @@ import MyCourses from './Pages/MyCourses';
 import Login from './Pages/Login';
 import Courses from './Pages/Courses';
 import Task from './Pages/Task';
+import RootLayout from './Layouts/RootLayout';
 
 function App() {
+
+  // const routes = createBrowserRouter(
+  //   <Route path='/' element={<RootLayout />}>
+  //     <Route index element={<Home />} />
+  //     <Route path="login" element={<Login />} />
+  //     <Route path="courses" element={<Courses />} />
+
+  //     <Route path="my-courses" element={<MyCourses />}>
+  //       <Route path=":courseName" element={<Dashboard />} />
+  //     </Route>
+
+  //     <Route path="task/:taskName" element={<Task />} />
+  //     <Route path="profile" element={<Profile />} />
+  //   </Route>
+
+  //   // < Route path = "*" element = {< Error />} />
+  // )
 
 
   return (

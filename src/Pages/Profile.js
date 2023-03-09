@@ -92,7 +92,7 @@ export default function Profile() {
                                     <input type="password" placeholder=' ' required id='password' onChange={(e) => { setNewPassword(e.target.value); setMessage('') }} />
                                     <label htmlFor="password">New Password</label>
                                 </div>
-                                <button type='submit'>
+                                <button className="password-update-button" type='submit'>
                                     {
                                         isLoading &&
                                         <span className="material-symbols-rounded">

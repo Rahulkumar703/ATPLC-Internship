@@ -1,11 +1,11 @@
 .feedback-section {
-    margin-top: 5rem;
-    min-height: calc(100svh - 8rem);
+    margin-top: 7rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     padding: 1rem;
+    align-items: center;
     width: 100%;
+    position: relative;
 }
 
 .feedback-section .section-heading {
@@ -16,20 +16,42 @@
 }
 
 .feedback-section .section-body {
-    width: 100%;
+    width: 80%;
+    max-width: 60rem;
+    flex: 1;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
     gap: 1rem;
 }
 
+.section-body .left-button,
+.section-body .right-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--bg-dark);
+    font-size: var(--heading);
+    padding: 3rem 1rem;
+    cursor: pointer;
+    user-select: none;
+    border-radius: .3rem;
+}
+
+.section-body .left-button {
+    left: 1rem;
+}
+
+.section-body .right-button {
+    right: 1rem;
+}
+
 .section-body .feedback-card {
     display: flex;
     flex-direction: column;
-    border: 1px solid var(--secondary);
     padding: 1rem;
-    background: var(--bg-dark);
     border-radius: .5rem;
 }
+
 
 .feedback-card .card-heading {
     display: flex;
@@ -41,16 +63,16 @@
 }
 
 .card-heading .image {
-    width: 10rem;
-    height: 10rem;
-    border-radius: 50%;
+    width: 20rem;
+    height: 20rem;
     overflow: hidden;
     flex-shrink: 0;
+    user-select: none;
 }
 
 .card-heading .image img {
-    object-fit: cover;
-    object-position: 0;
+    object-fit: contain;
+    object-position: center;
 }
 
 .card-heading .heading-details {
@@ -82,13 +104,14 @@
 }
 
 .feedback-card .card-body {
-    padding: 1rem 2rem;
+    padding: 1rem 1rem;
     overflow: hidden;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     flex: 1;
+    text-align: center;
 }
 
 .card-body .review {
@@ -97,6 +120,9 @@
     position: relative;
     z-index: 2;
     padding: 0 2rem;
+    min-height: 20rem;
+    display: flex;
+    align-items: center;
 }
 
 

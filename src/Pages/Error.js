@@ -12,19 +12,19 @@ function Error() {
             <div className="navigation-buttton">
                 <button onClick={() => navigate(-1)}>
                     <div className="icon">
-                        <i class="fi fi-rr-arrow-small-left"></i>
+                        <i className="fi fi-rr-arrow-small-left"></i>
                     </div>
                     <div className="text">Back</div>
                 </button>
                 <button onClick={() => { navigate('/') }}>
                     <div className="icon">
-                        <i class="fi fi-rr-home"></i>
+                        <i className="fi fi-rr-home"></i>
                     </div>
                     <div className="text">Home</div>
-                </button>
+                </button >
 
-            </div>
-        </section>
+            </div >
+        </section >
     )
 }
 

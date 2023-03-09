@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Feedback.css'
 
 const feedback = [
@@ -38,40 +38,65 @@ const feedback = [
         designation: "Trainee",
         review: "ATPLC is a practical learning club. It provides regular classes for practical learning in different fields like web development, android development, c language, object- oriented programming, data structure, etc.I joined ATPLC a few months ago.Now, I can create a website as well as able to good coding.And the credit for all these goes to ATPLC.I got more benefit from this club.As an engineer, practical experience is most important.Thank you Atul sir for providing us learning platform like ATPLC."
     },
+    {
+        id: 5,
+        name: "Rahul Kumar",
+        img: "/Assets/Images/rahul.jpg",
+        batch: "CSE, 2021",
+        college: "MCE Motihari",
+        designation: "Intern",
+        review: "I Worked on react during my internship in ATPLC. I learned a lot of new thing about react during this.  "
+    },
 ]
 
 export default function Feedback() {
+
+    const [activeFeed, setActiveFeed] = useState(0);
+
+    const updateActiveFeed = (target) => {
+        if (target < feedback.length && target >= 0) {
+            setActiveFeed(target);
+        }
+        else if (target >= feedback.length) {
+            setActiveFeed(0);
+        }
+        else
+            setActiveFeed(feedback.length - 1)
+    }
+    useEffect(() => {
+        const timer = setInterval(() => {
+            updateActiveFeed(activeFeed + 1)
+        }, 1000);
+
+        return clearInterval(timer)
+    }, [])
+
     return (
         <section className='feedback-section'>
             <div className="section-heading">
                 <h2>Student's Feedback</h2>
             </div>
             <div className="section-body">
-                {
-                    feedback.map(feed => {
-
-                        return (
-                            <div key={feed.id} className="feedback-card">
-                                <div className="card-heading">
-                                    <div className="image">
-                                        {feed.img ? <img src={feed.img} alt="avatar" /> : 'avatar'}
-                                    </div>
-                                    <div className="heading-details">
-                                        <h4 className="name">{feed.name}</h4>
-                                        <span className="batch">{feed.batch}</span>
-                                        <span className="college">{feed.college}</span>
-                                        <span className="designation">{feed.designation}</span>
-                                    </div>
-                                </div>
-                                <div className="card-body">
-                                    <img className='quote' src="/Assets/Images/quote-start.png" alt="quote" />
-                                    <p className="review">{feed.review}</p>
-                                    <img className='quote' src="/Assets/Images/quote-end.png" alt="quote" />
-                                </div>
-                            </div>
-                        )
-                    })
-                }
+                <div className="left-button" onClick={() => updateActiveFeed(activeFeed - 1)}>{'<'}</div>
+                <div className="feedback-card">
+                    <div className="card-heading">
+                        <div className="image">
+                            {feedback[activeFeed].img ? <img src={feedback[activeFeed].img} alt="avatar" loading='lazy' /> : 'avatar'}
+                        </div>
+                        <div className="heading-details">
+                            <h4 className="name">{feedback[activeFeed].name}</h4>
+                            <span className="batch">{feedback[activeFeed].batch}</span>
+                            <span className="college">{feedback[activeFeed].college}</span>
+                            <span className="designation">{feedback[activeFeed].designation}</span>
+                        </div>
+                    </div>
+                    <div className="card-body">
+                        <img className='quote' src="/Assets/Images/quote-start.png" alt="quote" />
+                        <p className="review">{feedback[activeFeed].review}</p>
+                        <img className='quote' src="/Assets/Images/quote-end.png" alt="quote" />
+                    </div>
+                </div>
+                <div className="right-button" onClick={() => updateActiveFeed(activeFeed + 1)}>{'>'}</div>
             </div>
         </section>
     )

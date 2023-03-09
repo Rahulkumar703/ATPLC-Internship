@@ -2,7 +2,6 @@ import React from 'react'
 import './Error.css'
 
 export default function Error({ error }) {
-    console.log(error);
     return (
 
         <div className="error-message">

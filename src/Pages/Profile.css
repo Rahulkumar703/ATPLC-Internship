@@ -101,6 +101,7 @@
 
 .field-body .row .input-container {
     flex: 1;
+    position: relative;
 }
 
 .field-body .row .input-container input {
@@ -111,7 +112,7 @@
 
 
 
-.field-body .row button {
+.field-body .row .password-update-button {
     flex: .3;
     height: 5rem;
     padding: 1rem;
@@ -128,13 +129,13 @@
     transition: .3s;
 }
 
-.field-body .row button:hover {
+.field-body .row .password-update-button:hover {
     color: var(--text);
     background: transparent;
     border: .1rem solid var(--primary);
 }
 
-.row button span {
+.row .password-update-button span {
     animation: rotate 2s ease-in-out infinite;
 }
 

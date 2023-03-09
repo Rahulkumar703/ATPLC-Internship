@@ -1,9 +1,8 @@
 .our-experties-section {
-    margin-top: 5rem;
-    min-height: calc(100svh - 8rem);
+    margin-top: 7rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 1rem;
     padding: 1rem;
     width: 100%;
 }
