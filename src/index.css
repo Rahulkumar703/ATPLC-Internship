@@ -81,6 +81,11 @@ body.dark {
 }
 
 /* Predefined Resets */
+:-webkit-autofill {
+  /* filter: none; */
+  /* needed for firefox! */
+  box-shadow: 0 0 0 100px rgba(185, 200, 255, 0.2) inset;
+}
 
 ol,
 ul {
