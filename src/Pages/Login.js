@@ -69,7 +69,7 @@ export default function Login() {
                 </div>
                 {
                     error !== '' &&
-                    <div className="error-messages">
+                    <div className="message-box">
                         {error}
                     </div>
                 }
