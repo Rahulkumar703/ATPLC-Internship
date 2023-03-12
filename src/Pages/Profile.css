@@ -93,7 +93,7 @@
     position: relative;
 }
 
-.update-field:has(.profile-img) {
+.field-body .update-field:first-child {
     width: 20rem;
     height: 20rem;
     border-radius: 50%;
