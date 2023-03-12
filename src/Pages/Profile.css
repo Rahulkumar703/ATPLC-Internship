@@ -110,7 +110,7 @@
     border-radius: 50%;
 }
 
-.update-field:has(.profile-img):hover .upload-profile-img {
+.field-body .update-field:first-child:hover .upload-profile-img {
     bottom: 0;
 }
 
