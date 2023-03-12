@@ -23,7 +23,7 @@ function Header() {
     }, [])
 
     useEffect(() => {
-        if (hamburgerStatus) {
+        if (hamburgerStatus || window.scrollY > 50) {
             headerRef.current.classList.add('active');
         }
         else

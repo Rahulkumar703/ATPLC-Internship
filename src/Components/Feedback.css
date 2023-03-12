@@ -16,12 +16,9 @@
 }
 
 .feedback-section .section-body {
-    width: 80%;
-    max-width: 60rem;
+    width: 100%;
     flex: 1;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-    gap: 1rem;
+    display: flex;
 }
 
 .section-body .left-button,
@@ -29,20 +26,39 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: var(--bg-dark);
+    background: var(--bg);
     font-size: var(--heading);
-    padding: 3rem 1rem;
+    padding: .5rem;
     cursor: pointer;
     user-select: none;
     border-radius: .3rem;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5rem;
+    height: 7rem;
+    color: var(--primary);
+}
+
+.section-body .left-button span,
+.section-body .right-button span {
+    font-size: 3rem;
+    color: inherit;
+}
+
+.section-body .left-button:hover,
+.section-body .right-button:hover {
+    background: var(--primary);
+    color: var(--white);
 }
 
 .section-body .left-button {
-    left: 1rem;
+    left: 0rem;
 }
 
 .section-body .right-button {
-    right: 1rem;
+    right: 0rem;
 }
 
 .section-body .feedback-card {
@@ -50,6 +66,18 @@
     flex-direction: column;
     padding: 1rem;
     border-radius: .5rem;
+    flex-shrink: 0;
+    width: 70%;
+    max-width: 60rem;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateX(10%);
+    transition: .3s;
+}
+
+.section-body .feedback-card.active {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 
@@ -142,4 +170,22 @@
 .card-body .quote:last-child {
     bottom: 0;
     right: 0;
+}
+
+
+@media screen and (max-width:600px) {
+
+    .section-body .left-button,
+    .section-body .right-button {
+        width: 3rem;
+        height: 7rem;
+    }
+
+    .section-body .feedback-card {
+        width: 100%;
+    }
+
+    .feedback-section {
+        padding: 0;
+    }
 }

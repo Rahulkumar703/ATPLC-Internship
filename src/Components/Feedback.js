@@ -77,26 +77,41 @@ export default function Feedback() {
                 <h2>Student's Feedback</h2>
             </div>
             <div className="section-body">
-                <div className="left-button" onClick={() => updateActiveFeed(activeFeed - 1)}>{'<'}</div>
-                <div className="feedback-card">
-                    <div className="card-heading">
-                        <div className="image">
-                            {feedback[activeFeed].img ? <img src={feedback[activeFeed].img} alt="avatar" loading='lazy' /> : 'avatar'}
-                        </div>
-                        <div className="heading-details">
-                            <h4 className="name">{feedback[activeFeed].name}</h4>
-                            <span className="batch">{feedback[activeFeed].batch}</span>
-                            <span className="college">{feedback[activeFeed].college}</span>
-                            <span className="designation">{feedback[activeFeed].designation}</span>
-                        </div>
-                    </div>
-                    <div className="card-body">
-                        <img className='quote' src="/Assets/Images/quote-start.png" alt="quote" />
-                        <p className="review">{feedback[activeFeed].review}</p>
-                        <img className='quote' src="/Assets/Images/quote-end.png" alt="quote" />
-                    </div>
+                <div className="left-button" onClick={() => updateActiveFeed(activeFeed - 1)}>
+                    <span className="material-symbols-rounded">
+                        arrow_left
+                    </span>
                 </div>
-                <div className="right-button" onClick={() => updateActiveFeed(activeFeed + 1)}>{'>'}</div>
+                {
+                    feedback.map((feed, index) =>
+
+                        index === activeFeed && <div key={index} className={`feedback-card ${index === activeFeed ? 'active' : ''}`} >
+                            {console.log(index, activeFeed)}
+                            <div className="card-heading">
+                                <div className="image">
+                                    {feed.img ? <img src={feed.img} alt="avatar" loading='lazy' /> : 'avatar'}
+                                </div>
+                                <div className="heading-details">
+                                    <h4 className="name">{feed.name}</h4>
+                                    <span className="batch">{feed.batch}</span>
+                                    <span className="college">{feed.college}</span>
+                                    <span className="designation">{feed.designation}</span>
+                                </div>
+                            </div>
+                            <div className="card-body">
+                                <img className='quote' src="/Assets/Images/quote-start.png" alt="quote" />
+                                <p className="review">{feed.review}</p>
+                                <img className='quote' src="/Assets/Images/quote-end.png" alt="quote" />
+                            </div>
+                        </div>
+                    )
+                }
+                <div className="right-button" onClick={() => updateActiveFeed(activeFeed + 1)}>
+
+                    <span className="material-symbols-rounded">
+                        arrow_right
+                    </span>
+                </div>
             </div>
         </section>
     )

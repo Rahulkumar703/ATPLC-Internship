@@ -39,7 +39,7 @@ export default function Dashboard() {
         async function getTasks() {
             try {
                 setIsloading(true);
-                const { data } = await axios.post('https://atplc20.pythonanywhere.com/dashboard', {
+                const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_PATH}/dashboard`, {
                     course: location.state.id,
                     Username: JSON.parse(localStorage.getItem('user')).userId
                 });
@@ -99,7 +99,7 @@ export default function Dashboard() {
                                             Remarks={submittedTask?.Remarks || ''}
                                         />
                                     )
-                                })
+                                }).reverse()
                             }
                         </div>
                     </div>

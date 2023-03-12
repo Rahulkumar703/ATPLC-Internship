@@ -21,7 +21,7 @@ export default function Courses() {
     async function fetchCourses() {
         setIsLoading(true);
         try {
-            const { data } = await axios.get('https://atplc20.pythonanywhere.com/courses?format=json');
+            const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_PATH}/courses?format=json`);
             setCourses(data.courses);
 
         } catch (error) {

@@ -4,7 +4,7 @@ import './OurExperties.css'
 
 export default function Facilities() {
     return (
-        <section className="our-experties-section">
+        <section className="our-experties-section" id='our-experties'>
             <div className="section-heading">
                 <h2>Our Expertise</h2>
             </div>

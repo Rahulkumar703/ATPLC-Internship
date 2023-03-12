@@ -21,7 +21,7 @@ export default function Hero() {
                             keyboard_double_arrow_down
                         </span>
                     </div>
-                    <a href='#footer' className="text" onClick={() => window.scrollTo(0, 500)}>Go Down</a>
+                    <a href='#our-experties' className="text">Go Down</a>
                 </button>
             </div>
         </div >

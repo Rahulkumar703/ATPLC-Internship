@@ -27,7 +27,7 @@ export default function Task() {
             else {
                 try {
                     setIsLoading(true);
-                    const { data } = await axios.post('https://atplc20.pythonanywhere.com/task-submission', {
+                    const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_PATH}/task-submission`, {
                         course: courseId,
                         Username: JSON.parse(localStorage.getItem('user')).userId,
                         Task_No: Task_No,
