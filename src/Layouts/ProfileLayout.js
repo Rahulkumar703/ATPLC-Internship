@@ -20,9 +20,7 @@ export default function ProfileLayout() {
 
                     <NavLink end to="" className={({ isActive }) => isActive ? "sidebar-links active" : "sidebar-links"}>
                         <div className="icon">
-                            <span className="material-symbols-rounded">
-                                contact_mail
-                            </span>
+                            <i className="fi fi-rr-clipboard-user"></i>
                         </div>
                         <div className="text">
                             Personal Info
@@ -31,9 +29,7 @@ export default function ProfileLayout() {
 
                     <NavLink end to="update-password" className={({ isActive }) => isActive ? "sidebar-links active" : "sidebar-links"}>
                         <div className="icon">
-                            <span className="material-symbols-rounded">
-                                key
-                            </span>
+                            <i className="fi fi-rr-key-skeleton-left-right"></i>
                         </div>
                         <div className="text">
                             Change Password
@@ -41,9 +37,7 @@ export default function ProfileLayout() {
                     </NavLink>
                     <NavLink to="/" className={({ isActive }) => isActive ? "sidebar-links logout active" : "sidebar-links logout"} onClick={logOut}>
                         <div className="icon">
-                            <span className="material-symbols-rounded">
-                                logout
-                            </span>
+                            <i className="fi fi-rr-sign-out-alt"></i>
                         </div>
                         <div className="text">
                             Log Out

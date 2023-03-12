@@ -118,7 +118,7 @@
     align-items: center;
 }
 
-.course-duration .icon span,
+.course-duration .icon i,
 .course-duration .text {
     color: var(--faded-text);
     font-size: var(--medium-font);
@@ -143,11 +143,18 @@
     color: var(--white);
     transition: .3s;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.enroll-course .enroll-course-btn :is(.icon i, .text) {
+    color: inherit;
 }
 
 .enroll-course .enroll-course-btn:hover {
     background: var(--primary);
     box-shadow: 0 1rem 2rem -1rem var(--black);
     cursor: pointer;
-
 }

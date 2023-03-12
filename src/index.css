@@ -109,6 +109,27 @@ img {
 
 /* Helper Class */
 
+.message-box {
+  padding: .5rem;
+  text-align: center;
+  background: linear-gradient(to right, transparent, var(--bg-dark), transparent);
+  color: var(--danger);
+  font-weight: 600;
+  font-size: var(--small-font);
+  transition: .3s;
+}
+
+.animate-rotate {
+  animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
 .pending {
   background: var(--warning-tint);
 }

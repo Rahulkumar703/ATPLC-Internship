@@ -10,7 +10,7 @@
     position: relative;
 }
 
-.error-message .icon span {
+.error-message .icon i {
     font-size: 10rem;
 }
 

@@ -15,14 +15,12 @@ export default function Hero() {
                 <p className="hero-section-description">ATPLC is a club to enhance practical learning among tech-students in their field of interest.Initiated in 2020, this club aim at enhancing and motivating students to learn proper stack of skills apart from semester syllabus to become professionally fit.For more details</p>
             </div>
             <div className="scroll-down">
-                <button className="scroll-down-btn">
+                <a href='#our-experties' tabIndex={0} className="scroll-down-btn">
                     <div className="icon">
-                        <span className="material-symbols-rounded">
-                            keyboard_double_arrow_down
-                        </span>
+                        <i className="fi fi-rr-angle-double-small-down"></i>
                     </div>
-                    <a href='#our-experties' className="text">Go Down</a>
-                </button>
+                    <div className="text">Scroll Down</div>
+                </a>
             </div>
         </div >
     )

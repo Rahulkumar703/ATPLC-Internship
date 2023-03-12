@@ -48,16 +48,14 @@ export default function Account({ accountRef, setHamburgerStatus }) {
                             <ul>
                                 <li id='user-id'>
                                     <div className="icon">
-
+                                        <i className="fi fi-rr-id-badge"></i>
                                     </div>
-                                    <div className="text">Id : {JSON.parse(localStorage.getItem('user')).username}</div>
+                                    <div className="text">{JSON.parse(localStorage.getItem('user')).username}</div>
                                 </li>
                                 <li>
                                     <Link to="/profile" onClick={scrollToTop} >
                                         <div className="icon">
-                                            <span className="material-symbols-rounded">
-                                                person
-                                            </span>
+                                            <i className="fi fi-rr-user-gear"></i>
                                         </div>
                                         <div className="text">Profile
                                         </div>
@@ -66,9 +64,7 @@ export default function Account({ accountRef, setHamburgerStatus }) {
                                 <li>
                                     <Link to="/my-courses" onClick={scrollToTop}>
                                         <div className="icon">
-                                            <span className="material-symbols-rounded">
-                                                library_books
-                                            </span>
+                                            <i className="fi fi-rr-e-learning"></i>
                                         </div>
                                         <div className="text">My Courses
                                         </div>
@@ -76,9 +72,7 @@ export default function Account({ accountRef, setHamburgerStatus }) {
                                 </li>
                                 <li onClick={logOut}>
                                     <div className="icon">
-                                        <span className="material-symbols-rounded">
-                                            logout
-                                        </span>
+                                        <i className="fi fi-rr-sign-out-alt"></i>
                                     </div>
                                     <div className="text">Log Out</div>
                                 </li>

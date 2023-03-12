@@ -92,10 +92,12 @@ li .text {
 }
 
 
-.profile-popup ul li#user-id .text {
+.profile-popup ul li#user-id .text,
+.profile-popup ul li#user-id .icon i {
     color: var(--primary);
     font-weight: 600;
 }
+
 
 .profile-popup ul li#user-id:hover {
     background: none;
@@ -107,7 +109,7 @@ li .text {
 }
 
 .profile-popup ul li:hover .text,
-.profile-popup ul li:hover .icon span {
+.profile-popup ul li:hover .icon i {
     color: var(--primary);
 }
 

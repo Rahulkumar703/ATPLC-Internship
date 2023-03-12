@@ -20,9 +20,7 @@ export default function Navbar({ hamburgerStatus, setHamburgerStatus }) {
                 <li className="nav-items">
                     <Link onClick={handleLinkClick} to="/" className="nav-links">
                         <div className="icon">
-                            <span className="material-symbols-rounded">
-                                home
-                            </span>
+                            <i className="fi fi-rr-home"></i>
                         </div>
                         <div className="text">Home</div>
                     </Link>
@@ -30,9 +28,7 @@ export default function Navbar({ hamburgerStatus, setHamburgerStatus }) {
                 <li className="nav-items">
                     <Link onClick={() => { scrollTo('#footer') }} to="#" className="nav-links">
                         <div className="icon">
-                            <span className="material-symbols-rounded">
-                                help
-                            </span>
+                            <i className="fi fi-rr-info"></i>
                         </div>
                         <div className="text">About</div>
                     </Link>
@@ -40,9 +36,7 @@ export default function Navbar({ hamburgerStatus, setHamburgerStatus }) {
                 <li className="nav-items">
                     <Link onClick={handleLinkClick} to="/courses" className="nav-links">
                         <div className="icon">
-                            <span className="material-symbols-rounded">
-                                book
-                            </span>
+                            <i className="fi fi-rr-e-learning"></i>
                         </div>
                         <div className="text">Courses</div>
                     </Link>
@@ -50,9 +44,7 @@ export default function Navbar({ hamburgerStatus, setHamburgerStatus }) {
                 <li className="nav-items">
                     <Link onClick={handleLinkClick} to="/gallery" className="nav-links">
                         <div className="icon">
-                            <span className="material-symbols-rounded">
-                                gallery_thumbnail
-                            </span>
+                            <i className="fi fi-rr-layout-fluid"></i>
                         </div>
                         <div className="text">Gallery</div>
                     </Link>
@@ -60,9 +52,7 @@ export default function Navbar({ hamburgerStatus, setHamburgerStatus }) {
                 <li className="nav-items">
                     <Link onClick={() => { scrollTo('#footer') }} to="#" className="nav-links">
                         <div className="icon">
-                            <span className="material-symbols-rounded">
-                                forum
-                            </span>
+                            <i className="fi fi-rr-comment"></i>
                         </div>
                         <div className="text">Feedback</div>
                     </Link>

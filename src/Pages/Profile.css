@@ -52,7 +52,7 @@
     color: var(--white);
 }
 
-.sidebar .sidebar-links .icon span,
+.sidebar .sidebar-links .icon i,
 .sidebar .sidebar-links .text {
     color: inherit;
 }
@@ -98,8 +98,9 @@
     height: 20rem;
     border-radius: 50%;
     overflow: hidden;
-    background: #000;
     align-self: center;
+    font-size: 10rem;
+    border: 1px solid var(--bg-dark);
 
 }
 
@@ -149,11 +150,25 @@
     flex: 1;
 }
 
+.update-field .input-box .icon {
+    position: absolute;
+    width: 4rem;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    border-right: 1px solid var(--bg-dark);
+}
+
 
 .update-field .input-box input {
     padding: 1rem;
     padding-top: 3rem;
+    padding-left: 5rem;
     height: auto;
+}
+
+.update-field .input-box input~label {
+    left: 5rem;
 }
 
 .update-field .input-box input:focus~label,
@@ -203,4 +218,14 @@
     .sidebar .sidebar-links .text {
         display: none;
     }
+
+    .field-body .update-field {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .field-body .update-field .input-box {
+        width: 100%;
+    }
+
 }

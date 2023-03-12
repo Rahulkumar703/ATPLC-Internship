@@ -20,9 +20,10 @@ export default function ChangePassword() {
         if (Password.new === Password.confirm) {
             try {
                 setIsLoading(true);
-                const { data } = await axios.post('https://atplc20.pythonanywhere.com/change-password', {
+                const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_PATH}/change-password`, {
                     Username: JSON.parse(localStorage.getItem('user')).username,
-                    Password: Password.new
+                    Password: Password.new,
+                    Old_Password: Password.old
                 })
                 setMessage(data.Response);
 
@@ -60,40 +61,39 @@ export default function ChangePassword() {
 
                     <div className="input-container">
                         <div className="icon">
-                            <i class="fi fi-rr-lock"></i>
+                            <i className="fi fi-rr-lock"></i>
                         </div>
-                        <input type="password" placeholder=' ' required id='password' onChange={(e) => { setPassword({ ...Password, old: e.target.value }); setMessage('') }} />
-                        <label htmlFor="password">Old Password</label>
+                        <input type="password" placeholder=' ' required id='old-password' onChange={(e) => { setPassword({ ...Password, old: e.target.value }); setMessage('') }} />
+                        <label htmlFor="old-password">Old Password</label>
                     </div>
 
                     <div className="input-container">
                         <div className="icon">
-                            <span className="material-symbols-rounded">
-                                key
-                            </span>
+                            <i className="fi fi-rr-key"></i>
                         </div>
-                        <input type="password" placeholder=' ' required id='password' onChange={(e) => { setPassword({ ...Password, new: e.target.value }); setMessage('') }} />
-                        <label htmlFor="password">New Password</label>
+                        <input type="password" placeholder=' ' required id='new-password' autoComplete='off' onChange={(e) => { setPassword({ ...Password, new: e.target.value }); setMessage('') }} />
+                        <label htmlFor="new-password">New Password</label>
                     </div>
 
                     <div className="input-container">
                         <div className="icon">
-                            <span className="material-symbols-rounded">
-                                key
-                            </span>
+                            <i className="fi fi-rr-key"></i>
                         </div>
-                        <input type="password" placeholder=' ' required id='password' onChange={(e) => { setPassword({ ...Password, confirm: e.target.value }); setMessage('') }} />
-                        <label htmlFor="password">Confirm New Password</label>
+                        <input type="password" placeholder=' ' required id='confirm-new-password' autoComplete='off' onChange={(e) => { setPassword({ ...Password, confirm: e.target.value }); setMessage('') }} />
+                        <label htmlFor="confirm-new-password">Confirm New Password</label>
                     </div>
 
                     <button className="password-update-button" type='submit'>
-                        {
-                            isLoading &&
-                            <span className="material-symbols-rounded">
-                                donut_large
-                            </span>
-
-                        }
+                        <div className="icon">
+                            {
+                                isLoading ?
+                                    <div className="loader animate-rotate">
+                                        <i className="fi fi-rr-loading"></i>
+                                    </div>
+                                    :
+                                    <i className="fi fi-rr-refresh"></i>
+                            }
+                        </div>
                         <div className="text">Update</div>
                     </button>
                 </div>

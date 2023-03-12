@@ -86,15 +86,30 @@
     border-radius: 5rem;
     cursor: pointer;
     color: var(--text);
+    transition: .3s;
+    animation: scroll 2s cubic-bezier(1, -0.6, 0.2, 0.95) infinite;
+}
+
+@keyframes scroll {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(66%);
+    }
 }
 
 .scroll-down .scroll-down-btn:hover {
     background: var(--primary);
     color: var(--white);
+    animation: none;
 }
 
 .scroll-down-btn .text,
-.scroll-down-btn .icon span {
+.scroll-down-btn .icon i {
     color: inherit;
 }
 

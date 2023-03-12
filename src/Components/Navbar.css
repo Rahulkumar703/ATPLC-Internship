@@ -30,15 +30,18 @@
     padding: 1rem 1.5rem;
     gap: .5rem;
     transition: .3s;
-    font-size: var(--small-font);
 }
 
-.header.active .nav-links .icon span,
+.header.active .nav-links .icon i,
 .header.active .nav-links .text {
     color: var(--white);
 }
 
-.header .nav-links .icon span,
+.header .nav-links .icon i {
+    margin-top: -.3rem;
+}
+
+.header .nav-links .icon i,
 .header .nav-links .text {
     font-size: var(--medium-font);
 }
@@ -48,9 +51,10 @@
     background: var(--hover);
 }
 
-.nav-items .nav-links:hover .icon span,
+.nav-items .nav-links:hover .icon i,
 .nav-items .nav-links:hover .text {
     color: var(--primary);
+    font-weight: 500;
 }
 
 

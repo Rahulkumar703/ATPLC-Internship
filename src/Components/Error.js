@@ -6,9 +6,7 @@ export default function Error({ error }) {
 
         <div className="error-message">
             <div className="icon">
-                <span className="material-symbols-rounded">
-                    cloud_off
-                </span>
+                <i className="fi fi-rr-wifi-exclamation"></i>
             </div>
             <div className="text">
                 {error?.response?.statusText || error.message}

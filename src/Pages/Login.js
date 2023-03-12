@@ -77,37 +77,29 @@ export default function Login() {
                     <form action="" onSubmit={login}>
                         <div className="input-container">
                             <div className="icon">
-                                <span className="material-symbols-rounded">
-                                    person
-                                </span>
+                                <i class="fi fi-rr-portrait"></i>
                             </div>
                             <input type="text" id='username' value={loginDetails.Username} placeholder=' ' onChange={(e) => handelChange(e, 'Username')} />
                             <label htmlFor="username">username</label>
                         </div>
                         <div className="input-container">
                             <div className="icon">
-                                <span className="material-symbols-rounded">
-                                    password
-                                </span>
+                                <i class="fi fi-rr-lock"></i>
                             </div>
                             <input type="password" id='password' value={loginDetails.Password} placeholder=' ' onChange={(e) => handelChange(e, 'Password')} />
                             <label htmlFor="password">password</label>
                         </div>
                         <button className="login-button">
-                            {
-                                isLoading ?
-                                    <div className="loader loading">
-                                        <span className="material-symbols-rounded">
-                                            donut_large
-                                        </span>
-                                    </div>
-                                    :
-                                    <div className="loader">
-                                        <span className="material-symbols-rounded">
-                                            send
-                                        </span>
-                                    </div>
-                            }
+                            <div className="icon">
+                                {
+                                    isLoading ?
+                                        <div className="loader animate-rotate">
+                                            <i className="fi fi-rr-loading"></i>
+                                        </div>
+                                        :
+                                        <i class="fi fi-rr-sign-in-alt"></i>
+                                }
+                            </div>
                             <div className="text">Login</div>
                         </button>
                     </form>

@@ -25,9 +25,7 @@ export default function CourseCard({ id, courseName, courseDuration, coverImage,
                     courseDuration !== 0 &&
                     <div className="course-duration">
                         <div className="icon">
-                            <span className="material-symbols-rounded">
-                                schedule
-                            </span>
+                            <i className="fi fi-rr-hourglass-start"></i>
                         </div>
                         <div className="text">
                             {courseDuration} Month
@@ -39,7 +37,12 @@ export default function CourseCard({ id, courseName, courseDuration, coverImage,
                         courseDuration === 0 ?
                             <Link to={`/my-courses/${courseName}`} state={{ id, courseName }} className="enroll-course-btn">Continue to Dashboard</Link>
                             :
-                            <Link to={`/enroll`} state={{ id, courseName }} className="enroll-course-btn">Enroll Now</Link>
+                            <Link to={`/enroll`} state={{ id, courseName }} className="enroll-course-btn">
+                                <div className="icon">
+                                    <i className="fi fi-rr-file-signature"></i>
+                                </div>
+                                <div className="text">Enroll Now</div>
+                            </Link>
                     }
                 </div>
             </div>

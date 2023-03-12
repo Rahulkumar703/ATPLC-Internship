@@ -18,9 +18,7 @@ export default function LogInWithGithub() {
     return (
         <Link to='/login' className="login-button">
             <div className="icon">
-                <span className="material-symbols-rounded">
-                    login
-                </span>
+                <i class="fi fi-rr-sign-in-alt"></i>
             </div>
             <div className="text">Log In</div>
         </Link>
