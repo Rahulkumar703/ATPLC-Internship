@@ -69,7 +69,7 @@ export default function Feedback() {
         }, 1000);
 
         return clearInterval(timer)
-    }, [])
+    }, [activeFeed])
 
     return (
         <section className='feedback-section'>

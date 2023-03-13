@@ -34,6 +34,7 @@ export default function Task() {
                         Submission_Link: link
                     })
                     setMessage(data.response)
+                    console.log(data.response);
                 } catch (e) {
                     setMessage(e.message);
                 }

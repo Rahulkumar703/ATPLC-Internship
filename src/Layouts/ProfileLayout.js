@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
+import '../Pages/Profile.css'
 
 export default function ProfileLayout() {
 
-    const [isExpanded, setIsExpanded] = useState(false);
 
     const navigate = useNavigate();
     const logOut = () => {
@@ -16,14 +16,7 @@ export default function ProfileLayout() {
                 <h3>Profile</h3>
             </div>
             <div className="seciton-body">
-                <div className={`sidebar ${isExpanded ? 'active' : ''}`}>
-                    <button className="expand-button">
-                        <div className="icon">
-                            <span className="material-symbols-rounded">
-                                expand_more
-                            </span>
-                        </div>
-                    </button>
+                <div className={`sidebar`}>
 
                     <NavLink end to="" className={({ isActive }) => isActive ? "sidebar-links active" : "sidebar-links"}>
                         <div className="icon">
@@ -46,7 +39,7 @@ export default function ProfileLayout() {
                             Change Password
                         </div>
                     </NavLink>
-                    <NavLink to="/" className={({ isActive }) => isActive ? "sidebar-links active" : "sidebar-links"} onClick={logOut}>
+                    <NavLink to="/" className={({ isActive }) => isActive ? "sidebar-links logout active" : "sidebar-links logout"} onClick={logOut}>
                         <div className="icon">
                             <span className="material-symbols-rounded">
                                 logout
@@ -66,40 +59,3 @@ export default function ProfileLayout() {
     )
 }
 
-const header = () =>
-    <div className="profile-header">
-        <div className="profile-pic">
-            {
-                JSON.parse(localStorage.getItem('user')).fullName[0]
-            }
-        </div>
-        <div className="profile-details">
-            <div className="name profile-info">
-                <span>Name : </span>
-                <span>
-                    {
-                        JSON.parse(localStorage.getItem('user')).fullName
-                    }
-                </span>
-            </div>
-            <div className="roll-no profile-info">
-                <span>Roll No : </span>
-                <span>
-                    {
-                        JSON.parse(localStorage.getItem('user')).username
-                    }
-                </span>
-            </div>
-            <div className="courses profile-info">
-                <span>Enrolled Courses : </span>
-                {
-                    JSON.parse(localStorage.getItem('courses')).map(course => {
-
-                        return <span className='course' key={course.Course_id}>
-                            {course.Course__Course_Name}
-                        </span>
-                    })
-                }
-            </div>
-        </div>
-    </div>

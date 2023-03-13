@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './TaskCard.css';
 
 export default function TaskCard({ courseId, Task_No, Task_Topic, Task_Content, Task_Status, Submission_Link, Remarks }) {

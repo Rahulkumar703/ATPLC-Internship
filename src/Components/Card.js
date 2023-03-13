@@ -4,11 +4,10 @@ import CircularProgress from './CircularProgress'
 
 export default function Card({ heading, icon, obtainedScore, totalScore }) {
     const [overallPercentage, setOverallPercentage] = useState(0);
+
     useEffect(() => {
-
         setOverallPercentage((obtainedScore / totalScore * 100).toFixed(1));
-
-    })
+    }, [obtainedScore, totalScore])
 
     return (
         <div className='card col'>
