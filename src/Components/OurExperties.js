@@ -24,7 +24,8 @@ export default function Facilities() {
                 </div>
                 <div className="right image-box">
                     <img src="/Assets/Illustrator/Characterr.png" alt="character" loading='lazy' />
-                </div></div>
+                </div>
+            </div>
         </section>
     )
 }
