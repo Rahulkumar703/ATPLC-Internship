@@ -37,9 +37,6 @@
     color: var(--white);
 }
 
-.header .nav-links .icon i {
-    margin-top: -.3rem;
-}
 
 .header .nav-links .icon i,
 .header .nav-links .text {

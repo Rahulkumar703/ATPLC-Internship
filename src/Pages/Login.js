@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import './Login.css'
 import { useNavigate } from 'react-router-dom';
+import Input from '../Components/Input';
 
 export default function Login() {
     const navigate = useNavigate();
@@ -23,11 +24,11 @@ export default function Login() {
         }
     }, [navigate])
 
-    const handelChange = (e, name) => {
+    const handelChange = (e) => {
         setLoginDetails({
             ...loginDetails,
-            [name]: e.target.value
-        })
+            [e.target.name]: e.target.value
+        });
     }
 
     const login = async (e) => {
@@ -75,20 +76,8 @@ export default function Login() {
                 }
                 <div className="login-inputs">
                     <form action="" onSubmit={login}>
-                        <div className="input-container">
-                            <div className="icon">
-                                <i class="fi fi-rr-portrait"></i>
-                            </div>
-                            <input type="text" id='username' value={loginDetails.Username} placeholder=' ' onChange={(e) => handelChange(e, 'Username')} />
-                            <label htmlFor="username">username</label>
-                        </div>
-                        <div className="input-container">
-                            <div className="icon">
-                                <i class="fi fi-rr-lock"></i>
-                            </div>
-                            <input type="password" id='password' value={loginDetails.Password} placeholder=' ' onChange={(e) => handelChange(e, 'Password')} />
-                            <label htmlFor="password">password</label>
-                        </div>
+                        <Input icon={'fi fi-rr-portrait'} name='Username' value={loginDetails.Username} type='text' label='username' onChange={handelChange} required />
+                        <Input icon={'fi fi-rr-lock'} name='Password' value={loginDetails.Password} type='password' label='password' onChange={handelChange} required />
                         <button className="login-button">
                             <div className="icon">
                                 {
@@ -97,7 +86,7 @@ export default function Login() {
                                             <i className="fi fi-rr-loading"></i>
                                         </div>
                                         :
-                                        <i class="fi fi-rr-sign-in-alt"></i>
+                                        <i className="fi fi-rr-sign-in-alt"></i>
                                 }
                             </div>
                             <div className="text">Login</div>

@@ -67,9 +67,12 @@
     flex-direction: column;
 }
 
+.profile-popup ul li:is(:first-child, :last-child) {
+    padding: 1rem;
+}
+
 .profile-popup ul li,
 .profile-popup ul li a {
-    padding: 1rem;
     cursor: pointer;
     user-select: none;
     font-size: var(--medium-font);
@@ -85,6 +88,7 @@
     padding: 0;
     flex: 1;
     color: var(--text);
+    padding: 1rem;
 }
 
 li .text {

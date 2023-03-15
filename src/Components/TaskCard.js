@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './TaskCard.css';
 
-export default function TaskCard({ courseId, Task_No, Task_Topic, Task_Content, Task_Status, Submission_Link, Remarks }) {
+export default function TaskCard({ sub, courseId, Task_No, Task_Topic, Task_Content, Task_Status, Code_Link, Remarks }) {
 
     const taskNumber = Task_No < 10 ? `0${Task_No}` : Task_No;
 
@@ -13,9 +13,7 @@ export default function TaskCard({ courseId, Task_No, Task_Topic, Task_Content, 
         statusLabel = (
             <div className="status-label info row">
                 <div className="icon">
-                    <span className="material-symbols-rounded">
-                        schedule
-                    </span>
+                    <i className="fi fi-rr-time-forward"></i>
                 </div>
                 <div className="text">Under Review</div>
             </div>
@@ -24,9 +22,7 @@ export default function TaskCard({ courseId, Task_No, Task_Topic, Task_Content, 
         statusLabel = (
             <div className="status-label danger row">
                 <div className="icon">
-                    <span className="material-symbols-rounded">
-                        block
-                    </span>
+                    <i className="fi fi-rr-ban"></i>
                 </div>
                 <div className="text">Rejected</div>
             </div>
@@ -36,9 +32,7 @@ export default function TaskCard({ courseId, Task_No, Task_Topic, Task_Content, 
         statusLabel = (
             <div className="status-label success row">
                 <div className="icon">
-                    <span className="material-symbols-rounded">
-                        verified
-                    </span>
+                    <i className="fi fi-rr-badge-check"></i>
                 </div>
                 <div className="text">Verified</div>
             </div>
@@ -48,9 +42,7 @@ export default function TaskCard({ courseId, Task_No, Task_Topic, Task_Content, 
         statusLabel = (
             <div className="status-label pending row">
                 <div className="icon">
-                    <span className="material-symbols-rounded">
-                        cancel
-                    </span>
+                    <i className="fi fi-rr-cross-circle"></i>
                 </div>
                 <div className="text">Not Submitted</div>
             </div>
@@ -58,7 +50,7 @@ export default function TaskCard({ courseId, Task_No, Task_Topic, Task_Content, 
     }
 
     return (
-        <Link to={`/task/${Task_Topic}`} className={`task-card`} state={{ courseId, Task_No, Task_Topic, Task_Content, Task_Status, Submission_Link, Remarks }}>
+        <Link to={`/task/${Task_Topic}`} className={`task-card`} state={{ courseId, Task_No, Task_Topic, Task_Content, Task_Status, Code_Link, Remarks }}>
 
             <div className="top row">
                 <div className="left">
@@ -70,10 +62,6 @@ export default function TaskCard({ courseId, Task_No, Task_Topic, Task_Content, 
                     </div>
                 </div>
             </div>
-
-            {/* <div className="middle">
-                    <div className="task-description">{Task_Content}</div>
-                </div> */}
 
             <div className="bottom col">
                 <div className="status">

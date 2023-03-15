@@ -37,7 +37,7 @@ export default function Theme() {
                         <i className="fi fi-rr-clouds-sun"></i>
                     </span>
                     :
-                    <span className="icon" onClick={setIsDarkTheme}>
+                    <span className="icon" onClick={setDarkTheme}>
                         <i className="fi fi-rr-clouds-moon"></i>
                     </span>
             }

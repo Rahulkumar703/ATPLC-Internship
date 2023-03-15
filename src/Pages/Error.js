@@ -22,7 +22,6 @@ function Error() {
                     </div>
                     <div className="text">Home</div>
                 </button >
-
             </div >
         </section >
     )

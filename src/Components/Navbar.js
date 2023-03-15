@@ -1,13 +1,17 @@
 import React from 'react'
-import { Link, } from 'react-router-dom'
+import { Link, useLocation, useNavigate, redirect } from 'react-router-dom'
 import './Navbar.css'
 
 export default function Navbar({ hamburgerStatus, setHamburgerStatus }) {
 
-
+    const navigate = useNavigate();
     const handleLinkClick = () => {
         window.scrollTo(0, 0)
         setHamburgerStatus(false)
+    }
+    const goTo = () => {
+        console.log();
+        navigate('/')
     }
     const scrollTo = (elementId) => {
         const element = document.querySelector(elementId);
@@ -50,7 +54,7 @@ export default function Navbar({ hamburgerStatus, setHamburgerStatus }) {
                     </Link>
                 </li>
                 <li className="nav-items">
-                    <Link onClick={() => { scrollTo('#footer') }} to="#" className="nav-links">
+                    <Link to="#" onClick={goTo} className="nav-links">
                         <div className="icon">
                             <i className="fi fi-rr-comment"></i>
                         </div>

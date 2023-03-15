@@ -14,6 +14,7 @@
   --white: #ffffff;
   --black: #000000;
   --primary: #9c394b;
+  --blue: #6ba2f9;
   --secondary: #4a4e5a;
   --info: #41c5f1;
   --info-tint: #87edff;
@@ -49,8 +50,8 @@ html {
 }
 
 ::selection {
-  color: var(--bg-dark);
-  background: var(--bg-dark);
+  color: var(--bg-light);
+  background: var(--text);
 }
 
 /* Body */
@@ -115,10 +116,10 @@ img {
 /* Helper Class */
 
 .message-box {
-  padding: .5rem;
+  padding: 1rem 0;
   text-align: center;
   background: linear-gradient(to right, transparent, var(--bg-dark), transparent);
-  color: var(--danger);
+  color: var(--blue);
   font-weight: 600;
   font-size: var(--small-font);
   transition: .3s;
@@ -152,17 +153,18 @@ img {
   background: var(--danger-tint);
 }
 
+
 .icon,
 .icon i {
   display: grid;
   place-items: center;
-}
-
-.icon span,
-.icon i {
   font-size: var(--large-font);
   color: var(--text);
   user-select: none;
+}
+
+.icon i {
+  margin-top: -.2rem;
 }
 
 .icon~.text {

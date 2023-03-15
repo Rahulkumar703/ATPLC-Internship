@@ -81,96 +81,55 @@
 .task-submisssion .submission-form {
     display: flex;
     flex-direction: column;
+    gap: 2rem;
     padding: 2rem 0;
 }
 
-.submission-form .input-box {
-    position: relative;
-    padding: 1rem 0;
-}
 
 
-.submission-form .input-box {
+.submission-form .input-box-container {
     position: relative;
-    border-radius: .3rem;
 
 }
 
 .input-box input {
-    font-size: var(--medium-font);
-    width: 100%;
-    height: 5rem;
-    padding: 1rem 1.5rem;
-    padding-top: 2rem;
-    border: none;
-    background: var(--bg);
-    border-radius: .3rem;
-    color: var(--text);
-    border: .1rem solid var(--secondary);
     padding-right: 6.5rem;
+
 
 }
 
 .input-box input:disabled {
-    background: var(--bg-light);
+    background: transparent;
     color: var(--faded-text);
 }
 
-.input-box input~label {
-    position: absolute;
-    left: .5rem;
-    top: 50%;
+.input-box input {
+    background: var(--bg);
     color: var(--text);
-    transform: translateY(-50%);
-    font-size: var(--medium-font);
-    border-radius: .3rem;
-    pointer-events: none;
-    user-select: none;
-    transition: .3s;
-    filter: opacity(.7);
-    padding: .5rem;
 }
 
-.input-box input:focus~label,
-.input-box input:not(:placeholder-shown)~label {
-    top: 0;
-    font-size: var(--small-font);
-    color: var(--primary);
-    transform: translateY(0%);
-    font-weight: 600;
-    line-height: 1rem;
-    filter: opacity(1);
-    background: var(--bg-light);
-}
 
-.input-box .edit {
+.input-box-container .edit {
     position: absolute;
     right: 0;
-    top: 1rem;
-    width: 5rem;
-    height: 5rem;
+    top: 0;
+    width: 6rem;
+    height: 100%;
     padding: 1.5rem 0;
     background: var(--secondary);
     cursor: pointer;
     border-radius: .3rem;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
     display: grid;
     place-items: center;
 }
 
-.input-box .edit .icon span {
+.input-box-container .edit .icon i {
     font-size: var(--medium-font);
     color: var(--white);
 }
 
-.submission-form .message-box {
-    padding: 1rem;
-    margin-bottom: 1rem;
-    text-align: center;
-    background: linear-gradient(to right, transparent, var(--bg), transparent);
-    color: var(--text);
-    font-weight: 600;
-    font-size: var(--small-font);
-}
 
 .submission-form .submit-button {
     display: flex;
@@ -182,6 +141,7 @@
     border: .1rem solid transparent;
     cursor: pointer;
     border-radius: .3rem;
+    transition: .3s;
 }
 
 .submission-form .submit-button.hidden {

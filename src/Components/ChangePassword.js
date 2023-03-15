@@ -1,29 +1,35 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import './ChangePassword.css'
+import Input from './Input';
 
 export default function ChangePassword() {
 
 
-    const [Password, setPassword] = useState(
+    const [password, setPassword] = useState(
         {
-            old: '',
-            new: '',
-            confirm: ''
+            oldPassword: '',
+            newPassword: '',
+            confirmNewPassword: ''
         }
     );
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState('');
 
+
+    const handelChange = (e) => {
+        setPassword({ ...password, [e.target.name]: e.target.value })
+    }
+
     const changePassword = async (e) => {
         e.preventDefault();
-        if (Password.new === Password.confirm) {
+        if (password.newPassword === password.confirmNewPassword) {
             try {
                 setIsLoading(true);
                 const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_PATH}/change-password`, {
                     Username: JSON.parse(localStorage.getItem('user')).username,
-                    Password: Password.new,
-                    Old_Password: Password.old
+                    Password: password.newPassword,
+                    Old_Password: password.oldPassword
                 })
                 setMessage(data.Response);
 
@@ -33,9 +39,9 @@ export default function ChangePassword() {
             finally {
                 setIsLoading(false)
                 setPassword({
-                    old: '',
-                    new: '',
-                    confirm: ''
+                    oldPassword: '',
+                    newPassword: '',
+                    confirmNewPassword: ''
                 })
             }
         }
@@ -50,7 +56,7 @@ export default function ChangePassword() {
             <div className="field-heading">
                 <h4>Change Password</h4>
             </div>
-            <form className='field-body' onSubmit={changePassword}>
+            <form autoComplete='off' className='field-body' onSubmit={changePassword}>
                 {
                     message !== '' &&
                     <div className="message-box">
@@ -59,29 +65,35 @@ export default function ChangePassword() {
                 }
                 <div className="col">
 
-                    <div className="input-container">
-                        <div className="icon">
-                            <i className="fi fi-rr-lock"></i>
-                        </div>
-                        <input type="password" placeholder=' ' required id='old-password' onChange={(e) => { setPassword({ ...Password, old: e.target.value }); setMessage('') }} />
-                        <label htmlFor="old-password">Old Password</label>
-                    </div>
+                    <Input
+                        id="old-password"
+                        type="password"
+                        icon="fi fi-rr-lock"
+                        name='oldPassword'
+                        label="Old Password"
+                        autoComplete={'off'}
+                        value={password.oldPassword}
+                        onChange={handelChange}
+                    />
+                    <Input
+                        icon="fi fi-rr-key"
+                        type="password"
+                        name='newPassword'
+                        id="new-password"
+                        onChange={handelChange}
+                        value={password.newPassword}
+                        label="New Password"
+                    />
+                    <Input
+                        icon="fi fi-rr-key"
+                        type="password"
+                        name='confirmNewPassword'
+                        id="confirm-new-password"
+                        onChange={handelChange}
+                        value={password.confirmNewPassword}
+                        label="Confirm New Password"
+                    />
 
-                    <div className="input-container">
-                        <div className="icon">
-                            <i className="fi fi-rr-key"></i>
-                        </div>
-                        <input type="password" placeholder=' ' required id='new-password' autoComplete='off' onChange={(e) => { setPassword({ ...Password, new: e.target.value }); setMessage('') }} />
-                        <label htmlFor="new-password">New Password</label>
-                    </div>
-
-                    <div className="input-container">
-                        <div className="icon">
-                            <i className="fi fi-rr-key"></i>
-                        </div>
-                        <input type="password" placeholder=' ' required id='confirm-new-password' autoComplete='off' onChange={(e) => { setPassword({ ...Password, confirm: e.target.value }); setMessage('') }} />
-                        <label htmlFor="confirm-new-password">Confirm New Password</label>
-                    </div>
 
                     <button className="password-update-button" type='submit'>
                         <div className="icon">

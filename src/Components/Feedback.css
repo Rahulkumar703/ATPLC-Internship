@@ -1,11 +1,11 @@
 .feedback-section {
+    min-height: calc(100svh - 10rem);
     margin-top: 7rem;
     display: flex;
     flex-direction: column;
     padding: 1rem;
     align-items: center;
     width: 100%;
-    position: relative;
     margin-bottom: 5rem;
 }
 
@@ -20,14 +20,34 @@
     width: 100%;
     flex: 1;
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.section-body .left-button,
-.section-body .right-button {
+.section-body .feedback-container {
+    width: 100%;
+    padding: 1rem;
+    display: grid;
+}
+
+.feedback-container .swiper-wrapper {
+    width: 100%;
+}
+
+.feedback-container .swiper-button-next,
+.feedback-container .swiper-button-prev {
+    color: var(--primary);
+}
+
+.feedback-container .swiper-pagination-bullet {
+    background: var(--primary);
+}
+
+.feedback-container .left-button,
+.feedback-container .right-button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: var(--bg);
     font-size: var(--heading);
     padding: .5rem;
     cursor: pointer;
@@ -42,152 +62,35 @@
     color: var(--primary);
 }
 
-.section-body .left-button span,
-.section-body .right-button span {
+.feedback-container .left-button i,
+.feedback-container .right-button i {
     font-size: 3rem;
     color: inherit;
 }
 
-.section-body .left-button:hover,
-.section-body .right-button:hover {
-    background: var(--primary);
-    color: var(--white);
+.feedback-container .left-button:hover,
+.feedback-container .right-button:hover {
+    background: var(--bg);
 }
 
-.section-body .left-button {
+.feedback-container .left-button {
     left: 0rem;
 }
 
-.section-body .right-button {
+.feedback-container .right-button {
     right: 0rem;
 }
 
-.section-body .feedback-card {
+
+.feedback-container .feedback-card-container {
     display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    border-radius: .5rem;
-    flex-shrink: 0;
-    width: 70%;
-    max-width: 70rem;
-    margin: 0 auto;
-    opacity: 0;
-    transform: translateX(10%);
-    transition: .3s;
-}
-
-.section-body .feedback-card.active {
-    opacity: 1;
-    transform: translateX(0);
 }
 
 
-.feedback-card .card-heading {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: column;
-    flex-shrink: 0;
-    padding: 1rem;
-    margin-bottom: 1rem;
-}
+@media screen and (max-width:500px) {
 
-.card-heading .image {
-    flex-shrink: 0;
-    user-select: none;
-}
-
-.card-heading .image img {
-    width: 15rem;
-    height: 15rem;
-    border-radius: 50%;
-    object-fit: fill cover;
-    object-position: center;
-}
-
-.card-heading .heading-details {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem 0;
-}
-
-.heading-details .name {
-    font-size: var(--medium-font);
-    font-weight: 600;
-}
-
-.heading-details .batch {
-    font-size: var(--small-font);
-    font-weight: 400;
-}
-
-.heading-details .college {
-    font-size: var(--small-font);
-    font-weight: 400;
-}
-
-.heading-details .designation {
-    font-size: var(--small-font);
-    font-weight: 800;
-}
-
-.feedback-card .card-body {
-    padding: 1rem 1rem;
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    text-align: center;
-}
-
-.card-body .review {
-    font-size: var(--medium-font);
-    text-overflow: ellipsis;
-    position: relative;
-    z-index: 2;
-    padding: 0 2rem;
-    min-height: 20rem;
-    display: flex;
-    align-items: center;
-}
-
-
-.card-body .quote {
-    position: absolute;
-    width: 4rem;
-    height: 4rem;
-    z-index: 1;
-    filter: contrast(5);
-}
-
-.card-body .quote:first-child {
-    top: 0;
-    left: 0;
-}
-
-.card-body .quote:last-child {
-    bottom: 0;
-    right: 0;
-}
-
-
-@media screen and (max-width:600px) {
-
-    .section-body .left-button,
-    .section-body .right-button {
-        width: 3rem;
-        height: 7rem;
-    }
-
-    .section-body .feedback-card {
-        width: 100%;
-    }
-
-    .feedback-section {
-        padding: 0;
+    .feedback-container .swiper-button-next,
+    .feedback-container .swiper-button-prev {
+        display: none;
     }
 }

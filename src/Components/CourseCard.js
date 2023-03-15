@@ -11,7 +11,7 @@ export default function CourseCard({ id, courseName, courseDuration, coverImage,
                 <div className='cover-image'>
                     {
                         coverImage ?
-                            <img src={`https://atplc20.pythonanywhere.com/${coverImage}`} alt="course thumbnail" />
+                            <img src={`${process.env.REACT_APP_BACKEND_PATH}/${coverImage}`} alt="course thumbnail" />
                             :
                             <div className='cover-default-image'> {'</>'}</div>
                     }

@@ -90,16 +90,17 @@ export default function Dashboard() {
                                     return (
                                         <TaskCard
                                             key={task.Task_No}
+                                            sub={submittedTask}
                                             courseId={location.state.id}
                                             Task_No={task.Task_No}
                                             Task_Topic={task.Task_Topic}
                                             Task_Content={task.Task_Content}
                                             Task_Status={submittedTask?.Task_Status || ''}
-                                            Submission_Link={submittedTask?.Submission_Link || ''}
+                                            Code_Link={submittedTask?.Code_Link || ''}
                                             Remarks={submittedTask?.Remarks || ''}
                                         />
                                     )
-                                }).reverse()
+                                })
                             }
                         </div>
                     </div>

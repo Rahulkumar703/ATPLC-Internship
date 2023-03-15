@@ -1,0 +1,124 @@
+.feedback-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: .5rem;
+    flex-shrink: 0;
+    margin: 0 auto;
+    transition: .3s;
+    user-select: none;
+}
+
+
+.feedback-card .card-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    flex-shrink: 0;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.card-heading .image {
+    width: 15rem;
+    height: 15rem;
+    padding: .1rem;
+    flex-shrink: 0;
+    user-select: none;
+    border-radius: 50%;
+    border: .2rem solid var(--primary);
+}
+
+.card-heading .image img {
+    border-radius: 50%;
+    object-fit: fill cover;
+    object-position: center;
+}
+
+.card-heading .heading-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+.heading-details .name {
+    font-size: var(--medium-font);
+    font-weight: 600;
+}
+
+.heading-details .batch {
+    font-size: var(--small-font);
+    font-weight: 400;
+}
+
+.heading-details .college {
+    font-size: var(--small-font);
+    font-weight: 400;
+}
+
+.heading-details .designation {
+    font-size: var(--small-font);
+    font-weight: 800;
+}
+
+.feedback-card .card-body {
+    padding: 1rem 1rem;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    text-align: center;
+}
+
+.card-body .review {
+    font-size: var(--medium-font);
+    text-overflow: ellipsis;
+    position: relative;
+    z-index: 2;
+    padding: 0 2rem;
+    min-height: 20rem;
+    display: flex;
+    align-items: center;
+}
+
+
+.card-body .quote {
+    position: absolute;
+    width: 4rem;
+    height: 4rem;
+    z-index: 1;
+    filter: contrast(5);
+}
+
+.card-body .quote:first-child {
+    top: 0;
+    left: 0;
+}
+
+.card-body .quote:last-child {
+    bottom: 0;
+    right: 0;
+}
+
+
+@media screen and (max-width:600px) {
+
+    .left-button,
+    .right-button {
+        width: 3rem;
+        height: 7rem;
+    }
+
+    .feedback-card {
+        width: 100%;
+    }
+
+    .feedback-section {
+        padding: 0;
+    }
+}

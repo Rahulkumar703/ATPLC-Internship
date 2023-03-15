@@ -1,0 +1,61 @@
+.input-box {
+    position: relative;
+    width: 100%;
+}
+
+.input-box.icon .icon {
+    position: absolute;
+    left: 0;
+    width: 4rem;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    border-right: 1px solid var(--secondary);
+}
+
+.input-box.icon input {
+    padding-left: 5rem;
+}
+
+
+.input-box input {
+    font-size: var(--medium-font);
+    width: 100%;
+    height: 5rem;
+    border-radius: .3rem;
+    color: var(--text);
+    border: .1rem solid var(--secondary);
+    padding: 1rem;
+    padding-top: 3rem;
+}
+
+.input-box input~label {
+    left: 1rem;
+    background: transparent;
+    position: absolute;
+    top: 50%;
+    color: var(--text);
+    transform: translateY(-50%);
+    font-size: var(--medium-font);
+    border-radius: .3rem;
+    pointer-events: none;
+    user-select: none;
+    transition: .3s;
+    filter: opacity(.7);
+    padding: .5rem;
+}
+
+.input-box.icon input~label {
+    left: 5rem;
+}
+
+.input-box input:focus~label,
+.input-box input:not(:placeholder-shown)~label {
+    top: .3rem;
+    font-size: var(--small-font);
+    color: var(--primary);
+    transform: translateY(0%);
+    font-weight: 600;
+    line-height: 1rem;
+    filter: opacity(1);
+}

@@ -1,52 +1,50 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import './Profile.css'
+import Loader from '../Components/Loader'
+import Input from '../Components/Input';
 
 export default function Profile() {
 
     const [isLoading, setIsLoading] = useState(true);
     const [message, setMessage] = useState('');
-    const [profile, setProfile] = useState(
-        {
-            id: 38,
-            Profile_Pic: '',
-            Profile_Preview: '',
-            Name: "",
-            College_Name: "",
-            Branch: "",
-            Batch: '',
-            Contact_No: '',
-            Hometown: '',
-            Username: '',
-        }
-    );
+    const [profile, setProfile] = useState({});
 
     const changePersonalInfo = async (e) => {
         setIsLoading(true);
         e.preventDefault();
         try {
-            const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_PATH}/profile`, profile);
-
+            const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_PATH}/profile`,
+                {
+                    ...profile,
+                    Username: JSON.parse(localStorage.getItem('user')).userId,
+                });
             console.log('updating profile - ' + data);
         }
         catch (error) {
-            setMessage(error.response.statusText || error.message)
+            setMessage(error?.response?.statusText || error.message)
         }
         finally {
             setIsLoading(false);
         }
     }
-    const getProfile = async (source) => {
+
+
+    const getProfile = async () => {
         setIsLoading(true);
         try {
-            const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_PATH}/profile`, {
+            const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_PATH}/profile`, {
+
                 Username: JSON.parse(localStorage.getItem('user')).userId
-            }, { cancelToken: source })
+            })
+            setProfile(data.response);
             console.log(data);
-            setProfile(data);
+
+            // localStorage.setItem('user', { ...JSON.parse(localStorage.getItem('user')), ...data.response })
 
         } catch (error) {
-            setMessage(error.response.statusText || error.message)
+            console.log(error);
+            setMessage(error?.response?.statusText || error.message)
         }
         finally {
             setIsLoading(false);
@@ -55,9 +53,7 @@ export default function Profile() {
     }
 
     useEffect(() => {
-        const source = axios.CancelToken.source();
-        getProfile(source);
-        return source.cancel();
+        getProfile();
     }, [])
 
     const handelImageUpload = (e) => {
@@ -78,95 +74,111 @@ export default function Profile() {
             <div className="field-heading">
                 <h4>Personal Information</h4>
             </div>
-            <form className='field-body' onSubmit={changePersonalInfo}>
-                <div className="update-field">
-                    <div className="profile-img">
-                        {
-                            profile.Profile_Preview !== '' ?
-                                <img src={profile.Profile_Preview} alt="profile-pic" />
-                                :
-                                <i className="fi fi-rr-user"></i>
-                        }
-                    </div>
+            {
+                isLoading ?
+                    <Loader
+                    />
+                    :
+                    <form className='field-body' onSubmit={changePersonalInfo}>
+                        <div className="update-field">
+                            <div className="profile-img">
+                                {
+                                    profile.Profile_Preview && profile.Profile_Preview !== '' ?
+                                        <img src={profile.Profile_Preview} alt="profile-pic"
+                                        />
+                                        :
+                                        <i class="fi fi-rr-user"></i>
+                                }
+                            </div>
 
-                    <div className="upload-profile-img">
-                        <input type="file" accept=".jpg,.jpeg,.png" id='upload-profile-pic' onChange={handelImageUpload} />
-                        <label htmlFor="upload-profile-pic">
-                            <i className="fi fi-rr-camera"></i>
-                        </label>
-                    </div>
-                </div>
+                            <div className="upload-profile-img">
+                                <input type="file" accept=".jpg,.jpeg,.png" id='upload-profile-pic'
+                                    onChange={handelImageUpload}
+                                />
+                                <label htmlFor="upload-profile-pic">
+                                    <i className="fi fi-rr-camera"></i>
+                                </label>
+                            </div>
+                        </div>
 
-                {
-                    message !== '' &&
-                    <div className="message-box">
-                        {message}
-                    </div>
-                }
-                <div className="update-field">
-                    <div className="input-box">
-                        <div className="icon">
-                            <i className="fi fi-rr-id-card-clip-alt"></i>
-                        </div>
-                        <input type="text" placeholder=' ' id='full-name' value={profile.Name} onChange={(e) => handelChange(e, 'Name')} />
-                        <label htmlFor="full-name">Name</label>
-                    </div>
-                </div>
-                <div className="update-field">
-                    <div className="input-box">
-                        <div className="icon">
-                            <i className="fi fi-rr-graduation-cap"></i>
-                        </div>
-                        <input type="text" placeholder=' ' id='college' value={profile.College_Name} onChange={(e) => handelChange(e, 'College_Name')} />
-                        <label htmlFor="college">College</label>
-                    </div>
-                </div>
-                <div className="update-field">
-                    <div className="input-box">
-                        <div className="icon">
-                            <i className="fi fi-rr-code-branch"></i>
-                        </div>
-                        <input type="text" placeholder=' ' id='branch' value={profile.Branch} onChange={(e) => handelChange(e, 'Branch')} />
-                        <label htmlFor="branch">Branch</label>
-                    </div>
-                    <div className="input-box">
-                        <div className="icon">
-                            <i className="fi fi-rr-badge"></i>
-                        </div>
-                        <input type="number" placeholder=' ' id='batch' value={profile.Batch} onChange={(e) => handelChange(e, 'Batch')} />
-                        <label htmlFor="batch">Batch</label>
-                    </div>
-                </div>
-                <div className="update-field">
-                    <div className="input-box">
-                        <div className="icon">
-                            <i className="fi fi-rr-house-building"></i>
-                        </div>
-                        <input type="text" placeholder=' ' id='hometown' value={profile.Hometown} onChange={(e) => handelChange(e, 'Hometown')} />
-                        <label htmlFor="hometown">Hometown</label>
-                    </div>
-                    <div className="input-box">
-                        <div className="icon">
-                            <i className="fi fi-rr-mobile-notch"></i>
-                        </div>
-                        <input type="number" placeholder=' ' id='contact-no' value={profile.Contact_No} onChange={(e) => handelChange(e, 'Contact_No')} />
-                        <label htmlFor="contact-no">Contact No</label>
-                    </div>
-                </div>
-                <button className='profile-update-btn'>
-                    <div className="icon">
                         {
-                            isLoading ?
-                                <div className="loader animate-rotate">
-                                    <i className="fi fi-rr-loading"></i>
-                                </div>
-                                :
-                                <i className="fi fi-rr-refresh"></i>
+                            message !== '' &&
+                            <div className="message-box">
+                                {message}
+                            </div>
                         }
-                    </div>
-                    <div className="text">Update Profile</div>
-                </button>
-            </form>
+
+                        <div className="update-field">
+                            <Input
+                                id='full-name'
+                                label='Name'
+                                value={profile.Name}
+                                name='Name'
+                                icon='fi fi-rr-id-card-clip-alt'
+                                onChange={handelChange}
+                            />
+                        </div>
+                        <div className="update-field">
+                            <Input
+                                id='college'
+                                label='College'
+                                value={profile.College}
+                                name='College'
+                                icon='fi fi-rr-graduation-cap'
+                                onChange={handelChange}
+                            />
+                        </div>
+                        <div className="update-field">
+                            <Input
+                                id='branch'
+                                label='Branch'
+                                value={profile.Branch}
+                                name='Branch'
+                                icon='fi fi-rr-code-branch'
+                                onChange={handelChange}
+                            />
+                            <Input
+                                id='batch'
+                                label='Batch'
+                                value={profile.Batch}
+                                name='Batch'
+                                icon='fi fi-rr-badge'
+                                onChange={handelChange}
+                            />
+                        </div>
+                        <div className="update-field">
+                            <Input
+                                id='hometown'
+                                label='Hometown'
+                                value={profile.Hometown}
+                                name='Hometown'
+                                icon='fi fi-rr-house-building'
+                                onChange={handelChange}
+                            />
+                            <Input
+                                id='contact-no'
+                                label='Contact No'
+                                value={profile.Contact_No}
+                                name='Contact_No'
+                                icon='fi fi-rr-mobile-notch'
+                                onChange={handelChange}
+                            />
+                        </div>
+                        <button className='profile-update-btn'>
+                            <div className="icon">
+                                {
+                                    isLoading ?
+                                        <div className="loader animate-rotate">
+                                            <i className="fi fi-rr-loading"></i>
+                                        </div>
+                                        :
+                                        <i className="fi fi-rr-refresh"></i>
+                                }
+                            </div>
+                            <div className="text">Update Profile</div>
+                        </button>
+                    </form>
+            }
         </div>
     )
 }

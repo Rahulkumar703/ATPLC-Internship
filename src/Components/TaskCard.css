@@ -99,7 +99,7 @@
     gap: .5rem;
 }
 
-.status-label .icon span {
+.status-label .icon i {
     color: var(--black);
 }
 

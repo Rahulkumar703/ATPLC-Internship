@@ -1,28 +1,29 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import Input from '../Components/Input';
 import './Task.css'
 
 export default function Task() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-    })
+    }, [])
 
-    const { state: { courseId, Task_No, Task_Topic, Task_Content, Task_Status, Submission_Link, Remarks } } = useLocation();
-    const [link, setLink] = useState(Submission_Link || '');
+    const { state: { courseId, Task_No, Task_Topic, Task_Content, Task_Status, Code_Link, Remarks } } = useLocation();
+    const [link, setLink] = useState(Code_Link || '');
     const [isLoading, setIsLoading] = useState(false);
     const [showEdit, setShowEdit] = useState(true);
 
     const [message, setMessage] = useState('');
 
 
+
     const submitLink = async (e) => {
         e.preventDefault();
-        if (link !== Submission_Link) {
+        if (link !== Code_Link) {
             if (link === '') {
-                setMessage('Enter you task link to procede')
-                console.log(Submission_Link);
+                setMessage('Enter your task link to procede')
             }
             else {
                 try {
@@ -31,7 +32,7 @@ export default function Task() {
                         course: courseId,
                         Username: JSON.parse(localStorage.getItem('user')).userId,
                         Task_No: Task_No,
-                        Submission_Link: link
+                        Code_Link: link
                     })
                     setMessage(data.response)
                     console.log(data.response);
@@ -49,15 +50,16 @@ export default function Task() {
         }
         setIsLoading(false);
     }
+    const handelChange = (e) => {
+        setLink(e.target.value);
+    }
 
     let statusLabel;
     if (Task_Status === "Under Review") {
         statusLabel = (
             <div className="status-label info row">
                 <div className="icon">
-                    <span className="material-symbols-rounded">
-                        schedule
-                    </span>
+                    <i className="fi fi-rr-time-forward"></i>
                 </div>
                 <div className="text">Under Review</div>
             </div>
@@ -66,9 +68,7 @@ export default function Task() {
         statusLabel = (
             <div className="status-label danger row">
                 <div className="icon">
-                    <span className="material-symbols-rounded">
-                        block
-                    </span>
+                    <i className="fi fi-rr-ban"></i>
                 </div>
                 <div className="text">Rejected</div>
             </div>
@@ -78,9 +78,7 @@ export default function Task() {
         statusLabel = (
             <div className="status-label success row">
                 <div className="icon">
-                    <span className="material-symbols-rounded">
-                        verified
-                    </span>
+                    <i className="fi fi-rr-badge-check"></i>
                 </div>
                 <div className="text">Verified</div>
             </div>
@@ -90,9 +88,7 @@ export default function Task() {
         statusLabel = (
             <div className="status-label pending row">
                 <div className="icon">
-                    <span className="material-symbols-rounded">
-                        cancel
-                    </span>
+                    <i className="fi fi-rr-cross-circle"></i>
                 </div>
                 <div className="text">Not Submitted</div>
             </div>
@@ -131,18 +127,22 @@ export default function Task() {
                                 {message}
                             </div>
                         }
-                        <div className="input-box">
-                            <input id='submition-link' type="text" placeholder=' ' disabled={showEdit} required value={link} onChange={(e) => { setLink(e.target.value) }} />
-                            <label htmlFor="submition-link">Submission Link</label>
-
+                        <div className="input-box-container">
+                            <Input
+                                icon="fi fi-rr-link-alt"
+                                type="text"
+                                id='submition-link'
+                                label="Submission Link"
+                                name="submissionLink"
+                                value={link}
+                                onChange={handelChange}
+                                disabled={showEdit}
+                            />
                             <div className="edit" onClick={() => setShowEdit(!showEdit)}>
                                 <div className="icon">
-                                    <span className="material-symbols-rounded">
-                                        {showEdit ? 'edit' : 'done'}
-                                    </span>
+                                    {showEdit ? <i className="fi fi-rr-edit"></i> : <i className="fi fi-rr-check"></i>}
                                 </div>
                             </div>
-
                         </div>
                         {
                             !showEdit
@@ -159,7 +159,7 @@ export default function Task() {
                                     }
                                 </div>
                                 <div className="text">
-                                    {Submission_Link && submitLink !== '' ? 'Update' : 'Submit'}
+                                    {Code_Link && submitLink !== '' ? 'Update' : 'Submit'}
                                 </div>
                             </button>
                         }
