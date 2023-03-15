@@ -14,6 +14,8 @@ import RootLayout from './Layouts/RootLayout';
 import MyCoursesLayout from './Layouts/MyCoursesLayout';
 import ProfileLayout from './Layouts/ProfileLayout';
 import ChangePassword from './Components/ChangePassword';
+import Gallery from './Pages/Gallery';
+import Enroll from './Pages/Enroll';
 
 function App() {
 
@@ -35,6 +37,8 @@ function App() {
           <Route index element={<Profile />} />
           <Route path='update-password' element={<ChangePassword />} />
         </Route>
+        <Route path="gallery" element={<Gallery />} />
+        <Route path="enroll/:course" element={<Enroll />} />
         <Route path="*" element={<Error />} />
       </Route>
     )

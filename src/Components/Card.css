@@ -27,7 +27,8 @@
     user-select: none;
 }
 
-.card-top .icon span {
+.card-top .icon i {
+    margin-top: 0;
     font-size: var(--heading);
 }
 

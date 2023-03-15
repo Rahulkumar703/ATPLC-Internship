@@ -140,7 +140,6 @@
     font-size: var(--medium-font);
     border: none;
     padding: 1rem 2rem;
-    color: var(--white);
     transition: .3s;
     width: 100%;
     display: flex;
@@ -150,7 +149,7 @@
 }
 
 .enroll-course .enroll-course-btn :is(.icon i, .text) {
-    color: inherit;
+    color: var(--white);
 }
 
 .enroll-course .enroll-course-btn:hover {

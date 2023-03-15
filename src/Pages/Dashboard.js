@@ -67,13 +67,13 @@ export default function Dashboard() {
                         <div className="score-card-container grid">
                             <Card
                                 heading='Verified Submission'
-                                icon="insights"
+                                icon="fi fi-rr-list-check"
                                 obtainedScore={completedTask}
                                 totalScore={taskData.Tasks?.length || 0}
                             />
                             <Card
                                 heading='Pending Tasks'
-                                icon="pending"
+                                icon="fi fi-rr-info"
                                 obtainedScore={taskData.Tasks?.length - completedTask}
                                 totalScore={taskData.Tasks?.length || 0}
                             />

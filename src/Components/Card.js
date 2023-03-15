@@ -13,9 +13,7 @@ export default function Card({ heading, icon, obtainedScore, totalScore }) {
         <div className='card col'>
             <div className="card-top">
                 <div className="icon">
-                    <span className="material-symbols-rounded">
-                        {icon}
-                    </span>
+                    <i className={icon}></i>
                 </div>
             </div>
             <div className="card-middle row">

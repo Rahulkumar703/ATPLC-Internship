@@ -1,0 +1,60 @@
+.enroll-page {
+    align-items: center;
+    justify-content: center;
+}
+
+.enroll-page .icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
+    justify-content: center;
+    opacity: .2;
+    z-index: -1;
+}
+
+.enroll-page>.icon i {
+    color: var(--faded-text);
+    font-size: 30vw;
+}
+
+.enroll-page .main-error {
+    font-size: 3vw;
+    color: var(--primary);
+}
+
+.enroll-page .sub-error {
+    font-size: 1.5vw;
+}
+
+.enroll-page a {
+    margin-top: 1rem;
+    display: flex;
+    background: var(--secondary);
+    border: .5rem solid var(--bg-light);
+    color: var(--white);
+    padding: 1rem 2rem;
+    gap: 1rem;
+    border-radius: .3rem;
+    transition: .3s;
+}
+
+.enroll-page a:hover {
+    transform: scale(1.2);
+}
+
+.enroll-page a .icon {
+    margin-top: -.2rem;
+    position: unset;
+    transform: translate(0);
+    z-index: 1;
+    opacity: 1;
+    display: flex;
+}
+
+.enroll-page a .icon i,
+.enroll-page a .text {
+
+    color: var(--white);
+}
