@@ -13,7 +13,7 @@ export default function Facilities() {
                     <img src="/Assets/Illustrator/Characterl.png" alt="character" loading='lazy' />
                 </div>
                 <div className="card-container">
-                    <Link to="/my-courses" className="training facility-card">
+                    <Link to="/courses" className="training facility-card">
                         <img src="/Assets/Illustrator/Training.png" alt="Training" loading='lazy' />
                         <h3>Training</h3>
                     </Link>

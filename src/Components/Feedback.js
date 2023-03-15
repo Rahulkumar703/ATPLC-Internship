@@ -68,7 +68,10 @@ export default function Feedback() {
                                 centeredSlides={true}
                                 fadeEffect={true}
                                 grabCursor={true}
-                                autoplay={{ delay: 1800, disableOnInteraction: false }}
+                                autoplay={{
+                                    delay: 5000,
+                                    disableOnInteraction: true
+                                }}
                                 pagination={{
                                     clickable: true,
                                     dynamicBullets: true,
