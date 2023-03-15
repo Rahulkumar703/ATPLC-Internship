@@ -1,22 +1,22 @@
 import './App.css';
 import { createRoutesFromElements, RouterProvider, createBrowserRouter, Route } from 'react-router-dom';
-// Pages
-import Dashboard from './Pages/Dashboard'
-import Home from './Pages/Home'
-import Profile from './Pages/Profile'
-import Error from './Pages/Error'
-import MyCourses from './Pages/MyCourses';
-import Login from './Pages/Login';
-import Courses from './Pages/Courses';
-import Task from './Pages/Task';
 // layouts
 import RootLayout from './Layouts/RootLayout';
 import MyCoursesLayout from './Layouts/MyCoursesLayout';
 import ProfileLayout from './Layouts/ProfileLayout';
-import ChangePassword from './Components/ChangePassword';
-import Gallery from './Pages/Gallery';
-import Enroll from './Pages/Enroll';
-import Internship from './Pages/Internship';
+// Pages
+import Home from './Pages/Home/Home'
+import Login from './Pages/Login/Login'
+import Courses from './Pages/Courses/Courses'
+import MyCourses from './Pages/MyCourses/MyCourses'
+import Dashboard from './Pages/Dashboard/Dashboard'
+import Task from './Pages/Task/Task'
+import Profile from './Pages/Profile/Profile'
+import ChangePassword from './Components/ChangePassword/ChangePassword'
+import Gallery from './Pages/Gallery/Gallery'
+import Internship from './Pages/Internship/Internship'
+import NotFound from './Pages/NotFound/NotFound'
+import Enroll from './Pages/Enroll/Enroll'
 
 function App() {
 
@@ -41,7 +41,7 @@ function App() {
         <Route path="gallery" element={<Gallery />} />
         <Route path="internship" element={<Internship />} />
         <Route path="enroll/:course" element={<Enroll />} />
-        <Route path="*" element={<Error />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     )
 

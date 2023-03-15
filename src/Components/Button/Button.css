@@ -1,0 +1,68 @@
+.button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background: var(--primary);
+    color: var(--white);
+    border: .1rem solid transparent;
+    border-radius: .3rem;
+    font-size: var(--medium-font);
+    min-width: max-content;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.button:hover {
+    color: var(--primary);
+    background: transparent;
+    border: .1rem solid var(--primary);
+    box-shadow: 0 1rem 2rem -1rem var(--black);
+}
+
+
+
+
+
+header.active .button {
+    color: var(--text);
+}
+
+
+
+header.active .button .text,
+header.active .button .icon i {
+    color: var(--white);
+}
+
+
+
+
+
+.button .icon i {
+    margin-top: 0;
+}
+
+.button .icon i,
+.button .text {
+    color: inherit;
+    font-weight: bold;
+    font-size: var(--medium-font);
+}
+
+.button:hover .text,
+.button:hover .icon i {
+    color: var(--primary);
+}
+
+.button .loader-spin {
+    animation: spin 3s ease infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

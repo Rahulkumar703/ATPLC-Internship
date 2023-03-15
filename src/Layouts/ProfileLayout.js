@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
-import '../Pages/Profile.css'
+import '../Pages/Profile/Profile.css'
 
 export default function ProfileLayout() {
 

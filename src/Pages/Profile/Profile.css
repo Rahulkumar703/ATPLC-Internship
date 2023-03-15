@@ -1,0 +1,184 @@
+.profile-page .section-heading {
+    font-size: var(--heading);
+    padding: 3rem 1rem;
+}
+
+.profile-page .seciton-body {
+    padding: 1rem;
+    width: 100%;
+    display: flex;
+    gap: 3rem;
+    flex: 1;
+}
+
+
+
+/* Sidebar */
+.seciton-body .sidebar {
+    flex: .5;
+    max-width: 30rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    z-index: 2;
+    background: var(--bg);
+}
+
+
+.sidebar .sidebar-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+    border-radius: .5rem;
+    transition: .3s;
+    justify-content: center;
+}
+
+.sidebar .sidebar-links.logout {
+    margin-top: auto;
+    color: var(--danger);
+}
+
+.sidebar .sidebar-links:hover {
+    background: var(--hover);
+}
+
+.sidebar .sidebar-links.active {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.sidebar .sidebar-links .icon i,
+.sidebar .sidebar-links .text {
+    color: inherit;
+}
+
+
+
+.seciton-body .content-container {
+    flex: 1;
+}
+
+
+
+
+/* Personal Info */
+.personal-info-field {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+}
+
+.personal-info-field .field-heading {
+    font-size: var(--large-font);
+}
+
+.personal-info-field .field-body {
+    display: flex;
+    flex-direction: column;
+    padding-left: 2rem;
+    gap: 2rem;
+}
+
+.field-body .update-field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    position: relative;
+}
+
+.field-body .update-field:first-child {
+    width: 20rem;
+    height: 20rem;
+    border-radius: 50%;
+    overflow: hidden;
+    align-self: center;
+    font-size: 10rem;
+    border: 1px solid var(--bg-dark);
+
+}
+
+.update-field .profile-img {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.update-field .profile-img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.field-body .update-field:first-child:hover .upload-profile-img {
+    bottom: 0;
+}
+
+.field-body .upload-profile-img {
+    position: absolute;
+    bottom: -8rem;
+    width: 20rem;
+    height: 8rem;
+    background: rgba(0, 0, 0, .3);
+    backdrop-filter: blur(5px);
+    transition: .3s;
+    display: grid;
+    place-items: center;
+}
+
+.field-body .upload-profile-img input {
+    appearance: none;
+    display: none;
+}
+
+.field-body .upload-profile-img label {
+    display: flex;
+    font-size: var(--heading);
+    color: var(--white);
+    cursor: pointer;
+}
+
+.field-body .upload-profile-img label i {
+    pointer-events: none;
+
+}
+
+
+
+
+
+
+@media screen and (max-width: 720px) {
+
+
+    .profile-page .seciton-body {
+        gap: 1rem;
+    }
+
+    .seciton-body .sidebar {
+        flex: auto;
+        max-width: fit-content;
+    }
+
+    .sidebar .sidebar-links .text {
+        display: none;
+    }
+
+    .personal-info-field .field-body {
+        padding: 0;
+    }
+
+    .field-body .update-field {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+}

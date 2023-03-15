@@ -1,0 +1,137 @@
+.account {
+    padding: 0 1rem;
+}
+
+.account .header-profile {
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    padding: .5rem;
+    border-radius: .5rem;
+}
+
+.header-profile .profile-pic {
+    width: 4.5rem;
+    height: 4.5rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--primary);
+    font-size: var(--large-font);
+    font-weight: bold;
+    user-select: none;
+    pointer-events: none;
+    color: var(--white);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+
+.header-profile .profile-details {
+    pointer-events: none;
+}
+
+.profile-details .profile-name {
+    font-size: var(--large-font);
+}
+
+.profile-details .profile-email {
+    font-size: var(--small-font);
+}
+
+.account .profile-popup {
+    z-index: 5;
+    width: 30%;
+    min-width: 30rem;
+    position: absolute;
+    top: 8.5rem;
+    right: .5rem;
+    background: var(--bg-light);
+    padding: 1rem 0;
+    border-radius: .5rem;
+    visibility: hidden;
+    transform: translateY(50%);
+    transition: visiblity .3s, transform .1s;
+    pointer-events: none;
+    box-shadow: 0 1rem 5rem -2rem var(--black);
+}
+
+.account .profile-popup.active {
+    transform: translate(0%);
+    visibility: visible;
+    pointer-events: all;
+}
+
+.profile-popup ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-popup ul li:is(:first-child, :last-child) {
+    padding: 1rem;
+}
+
+.profile-popup ul li,
+.profile-popup ul li a {
+    cursor: pointer;
+    user-select: none;
+    font-size: var(--medium-font);
+    text-align: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.profile-popup ul li a {
+    padding: 0;
+    flex: 1;
+    padding: 1rem;
+}
+
+li .text {
+    font-weight: 400;
+}
+
+
+.profile-popup ul li .text,
+.profile-popup ul li .icon i {
+    color: var(--text);
+}
+
+.profile-popup ul li#user-id .text,
+.profile-popup ul li#user-id .icon i {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+
+.profile-popup ul li#user-id:hover {
+    background: none;
+    cursor: default;
+}
+
+.profile-popup ul li:hover {
+    background: linear-gradient(to left, transparent, var(--bg), transparent);
+}
+
+.profile-popup ul li:hover .text,
+.profile-popup ul li:hover .icon i {
+    color: var(--primary);
+}
+
+.account .header-login {
+    padding: .5rem;
+}
+
+
+/* Responsive */
+
+@media screen and (max-width: 1050px) {
+
+    .account .profile-popup.active {
+        top: 8rem;
+    }
+
+}
