@@ -159,7 +159,7 @@ img {
   display: grid;
   place-items: center;
   font-size: var(--large-font);
-  color: var(--text);
+  color: inherit;
   user-select: none;
 }
 
@@ -168,7 +168,7 @@ img {
 }
 
 .icon~.text {
-  color: var(--text);
+  color: inherit;
   font-size: var(--medium-font);
 }
 
