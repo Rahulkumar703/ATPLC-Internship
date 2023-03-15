@@ -1,13 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './CommonPage.css'
-import './Enroll.css'
-
-export default function Enroll() {
-    // const location = useLocation();
-    /* <h1>{location.state.id + ' ' + location.state.courseName}</h1> */
+import './Internship.css'
+export default function Internship() {
     return (
-        <section className='page enroll-page'>
+        <section className='page internship-page'>
             <div className="icon">
                 <i className="fi fi-rr-snowplow"></i>
             </div>

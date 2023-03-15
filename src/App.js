@@ -16,6 +16,7 @@ import ProfileLayout from './Layouts/ProfileLayout';
 import ChangePassword from './Components/ChangePassword';
 import Gallery from './Pages/Gallery';
 import Enroll from './Pages/Enroll';
+import Internship from './Pages/Internship';
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
           <Route path='update-password' element={<ChangePassword />} />
         </Route>
         <Route path="gallery" element={<Gallery />} />
+        <Route path="internship" element={<Internship />} />
         <Route path="enroll/:course" element={<Enroll />} />
         <Route path="*" element={<Error />} />
       </Route>
