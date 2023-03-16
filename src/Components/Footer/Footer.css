@@ -81,6 +81,33 @@
     justify-content: center;
     padding: .5;
     font-size: var(--medium-font);
+    position: relative;
+    color: rgb(163, 163, 163);
+}
+
+.copyright .credit {
+    position: absolute;
+    top: -2rem;
+    right: 0;
+    font-size: var(--small-font);
+    cursor: pointer;
+    color: var(--secondary);
+    transition: .3s;
+    font-family: 'Babylonica', cursive;
+    user-select: none;
+}
+
+.copyright .credit:hover {
+    color: var(--white);
+    text-shadow: 1px 1px 1px var(--black);
+}
+
+.copyright .credit:hover span {
+    color: #ff4060;
+}
+
+.credit span {
+    font-weight: bold;
 }
 
 @media screen and (max-width:700px) {

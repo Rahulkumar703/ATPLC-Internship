@@ -12,8 +12,6 @@ export default function Courses() {
     const [courses, setCourses] = useState([]);
 
 
-
-
     useEffect(() => {
         fetchCourses();
     }, [])
@@ -31,6 +29,7 @@ export default function Courses() {
             setIsLoading(false);
         }
     }
+
 
 
     return (

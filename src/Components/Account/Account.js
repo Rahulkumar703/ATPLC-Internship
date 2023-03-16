@@ -21,6 +21,7 @@ export default function Account({ accountRef, setHamburgerStatus }) {
     }
     const logOut = async () => {
         localStorage.removeItem('user')
+        localStorage.removeItem('courses')
         navigate('/', { replace: true });
 
     }

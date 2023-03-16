@@ -8,6 +8,7 @@ export default function ProfileLayout() {
     const navigate = useNavigate();
     const logOut = () => {
         localStorage.removeItem('user')
+        localStorage.removeItem('courses')
         navigate('/', { replace: true });
     }
     return (

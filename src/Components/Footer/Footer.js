@@ -116,7 +116,14 @@ export default function Footer() {
                 </div>
             </div>
             <div className="copyright">
-                Copyright by ATPLC &copy; {date.getFullYear()}
+                <p>
+                    Copyright &copy; {date.getFullYear()} ATPLC. All rights reserved.
+                </p>
+                <div className="credit">
+                    <a href='https://github.com/Rahulkumar703' target='_blank' rel="noreferrer">
+                        Frontend Developer <span>Devil</span>
+                    </a>
+                </div>
             </div>
         </footer>
     )

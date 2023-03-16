@@ -18,6 +18,12 @@ export default function Task() {
     const [message, setMessage] = useState('');
 
 
+    console.log({
+        course: courseId,
+        Username: JSON.parse(localStorage.getItem('user')).userId,
+        Task_No: Task_No,
+        Code_Link: link
+    });
 
     const submitLink = async (e) => {
         e.preventDefault();
@@ -35,7 +41,6 @@ export default function Task() {
                         Code_Link: link
                     })
                     setMessage(data.response)
-                    console.log(data.response);
                 } catch (e) {
                     setMessage(e.message);
                 }
