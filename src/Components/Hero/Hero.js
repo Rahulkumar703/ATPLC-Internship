@@ -5,9 +5,9 @@ export default function Hero() {
     return (
         <div className="hero-section">
             <div className="hero-section-images">
-                <img src="/Assets/Illustrator/female.png" alt="hero" loading='lazy' />
-                <img src="/Assets/Illustrator/hand.png" alt="hero" loading='lazy' />
-                <img src="/Assets/Illustrator/male.png" alt="hero" loading='lazy' />
+                <img src="/Assets/Illustrator/female.png" alt="hero" />
+                <img src="/Assets/Illustrator/hand.png" alt="hero" />
+                <img src="/Assets/Illustrator/male.png" alt="hero" />
             </div>
             <div className="hero-section-content">
                 <h1 className="hero-section-heading">ATPLC</h1>

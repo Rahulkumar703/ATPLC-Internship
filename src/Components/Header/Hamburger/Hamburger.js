@@ -7,7 +7,7 @@ export default function Hamburger({ hamburgerStatus, setHamburgerStatus }) {
         setHamburgerStatus(!hamburgerStatus);
     }
     return (
-        <button className={`hamburger ${hamburgerStatus ? 'active' : ''}`} onClick={toggleHamburger}>
+        <button className={`hamburger ${hamburgerStatus ? 'active' : ''}`} onClick={toggleHamburger} title="Hamburger">
             <span></span>
             <span></span>
             <span></span>

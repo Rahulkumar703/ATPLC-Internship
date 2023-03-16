@@ -5,7 +5,8 @@ import OurExperties from '../../Components/OurExperties/OurExperties'
 import Hero from '../../Components/Hero/Hero'
 import Feedback from '../../Components/Feedback/Feedback'
 
-function Home() {
+
+function Home(props) {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [])

@@ -10,20 +10,20 @@ export default function Facilities() {
             </div>
             <div className="section-body">
                 <div className="left image-box">
-                    <img src="/Assets/Illustrator/Characterl.png" alt="character" loading='lazy' />
+                    <img src="/Assets/Illustrator/Characterl.png" alt="character" />
                 </div>
                 <div className="card-container">
                     <Link to="/courses" className="training facility-card">
-                        <img src="/Assets/Illustrator/Training.png" alt="Training" loading='lazy' />
+                        <img src="/Assets/Illustrator/Training.png" alt="Training" />
                         <h3>Training</h3>
                     </Link>
                     <Link to="/internship" className="internship facility-card">
-                        <img src="/Assets/Illustrator/Internship.png" alt="Internship" loading='lazy' />
+                        <img src="/Assets/Illustrator/Internship.png" alt="Internship" />
                         <h3>Internship</h3>
                     </Link>
                 </div>
                 <div className="right image-box">
-                    <img src="/Assets/Illustrator/Characterr.png" alt="character" loading='lazy' />
+                    <img src="/Assets/Illustrator/Characterr.png" alt="character" />
                 </div>
             </div>
         </section>

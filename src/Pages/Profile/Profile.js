@@ -12,6 +12,10 @@ export default function Profile() {
     const [message, setMessage] = useState('');
     const [profile, setProfile] = useState({});
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+
     const changePersonalInfo = async (e) => {
         setIsLoading(true);
         e.preventDefault();
@@ -89,7 +93,7 @@ export default function Profile() {
                                         <img src={profile.Profile_Preview} alt="profile-pic"
                                         />
                                         :
-                                        <i class="fi fi-rr-user"></i>
+                                        <i className="fi fi-rr-user"></i>
                                 }
                             </div>
 

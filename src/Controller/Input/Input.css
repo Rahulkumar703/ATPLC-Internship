@@ -24,9 +24,17 @@
     height: 5rem;
     border-radius: .3rem;
     color: var(--text);
+    background: var(--bg);
     border: .1rem solid var(--secondary);
     padding: 1rem;
     padding-top: 3rem;
+}
+
+.input-box input:disabled,
+.input-box input:disabled~.icon,
+.input-box input:disabled~label {
+    background: transparent;
+    color: var(--faded-text);
 }
 
 .input-box input~label {

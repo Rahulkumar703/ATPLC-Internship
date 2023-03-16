@@ -23,14 +23,6 @@ export default function Input(
 
     return (
         <div className={`input-box ${icon ? 'icon' : null}`}>
-            {
-                icon ?
-                    <div className="icon">
-                        <i className={icon}></i>
-                    </div>
-                    :
-                    null
-            }
 
             <input
                 type={type}
@@ -43,6 +35,14 @@ export default function Input(
                 required={required}
                 autoComplete={autoComplete}
             />
+            {
+                icon ?
+                    <div className="icon">
+                        <i className={icon}></i>
+                    </div>
+                    :
+                    null
+            }
 
             <label htmlFor={name}>{label}</label>
         </div>

@@ -89,24 +89,12 @@
 
 .submission-form .input-box-container {
     position: relative;
-
 }
 
 .submission-form .input-box-container .input-box input {
     padding-right: 6.5rem;
-
-
 }
 
-.input-box input:disabled {
-    background: transparent;
-    color: var(--faded-text);
-}
-
-.input-box input {
-    background: var(--bg);
-    color: var(--text);
-}
 
 
 .input-box-container .edit {
@@ -130,55 +118,6 @@
     color: var(--white);
 }
 
-
-.submission-form .submit-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    padding: 1rem;
-    background: var(--primary);
-    border: .1rem solid transparent;
-    cursor: pointer;
-    border-radius: .3rem;
-    transition: .3s;
-}
-
-.submission-form .submit-button.hidden {
-    visibility: hidden;
-}
-
-.submission-form .submit-button .text {
-    color: var(--white);
-}
-
-.submission-form .submit-button:hover {
-    color: var(--text);
-    background: transparent;
-    border: .1rem solid var(--primary);
-}
-
-.submission-form .submit-button:hover .text {
-    color: var(--text);
-}
-
-.submission-form .submit-button:hover .loader span {
-    color: var(--primary);
-}
-
-.submit-button .loader {
-    display: grid;
-    place-items: center;
-    animation: rotate 2s ease-in-out infinite;
-}
-
-@keyframes rotate {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-.submit-button .loader span {
-    font-weight: bold;
-    font-size: var(--medium-font);
+.submission-form .button .icon i {
+    margin-top: -.15rem;
 }

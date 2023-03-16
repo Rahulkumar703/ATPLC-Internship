@@ -13,6 +13,7 @@ export default function Courses() {
 
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         fetchCourses();
     }, [])
 

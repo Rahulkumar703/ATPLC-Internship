@@ -46,7 +46,7 @@ export default function Feedback() {
     return (
         <section className='feedback-section' id='feedback'>
             <div className="section-heading">
-                <h2>Student's Feedbacks</h2>
+                <h2>Our Testimonials</h2>
             </div>
             <div className="section-body">
                 {

@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Error.css'
 
 export default function Error({ error }) {
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+
     return (
 
         <div className="error-message">

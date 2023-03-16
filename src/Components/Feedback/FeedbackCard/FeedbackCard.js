@@ -8,10 +8,10 @@ export default function FeedbackCard({ Name, College_Name, Batch, Branch, Profil
                 <div className="image">
                     {
                         Profile_Pic ?
-                            <img src={`${process.env.REACT_APP_BACKEND_PATH}/${Profile_Pic}`} alt="avatar" loading='lazy' />
+                            <img src={`${process.env.REACT_APP_BACKEND_PATH}/${Profile_Pic}`} alt="avatar" />
                             :
                             <div className="avatar">
-                                <i class="fi fi-rr-circle-user"></i>
+                                <i className="fi fi-rr-user"></i>
                             </div>
                     }
                 </div>

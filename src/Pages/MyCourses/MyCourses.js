@@ -12,6 +12,11 @@ export default function Courses() {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+
     const fetchCourses = useCallback(async () => {
         try {
             const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_PATH}/my-courses`, {

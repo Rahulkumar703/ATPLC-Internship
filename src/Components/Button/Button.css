@@ -41,6 +41,11 @@ header.active .button .icon i {
 
 
 
+.button .text {
+    display: grid;
+    place-items: center;
+}
+
 .button .icon i {
     margin-top: 0;
 }

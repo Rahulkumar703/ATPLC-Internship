@@ -97,6 +97,14 @@ export default function Footer() {
                             </a>
                         </div>
                         <div className="social-links">
+                            <a href="https://t.me/atplc" target="_blank" rel="noreferrer">
+                                <div className="icon">
+                                    <i className="fi fi-brands-telegram"></i>
+                                </div>
+                                <div className="text">Telegram</div>
+                            </a>
+                        </div>
+                        <div className="social-links">
                             <a href="https://www.facebook.com/people/ATPLC/100063604494243/" target="_blank" rel="noreferrer">
                                 <div className="icon">
                                     <i className="fi fi-brands-facebook"></i>

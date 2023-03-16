@@ -25,6 +25,10 @@ export default function Dashboard() {
     }, [navigate])
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+
+    useEffect(() => {
         if (taskData?.Submissions) {
             let count = 0;
             taskData.Submissions.forEach(sub => {
@@ -98,6 +102,7 @@ export default function Dashboard() {
                                             Task_Content={task.Task_Content}
                                             Task_Status={submittedTask?.Task_Status || ''}
                                             Code_Link={submittedTask?.Code_Link || ''}
+                                            Output_Link={submittedTask?.Output_Link || ''}
                                             Remarks={submittedTask?.Remarks || ''}
                                         />
                                     )
