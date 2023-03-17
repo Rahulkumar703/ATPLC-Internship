@@ -1,0 +1,45 @@
+.page-statics {
+    width: 100%;
+    padding: 2rem 1rem;
+    background: var(--bg);
+    margin: 5rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    gap: 1rem;
+}
+
+
+.counter {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1rem;
+    background: var(--primary);
+    padding: 1rem;
+    border-radius: .3rem;
+    font-size: var(--medium-font);
+    font-family: 'Poppins', sans-serif;
+    color: var(--white);
+}
+
+
+.counter .icon {
+    padding: 1rem;
+}
+
+.counter .icon i {
+    margin: 0;
+    font-size: var(--heading);
+}
+
+.counter .counter-number {
+    font-size: var(--heading);
+    transition: .3s ease-in-out;
+}
+
+.counter .counter-label {
+    font-weight: 500;
+}

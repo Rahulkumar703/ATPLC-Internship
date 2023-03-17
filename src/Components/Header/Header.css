@@ -46,7 +46,31 @@ header .heading {
 
 
 
+.go-to-top {
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    cursor: pointer;
+    z-index: 5;
+    padding: 1rem;
+    background: var(--primary);
+    border: 1px solid var(--bg);
+    border-radius: .3rem;
+    color: var(--white);
+    transform: translateY(100%);
+    visibility: hidden;
+    transition: all .3s, visibility .1s;
+}
 
+.go-to-top.visible {
+    transform: translateY(0%);
+    visibility: visible;
+}
+
+.go-to-top:hover {
+    box-shadow: 0 1rem 3rem -1rem var(--black);
+    transform: translateY(0%) scale(1.2);
+}
 
 
 

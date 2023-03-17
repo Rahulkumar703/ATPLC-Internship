@@ -84,12 +84,13 @@
     font-size: var(--medium-font);
     position: relative;
     color: rgb(163, 163, 163);
+    text-align: center;
 }
 
 .copyright .credit {
     position: absolute;
     top: -2rem;
-    right: 0;
+    left: 0;
     font-size: var(--small-font);
     cursor: pointer;
     color: var(--secondary);
