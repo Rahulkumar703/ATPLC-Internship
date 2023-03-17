@@ -5,16 +5,13 @@ export default function PageStatics() {
     return (
         <section className='page-statics'>
             <div className="statics-box">
-                <Counter number={1500} label='Site Visitors' icon="fi fi-rr-users-alt" />
-            </div>
-            <div className="statics-box">
-                <Counter number={100} label='Satisfied Students' icon="fi fi-rr-smile" />
+                <Counter number={3} label='Years of Establishment' icon="fi fi-rr-building" />
             </div>
             <div className="statics-box">
                 <Counter number={100} label='Practical Sessions' icon="fi fi-rr-whistle" />
             </div>
             <div className="statics-box">
-                <Counter number={3} label='Years of Establishment' icon="fi fi-rr-building" />
+                <Counter number={100} label='Satisfied Students' icon="fi fi-rr-smile" />
             </div>
         </section>
     )
