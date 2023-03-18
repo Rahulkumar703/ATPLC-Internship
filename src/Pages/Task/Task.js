@@ -7,11 +7,12 @@ import './Task.css'
 
 export default function Task() {
 
+    const { state: { courseId, Task_No, Task_Topic, Task_Content, Task_Status, Code_Link, Remarks, Output_Link } } = useLocation();
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [])
 
-    const { state: { courseId, Task_No, Task_Topic, Task_Content, Task_Status, Code_Link, Remarks, Output_Link } } = useLocation();
 
     const [isLoading, setIsLoading] = useState(false);
     const [link, setLink] = useState(
@@ -60,6 +61,7 @@ export default function Task() {
         }
         setIsLoading(false);
     }
+
     const handelChange = (e) => {
         setLink({ ...link, [e.target.name]: e.target.value });
     }
@@ -114,7 +116,13 @@ export default function Task() {
                     <div className="task-no">{Task_No < 10 ? `0${Task_No}` : Task_No}</div>
                     <div className="task-title">{Task_Topic}</div>
                 </div>
-                <div className="task-content">{Task_Content}</div>
+                <div className="task-content">
+                    {
+                        Task_Content.split('\r\n').map((element, index) => {
+                            return <p key={index}>{element}</p>;
+                        })
+                    }
+                </div>
                 <div className="task-submisssion">
                     <div className="submission-status-remarks">
                         {statusLabel}
