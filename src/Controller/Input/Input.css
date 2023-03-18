@@ -35,6 +35,7 @@
 .input-box input:disabled~label {
     background: transparent;
     color: var(--faded-text);
+    user-select: none;
 }
 
 .input-box input~label {

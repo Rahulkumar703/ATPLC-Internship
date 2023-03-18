@@ -156,6 +156,7 @@ export default function Task() {
                                 {message}
                             </div>
                         }
+                        <h4 className='input-heading'>Enter your Task Code Link</h4>
                         <div className="input-box-container">
                             <Input
                                 icon="fi fi-rr-display-code"
@@ -173,6 +174,7 @@ export default function Task() {
                                 </div>
                             </div>
                         </div>
+                        <h4 className='input-heading'>Enter your Task Webpage/Task Output Link</h4>
                         <div className="input-box-container">
                             <Input
                                 icon="fi fi-rr-pulse"

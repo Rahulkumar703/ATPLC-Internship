@@ -107,11 +107,16 @@
 .task-submisssion .submission-form {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: .5rem;
     padding: 2rem 0;
 }
 
-
+.submission-form .input-heading {
+    margin-top: 2rem;
+    font-size: var(--medium-font);
+    color: var(--primary);
+    padding: 1rem 0;
+}
 
 .submission-form .input-box-container {
     position: relative;
@@ -142,6 +147,11 @@
 .input-box-container .edit .icon i {
     font-size: var(--medium-font);
     color: var(--white);
+}
+
+.submission-form .button {
+    margin-top: 2rem;
+    padding: 1.5rem;
 }
 
 .submission-form .button .icon i {
