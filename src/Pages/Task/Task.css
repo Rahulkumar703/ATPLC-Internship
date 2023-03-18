@@ -11,6 +11,7 @@
 }
 
 .task-page .page-content {
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -37,6 +38,16 @@
     padding: 1rem;
     padding-left: 2rem;
     margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.page-content .task-content p {
+    background: var(--bg);
+    padding: 1rem;
+    font-weight: 500;
+    border-radius: .3rem;
 }
 
 .page-content .task-submisssion {
@@ -51,7 +62,8 @@
 }
 
 .submission-status-remarks .status-label {
-    padding: .5rem 1rem;
+    padding: 1rem;
+    justify-content: center;
     display: flex;
     align-items: center;
     gap: .5rem;
@@ -59,9 +71,23 @@
     width: fit-content;
 }
 
+.status-label .icon i {
+    color: var(--black);
+    margin: 0;
+}
+
+.status-label .icon~.text {
+    font-weight: 500;
+    color: var(--black);
+    font-size: var(--small-font);
+}
+
+
+
 .submission-status-remarks .remarks {
     padding: 1rem;
     background: var(--bg-dark);
+    border-radius: .3rem;
 }
 
 

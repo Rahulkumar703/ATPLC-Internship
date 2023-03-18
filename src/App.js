@@ -17,12 +17,13 @@ import Gallery from './Pages/Gallery/Gallery'
 import Internship from './Pages/Internship/Internship'
 import NotFound from './Pages/NotFound/NotFound'
 import Enroll from './Pages/Enroll/Enroll'
+import Error from './Pages/Error/Error';
 
 function App() {
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route Route path='/' element={< RootLayout />}>
+      <Route Route path='/' element={< RootLayout />} errorElement={<Error />}>
         <Route index element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="courses" element={<Courses />} />

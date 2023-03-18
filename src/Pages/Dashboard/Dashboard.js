@@ -91,7 +91,7 @@ export default function Dashboard() {
                             {
                                 taskData?.Tasks?.map(task => {
                                     const submittedTask = taskData.Submissions?.find(sub => {
-                                        return sub.Task_No_id === task.Task_No_id;
+                                        return sub.Task_No_id === task.id;
                                     });
                                     return (
                                         <TaskCard
@@ -124,18 +124,20 @@ export default function Dashboard() {
                                 </div>
                                 <div className="current-percentage">
                                     <p>Current Percentage = <span className={`${(completedTask / taskData.Tasks?.length * 100) >= 75 ? 'success' : 'danger'}`}>{(completedTask / taskData.Tasks?.length * 100).toFixed(2)}%</span></p>
-                                    {
-                                        (completedTask / taskData.Tasks?.length * 100) >= 75
-                                            ?
-                                            <a href={'/Assets/Images/demoCertificate.jpg'} download='ATPLC_Dummy_Certificate' target={'_blank'} rel="noreferrer">
-                                                <Button icon='fi fi-rr-cloud-download-alt' label='Download Certificate' className={'certificate-download-btn'} />
-                                            </a>
-                                            :
-                                            <a href={'/Assets/Images/demoCertificate.jpg'} download='ATPLC_Dummy_Certificate' target={'_blank'} rel="noreferrer">
-                                                <Button icon='fi fi-rr-template' label='Dummy Certificate' className={'certificate-view-btn'} />
-                                            </a>
-                                    }
                                 </div>
+                                {
+                                    (completedTask / taskData.Tasks?.length * 100) >= 75
+                                        ?
+                                        <div className="certificate-download">
+                                            <a href={'/Assets/Images/demoCertificate.jpg'} download='ATPLC_Dummy_Certificate' target={'_blank'} rel="noreferrer">
+                                                <Button icon='fi fi-rr-template' label='Download Certificate' />
+                                            </a>
+                                        </div>
+                                        :
+                                        <div className="dummy-certificate-img">
+                                            <img src="/Assets/Images/demoCertificateBlured.png" alt="Demo_Certificate" />
+                                        </div>
+                                }
                             </div>
                         </section>
 

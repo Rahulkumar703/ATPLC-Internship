@@ -51,7 +51,6 @@
 .nav-items .nav-links:hover .icon i,
 .nav-items .nav-links:hover .text {
     color: var(--primary);
-    font-weight: 500;
 }
 
 

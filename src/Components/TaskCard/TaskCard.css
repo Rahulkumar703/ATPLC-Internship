@@ -9,164 +9,64 @@
     cursor: pointer;
     border: 1px solid var(--secondary);
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
-
-.task-card.recent {
-
-    padding-top: 5rem;
-}
 
 .task-card:hover {
     box-shadow: 0 1rem 5rem -3rem var(--black);
 }
 
-.task-card .top {
+.task-card .task-card-header {
+    display: flex;
+    align-items: center;
     font-size: var(--large-font);
     padding: 1rem 0;
     gap: 1rem;
-    align-items: center;
 }
 
 
 
-.task-card.recent .top .left .task-number {
-    font-size: 4rem;
-    color: var(--faded-text);
-    font-weight: 700;
-}
 
-.top .left .task-number {
+.task-card-header .task-number {
     font-size: 3rem;
     font-weight: 500;
     color: var(--faded-text);
 }
 
-.top .right {
-    justify-content: center;
-    gap: .1rem;
-}
 
 
-.task-card.recent .right .task-name {
-    color: var(--primary);
-    font-weight: 700;
-}
 
-.right .task-name {
+.task-card-header .task-name {
     color: var(--primary);
     font-weight: 500;
 }
 
-.right .task-date {
-    font-size: var(--small-font);
-    color: var(--faded-text);
-    gap: .3rem;
-    align-items: center;
-}
 
-.task-date .icon span {
-    font-size: var(--medium-font);
-    color: var(--faded-text);
-}
-
-.task-card .middle {
-    padding: 0 1rem;
-}
-
-.task-card.recent .middle .task-description {
-    font-weight: 500;
-}
-
-.middle .task-description {
-    font-size: var(--medium-font);
-    font-weight: 200;
-}
-
-.task-card .bottom {
-    padding: 2rem 1rem;
-}
-
-.task-card .bottom .status {
-    margin: 1rem 0;
+.task-card .task-card-status {
     align-self: flex-end;
+    display: flex;
+    padding: .5rem;
+
 }
 
-.status .status-label {
+.task-card-status .status-label {
     align-items: center;
-    padding: .5rem 1rem;
-    border-radius: 1rem;
+    justify-content: center;
+    padding: 1rem;
+    border-radius: .3rem;
     gap: .5rem;
 }
 
 .status-label .icon i {
     color: var(--black);
+    margin: 0;
 }
 
 .status-label .icon~.text {
     font-weight: 500;
     color: var(--black);
     font-size: var(--small-font);
-}
-
-.bottom .toogle-button {
-    padding: 1rem 1rem;
-    align-items: center;
-    justify-content: center;
-    gap: .5rem;
-    justify-self: center;
-    background: var(--bg-dark);
-    border-radius: .3rem;
-    cursor: pointer;
-    border: 2px solid var(--bg-dark);
-}
-
-.bottom .toogle-button:hover {
-    background: var(--primary);
-}
-
-.bottom .toogle-button:hover .icon span,
-.bottom .toogle-button:hover .text {
-    color: var(--white);
-}
-
-.bottom .toogle-button.active {
-    background: var(--bg);
-}
-
-.bottom .toogle-button.active:hover .icon span,
-.bottom .toogle-button.active:hover .text {
-    color: var(--text);
-}
-
-
-.toogle-button .text {
-    font-size: var(--medium-font);
-}
-
-.toogle-button .icon span {
-    font-size: var(--large-font);
-    transition: .3s, color 0;
-}
-
-.bottom .toogle-button.active .icon span {
-    transform: rotate(180deg);
-}
-
-
-.task-card .label {
-    display: none;
-}
-
-.task-card.recent .label {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: translate(-.5rem);
-    padding: .5rem 1rem;
-    background: var(--warning-tint);
-    color: var(--black);
-    font-size: var(--medium-font);
-    border-radius: .7rem 0 .3rem 0;
 }

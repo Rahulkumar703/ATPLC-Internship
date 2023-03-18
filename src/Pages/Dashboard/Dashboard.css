@@ -56,7 +56,7 @@
 }
 
 .certificate-section .section-body {
-    padding: 0 1rem;
+    padding: 1rem;
     background: var(--bg);
 }
 
@@ -89,6 +89,22 @@
     font-weight: bold;
     border-radius: .3rem;
     color: var(--black);
+}
+
+.section-body .certificate-download {
+    padding: 1rem 0;
+}
+
+.section-body .dummy-certificate-img {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.section-body .dummy-certificate-img img {
+    width: 50%;
+    border-radius: .5rem;
 }
 
 

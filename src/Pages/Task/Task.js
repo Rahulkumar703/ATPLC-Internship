@@ -7,11 +7,20 @@ import './Task.css'
 
 export default function Task() {
 
-    const { state: { courseId, Task_No, Task_Topic, Task_Content, Task_Status, Code_Link, Remarks, Output_Link } } = useLocation();
+    const { state } = useLocation();
+    let { courseId, Task_No, Task_Topic, Task_Content, Task_Status, Code_Link, Remarks, Output_Link } = state;
+
+    const [taskStatus, setTaskStatus] = useState('');
+    const [remarks, setRemarks] = useState('');
 
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, [])
+        setTaskStatus(Task_Status);
+        if (taskStatus === 'Under Review') {
+            setRemarks('')
+        }
+        else setRemarks(Remarks);
+    }, [Task_Status, Remarks, taskStatus])
 
 
     const [isLoading, setIsLoading] = useState(false);
@@ -34,7 +43,7 @@ export default function Task() {
 
     const submitLink = async (e) => {
         e.preventDefault();
-        if (link.codeLink === '' || link.outputLink === '') {
+        if (link.codeLink === '' && link.outputLink === '') {
             setMessage('Enter your link to procede');
         }
         else if (link.codeLink === Code_Link && link.outputLink === Output_Link) {
@@ -63,7 +72,8 @@ export default function Task() {
             }
             finally {
                 setIsLoading(false);
-                setShowEdit(true)
+                setShowEdit(true);
+                setTaskStatus("Under Review")
             }
         }
         setIsLoading(false);
@@ -73,8 +83,9 @@ export default function Task() {
         setLink({ ...link, [e.target.name]: e.target.value });
     }
 
+
     let statusLabel;
-    if (Task_Status === "Under Review") {
+    if (taskStatus === "Under Review") {
         statusLabel = (
             <div className="status-label info row">
                 <div className="icon">
@@ -83,7 +94,7 @@ export default function Task() {
                 <div className="text">Under Review</div>
             </div>
         );
-    } else if (Task_Status === "Rejected") {
+    } else if (taskStatus === "Rejected") {
         statusLabel = (
             <div className="status-label danger row">
                 <div className="icon">
@@ -93,7 +104,7 @@ export default function Task() {
             </div>
         );
     }
-    else if (Task_Status === "Approved") {
+    else if (taskStatus === "Approved") {
         statusLabel = (
             <div className="status-label success row">
                 <div className="icon">
@@ -134,13 +145,13 @@ export default function Task() {
                     <div className="submission-status-remarks">
                         {statusLabel}
                         {
-                            Remarks &&
+                            remarks &&
                             <div className="remarks">
                                 <div className="remarks-heading">
                                     <h4>Remarks</h4>
                                 </div>
                                 <div className="remarks-body">
-                                    {Remarks}
+                                    {remarks}
                                 </div>
                             </div>
                         }
@@ -190,7 +201,6 @@ export default function Task() {
                             (link.codeLink !== Code_Link || link.outputLink !== Output_Link)
                             &&
                             <Button className='submit-button' icon="fi fi-rr-arrow-up-from-square" label='Submit' isLoading={isLoading} />
-
                         }
                     </form>
                 </div>

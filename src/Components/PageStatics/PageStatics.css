@@ -1,7 +1,6 @@
 .page-statics {
     width: 100%;
     padding: 2rem 1rem;
-    background: var(--bg);
     margin: 5rem 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));

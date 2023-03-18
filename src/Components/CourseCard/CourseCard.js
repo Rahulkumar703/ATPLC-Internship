@@ -7,7 +7,6 @@ export default function CourseCard({ id, courseName, courseDuration, coverImage,
 
 
     const [isEnrolled, setIsEnrolled] = useState(false);
-    console.log(coverImage);
 
 
     useEffect(() => {

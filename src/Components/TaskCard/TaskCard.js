@@ -52,23 +52,17 @@ export default function TaskCard({ courseId, Task_No, Task_Topic, Task_Content, 
     return (
         <Link to={`/task/${Task_Topic}`} className={`task-card`} state={{ courseId, Task_No, Task_Topic, Task_Content, Task_Status, Code_Link, Output_Link, Remarks }}>
 
-            <div className="top row">
-                <div className="left">
-                    <div className="task-number">{taskNumber}</div>
-                </div>
-                <div className="right col">
-                    <div className="task-name">
-                        {Task_Topic}
-                    </div>
+            <div className="task-card-header">
+                <div className="task-number">{taskNumber}</div>
+                <div className="task-name">
+                    {Task_Topic}
                 </div>
             </div>
 
-            <div className="bottom col">
-                <div className="status">
-                    {statusLabel}
-                </div>
-
+            <div className="task-card-status">
+                {statusLabel}
             </div>
+
         </Link>
     );
 }

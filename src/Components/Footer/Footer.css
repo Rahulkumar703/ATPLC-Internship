@@ -125,6 +125,10 @@
         align-items: flex-start;
     }
 
+    .copyright .credit {
+        left: 65%;
+    }
+
 }
 
 @media screen and (max-width:850px) {
