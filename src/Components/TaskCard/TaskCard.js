@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './TaskCard.css';
 
-export default function TaskCard({ courseId, Task_No, Task_Topic, Task_Content, Task_Status, Code_Link, Output_Link, Remarks }) {
+export default function TaskCard({ courseId, Task_No, Task_Id, Task_Topic, Task_Content, Task_Status, Code_Link, Output_Link, Remarks }) {
 
     const taskNumber = Task_No < 10 ? `0${Task_No}` : Task_No;
 
@@ -50,7 +50,7 @@ export default function TaskCard({ courseId, Task_No, Task_Topic, Task_Content, 
     }
 
     return (
-        <Link to={`/task/${Task_Topic}`} className={`task-card`} state={{ courseId, Task_No, Task_Topic, Task_Content, Task_Status, Code_Link, Output_Link, Remarks }}>
+        <Link to={`/task/${Task_Topic}`} className={`task-card`} state={{ courseId, Task_No, Task_Id, Task_Topic, Task_Content, Task_Status, Code_Link, Output_Link, Remarks }}>
 
             <div className="task-card-header">
                 <div className="task-number">{taskNumber}</div>

@@ -8,7 +8,7 @@ import './Task.css'
 export default function Task() {
 
     const { state } = useLocation();
-    let { courseId, Task_No, Task_Topic, Task_Content, Task_Status, Code_Link, Remarks, Output_Link } = state;
+    let { courseId, Task_No, Task_Id, Task_Topic, Task_Content, Task_Status, Code_Link, Remarks, Output_Link } = state;
 
     const [taskStatus, setTaskStatus] = useState('');
     const [remarks, setRemarks] = useState('');
@@ -55,18 +55,11 @@ export default function Task() {
                 const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_PATH}/task-submission`, {
                     course: courseId,
                     Username: JSON.parse(localStorage.getItem('user')).userId,
-                    Task_No: Task_No,
+                    Task_No: Task_Id,
                     Code_Link: link.codeLink,
                     Output_Link: link.outputLink
                 })
                 setMessage(data.response)
-                console.log({
-                    course: courseId,
-                    Username: JSON.parse(localStorage.getItem('user')).userId,
-                    Task_No: Task_No,
-                    Code_Link: link.codeLink,
-                    Output_Link: link.outputLink
-                });
             } catch (e) {
                 setMessage(e.message);
             }

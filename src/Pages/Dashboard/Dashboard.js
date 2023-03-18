@@ -99,6 +99,7 @@ export default function Dashboard() {
                                             sub={submittedTask}
                                             courseId={location.state.id}
                                             Task_No={task.Task_No}
+                                            Task_Id={task.id}
                                             Task_Topic={task.Task_Topic}
                                             Task_Content={task.Task_Content}
                                             Task_Status={submittedTask?.Task_Status || ''}
