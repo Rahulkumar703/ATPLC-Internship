@@ -91,7 +91,7 @@ export default function Dashboard() {
                             {
                                 taskData?.Tasks?.map(task => {
                                     const submittedTask = taskData.Submissions?.find(sub => {
-                                        return sub.Task_No === task.Task_No;
+                                        return sub.Task_No_id === task.Task_No_id;
                                     });
                                     return (
                                         <TaskCard
