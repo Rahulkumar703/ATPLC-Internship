@@ -98,8 +98,8 @@
 
 .submission-status-remarks .remarks .remarks-body {
     font-size: var(--medium-font);
-    color: var(--warning);
-    font-weight: 500;
+    color: rgb(249, 116, 0);
+    font-weight: 600;
     margin-left: 1rem;
     padding: .5rem 0;
 }
