@@ -18,6 +18,7 @@ export default function Dashboard() {
     const [taskData, setTaskData] = useState([]);
     const [completedTask, setCompletedTask] = useState(0);
 
+
     useEffect(() => {
         if (!localStorage.getItem('user')) {
             navigate('/login', { replace: true })
@@ -90,7 +91,7 @@ export default function Dashboard() {
                             {
                                 taskData?.Tasks?.map(task => {
                                     const submittedTask = taskData.Submissions?.find(sub => {
-                                        return sub.Task_No_id === task.Task_No;
+                                        return sub.Task_No === task.Task_No;
                                     });
                                     return (
                                         <TaskCard
@@ -126,9 +127,13 @@ export default function Dashboard() {
                                     {
                                         (completedTask / taskData.Tasks?.length * 100) >= 75
                                             ?
-                                            <Button icon='fi fi-rr-cloud-download-alt' label='Download Certificate' className={'certificate-download-btn'} />
+                                            <a href={'/Assets/Images/demoCertificate.jpg'} download='ATPLC_Dummy_Certificate' target={'_blank'} rel="noreferrer">
+                                                <Button icon='fi fi-rr-cloud-download-alt' label='Download Certificate' className={'certificate-download-btn'} />
+                                            </a>
                                             :
-                                            <Button icon='fi fi-rr-template' label='Dummy Certificate' className={'certificate-view-btn'} />
+                                            <a href={'/Assets/Images/demoCertificate.jpg'} download='ATPLC_Dummy_Certificate' target={'_blank'} rel="noreferrer">
+                                                <Button icon='fi fi-rr-template' label='Dummy Certificate' className={'certificate-view-btn'} />
+                                            </a>
                                     }
                                 </div>
                             </div>

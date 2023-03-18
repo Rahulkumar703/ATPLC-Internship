@@ -3,7 +3,7 @@ import './Button.css'
 
 export default function Button({ icon, label, onClick, isLoading, className }) {
     return (
-        <button onClick={onClick} className={`button ${className}`} title={label}>
+        <button onClick={onClick} className={`button ${className}`} title={label} >
             <div className="icon">
                 {
                     isLoading ?

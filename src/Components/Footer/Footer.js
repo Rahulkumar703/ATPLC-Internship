@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import './Footer.css';
 
+
 export default function Footer() {
     const date = new Date();
     return (
@@ -121,6 +122,9 @@ export default function Footer() {
                             </a>
                         </div>
                     </div>
+                </div>
+                <div className="footer-image">
+                    <img src="/Assets/Illustrator/footer-character.png" alt="character" />
                 </div>
             </div>
             <div className="copyright">

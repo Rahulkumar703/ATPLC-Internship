@@ -51,6 +51,13 @@ export default function Task() {
                     Output_Link: link.outputLink
                 })
                 setMessage(data.response)
+                console.log({
+                    course: courseId,
+                    Username: JSON.parse(localStorage.getItem('user')).userId,
+                    Task_No: Task_No,
+                    Code_Link: link.codeLink,
+                    Output_Link: link.outputLink
+                });
             } catch (e) {
                 setMessage(e.message);
             }
@@ -180,9 +187,10 @@ export default function Task() {
                             </div>
                         </div>
                         {
-                            (link.codeLink !== Code_Link, link.outputLink !== Output_Link)
+                            (link.codeLink !== Code_Link || link.outputLink !== Output_Link)
                             &&
-                            <Button className='submit-button' icon="fi fi-rr-arrow-up-from-square" label={(link.codeLink === '' && link.outputLink === '') ? 'Submit' : 'Update'} isLoading={isLoading} />
+                            <Button className='submit-button' icon="fi fi-rr-arrow-up-from-square" label='Submit' isLoading={isLoading} />
+
                         }
                     </form>
                 </div>
