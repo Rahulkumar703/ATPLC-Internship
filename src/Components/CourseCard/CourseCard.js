@@ -10,11 +10,14 @@ export default function CourseCard({ id, courseName, courseDuration, coverImage,
 
 
     useEffect(() => {
-        const enrolledCourses = JSON.parse(localStorage.getItem('courses')).map(course => course.Course_id);
-        enrolledCourses.forEach(enrolledCourseId => {
-            if (enrolledCourseId === id)
-                setIsEnrolled(true)
-        })
+        if (localStorage.getItem('courses')) {
+
+            const enrolledCourses = JSON.parse(localStorage.getItem('courses')).map(course => course.Course_id);
+            enrolledCourses.forEach(enrolledCourseId => {
+                if (enrolledCourseId === id)
+                    setIsEnrolled(true)
+            })
+        }
     }, [id])
 
 
@@ -22,7 +25,6 @@ export default function CourseCard({ id, courseName, courseDuration, coverImage,
         <div className='course-card'>
             <div className="course-cover">
                 <div className='cover-image'>
-                    {console.log(coverImage)}
                     {
                         coverImage && coverImage !== '/media/' ?
                             <img src={`${process.env.REACT_APP_BACKEND_PATH}${coverImage}`} alt="course thumbnail" />
