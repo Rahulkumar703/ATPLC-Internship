@@ -20,11 +20,7 @@ export default function Profile() {
         setIsLoading(true);
         e.preventDefault();
         try {
-            const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_PATH}/profile`,
-                {
-                    ...profile,
-                    Username: JSON.parse(localStorage.getItem('user')).userId,
-                });
+            const { data } = await axios.put(`${process.env.REACT_APP_BACKEND_PATH}/profile`, { profile });
             console.log('updating profile - ' + data);
         }
         catch (error) {
@@ -41,12 +37,10 @@ export default function Profile() {
         try {
             const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_PATH}/profile`, {
 
-                Username: JSON.parse(localStorage.getItem('user')).userId
+                Username: JSON.parse(localStorage.getItem('user')).userId,
             })
-            setProfile(data.response);
-            console.log(data);
-
-            // localStorage.setItem('user', { ...JSON.parse(localStorage.getItem('user')), ...data.response })
+            setProfile(data.response[0]);
+            console.log(data.response[0]);
 
         } catch (error) {
             console.log(error);
