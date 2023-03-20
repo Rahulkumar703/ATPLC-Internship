@@ -17,6 +17,7 @@ import Gallery from './Pages/Gallery/Gallery'
 import Internship from './Pages/Internship/Internship'
 import NotFound from './Pages/NotFound/NotFound'
 import Enroll from './Pages/Enroll/Enroll'
+import Feedback from './Pages/Feedback/Feedback';
 
 function App() {
 
@@ -41,6 +42,7 @@ function App() {
         <Route path="gallery" element={<Gallery />} />
         <Route path="internship" element={<Internship />} />
         <Route path="enroll/:course" element={<Enroll />} />
+        <Route path="feedbacks" element={<Feedback />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     )

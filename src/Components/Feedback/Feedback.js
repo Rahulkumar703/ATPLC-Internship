@@ -14,7 +14,7 @@ import "swiper/css/navigation";
 
 
 // import required modules
-import { Pagination, Navigation, Autoplay } from "swiper";
+import { Pagination, Navigation, Autoplay, Keyboard, EffectCoverflow } from "swiper";
 
 
 
@@ -61,20 +61,30 @@ export default function Feedback() {
                             </div>
                             :
                             <Swiper
-                                slidesPerView={1}
                                 spaceBetween={10}
+                                slidesPerView={1}
+                                centeredSlides={true}
                                 loop={true}
                                 initialSlide={0}
-                                centeredSlides={true}
+                                effect={"coverflow"}
                                 fadeEffect={true}
                                 grabCursor={true}
+                                keyboard={{
+                                    enabled: true,
+                                }}
+                                coverflowEffect={{
+                                    rotate: 50,
+                                    stretch: 0,
+                                    depth: 5,
+                                    modifier: 1,
+                                    slideShadows: false,
+                                }}
                                 autoplay={{
                                     delay: 5000,
-                                    disableOnInteraction: true
+                                    disableOnInteraction: false
                                 }}
                                 pagination={{
                                     clickable: true,
-                                    dynamicBullets: true,
                                 }}
 
                                 breakpoints={
@@ -88,7 +98,7 @@ export default function Feedback() {
                                     }
                                 }
                                 navigation={true}
-                                modules={[Autoplay, Pagination, Navigation]}
+                                modules={[EffectCoverflow, Keyboard, Autoplay, Pagination, Navigation]}
                                 className="feedback-container"
                             >
                                 {

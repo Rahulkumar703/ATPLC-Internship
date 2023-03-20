@@ -50,7 +50,7 @@ export default function Navbar({ hamburgerStatus, setHamburgerStatus }) {
                     </Link>
                 </li>
                 <li className="nav-items">
-                    <Link to="/" onClick={() => { scrollTo('#feedback') }} className="nav-links">
+                    <Link to="/feedbacks" className="nav-links">
                         <div className="icon">
                             <i className="fi fi-rr-comment"></i>
                         </div>

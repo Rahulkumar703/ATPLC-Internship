@@ -52,26 +52,20 @@
     justify-content: center;
     align-items: center;
     padding: 2rem 0;
+    font-size: var(--medium-font);
+    gap: .5rem;
+    font-weight: 500;
 }
 
 .heading-details .name {
-    font-size: var(--medium-font);
-    font-weight: 600;
-}
-
-.heading-details .batch {
-    font-size: var(--small-font);
-    font-weight: 400;
-}
-
-.heading-details .college {
-    font-size: var(--small-font);
-    font-weight: 400;
+    font-weight: 800;
+    font-size: var(--large-font);
+    color: var(--primary);
 }
 
 .heading-details .designation {
-    font-size: var(--small-font);
-    font-weight: 800;
+    font-weight: 700;
+    font-style: italic;
 }
 
 .feedback-card .card-body {
