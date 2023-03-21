@@ -35,6 +35,11 @@
     cursor: pointer;
     border-radius: .5rem;
     transition: .3s;
+    color: var(--text);
+}
+
+.navigation-buttton button:first-child i {
+    margin: 0;
 }
 
 .navigation-buttton button:hover {

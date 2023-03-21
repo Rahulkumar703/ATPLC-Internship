@@ -7,3 +7,10 @@
     min-height: calc(100svh - 8rem);
     position: relative;
 }
+
+.page .page-heading {
+
+    margin: 1rem 0;
+    font-size: var(--heading);
+    padding: 1rem;
+}

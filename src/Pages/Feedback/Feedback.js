@@ -1,54 +1,41 @@
-import axios from 'axios';
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import FeedbackCard from '../../Components/Feedback/FeedbackCard/FeedbackCard';
 import Loader from '../../Components/Loader/Loader';
-import Error from '../Error/Error'
+import '../../Pages/CommonPage.css'
 
 export default function Feedback() {
 
-    const [feedback, setFeedback] = useState([{ 1: 'as' }, { 2: 'asd' }]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState('');
-
-
-
-    const fetchFeedback = useCallback(async () => {
-        try {
-            setIsLoading(true);
-            const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_PATH}/all-feedback`);
-            setFeedback(data);
-            console.log(feedback);
-
-        } catch (error) {
-            setError(error);
-        }
-        finally {
-            setIsLoading(false);
-        }
-    }, [feedback])
+    const location = useLocation();
+    const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        window.scrollTo(0, 0);
-        fetchFeedback();
-    }, [fetchFeedback])
+        if (location.state) {
+            setIsLoading(false);
+        }
+        else
+            navigate('/feedbacks');
+    }, [location.state, navigate])
 
     return (
         <section className='page feedback-page'>
+            <div className="page-heading">
+                {
+                    location.state && <h3>{location?.state?.label} Feedbacks</h3>
+                }
+            </div>
             {
-                error !== ''
-                    ?
-                    < Error error={error} />
-                    :
-                    isLoading
-                        ?
-                        <Loader />
-                        :
-                        <div className="feedback-container">
-                            {feedback.map((feed, index) => {
-                                return (
-                                    console.log(feed, index)
-                                )
-                            })}
-                        </div>
+                <div className="feedback-container">
+                    {
+                        isLoading ?
+                            <Loader />
+                            :
+                            location.state && location?.state?.feedback.map((feed) =>
+                                <FeedbackCard key={feed.id} {...feed} />
+                            )
+                    }
+                </div>
             }
         </section>
     )

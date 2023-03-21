@@ -1,0 +1,46 @@
+.feedback-page {
+    gap: 2rem;
+}
+
+.feedback-page .feedback-navigation {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    grid-auto-rows: 30rem;
+    gap: 2rem;
+    width: 100%;
+    padding: 1rem;
+}
+
+.feedback-navigation a {
+    display: grid;
+    place-items: center;
+    background: var(--bg-dark);
+    flex: 1;
+    border-radius: .3rem;
+    font-size: var(--heading);
+    color: var(--text);
+    transition: .3s;
+}
+
+.feedback-navigation a:hover {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.feedback-page .feedback-container {
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.feedback-container .feedback-card {
+    max-width: 80rem;
+    margin-bottom: 5rem;
+    border-radius: 0;
+    border-bottom: 2px solid var(--faded-text);
+}
+
+.feedback-container .feedback-card:last-child {
+    border: none;
+    margin-bottom: 0;
+}
