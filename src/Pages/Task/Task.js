@@ -55,7 +55,7 @@ export default function Task() {
                 const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_PATH}/task-submission`, {
                     course: courseId,
                     Username: JSON.parse(localStorage.getItem('user')).userId,
-                    Task_No: Task_Id,
+                    Task_No: Task_No,
                     Code_Link: link.codeLink,
                     Output_Link: link.outputLink
                 })
@@ -65,8 +65,7 @@ export default function Task() {
             }
             finally {
                 setIsLoading(false);
-                setShowEdit(true);
-                setTaskStatus("Under Review")
+                setTaskStatus("Under Review");
             }
         }
         setIsLoading(false);
