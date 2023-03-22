@@ -3,16 +3,17 @@
 }
 
 .feedback-page .feedback-navigation {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-    grid-auto-rows: 30rem;
     gap: 2rem;
     width: 100%;
-    padding: 1rem;
+    padding: 2rem;
+    display: flex;
+    position: sticky;
+    top: 8rem;
+    z-index: 3;
+    background: var(--bg-light);
 }
 
-.feedback-navigation a {
-    display: grid;
+.feedback-navigation button {
     place-items: center;
     background: var(--bg-dark);
     flex: 1;
@@ -20,27 +21,41 @@
     font-size: var(--heading);
     color: var(--text);
     transition: .3s;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
 }
 
-.feedback-navigation a:hover {
+.feedback-navigation button:hover,
+.feedback-navigation button.active {
     background: var(--primary);
     color: var(--white);
 }
 
 .feedback-page .feedback-container {
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 0 1rem;
 }
 
 .feedback-container .feedback-card {
-    max-width: 80rem;
-    margin-bottom: 5rem;
-    border-radius: 0;
-    border-bottom: 2px solid var(--faded-text);
+    background: var(--bg);
 }
 
-.feedback-container .feedback-card:last-child {
-    border: none;
-    margin-bottom: 0;
+@media screen and (max-width:750px) {
+    .feedback-page .feedback-container {
+        grid-template-columns: 1fr;
+    }
+
+    .feedback-container .feedback-card {
+        background: none;
+        border-bottom: .2rem solid var(--faded-text);
+        border-radius: 0;
+    }
+
+    .feedback-container .feedback-card:last-child {
+        border: none;
+    }
+
 }

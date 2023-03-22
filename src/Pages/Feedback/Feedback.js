@@ -1,42 +1,79 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
-import FeedbackCard from '../../Components/Feedback/FeedbackCard/FeedbackCard';
 import Loader from '../../Components/Loader/Loader';
-import '../../Pages/CommonPage.css'
+import Error from '../Error/Error'
+import '../CommonPage.css'
+import './Feedback.css'
+import FeedbackCard from '../../Components/Feedback/FeedbackCard/FeedbackCard';
 
 export default function Feedback() {
 
-    const location = useLocation();
-    const navigate = useNavigate();
-    const [isLoading, setIsLoading] = useState(true)
+    const [feedback, setFeedback] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState('');
+    const [filter, setFilter] = useState('');
 
     useEffect(() => {
-        if (location.state) {
-            setIsLoading(false);
+        window.scrollTo(0, 0);
+        const fetchFeedback = async () => {
+            try {
+                setIsLoading(true);
+                const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_PATH}/all-feedbacks`);
+                setFeedback(data);
+
+            } catch (error) {
+                setError(error);
+            }
+            finally {
+                setIsLoading(false);
+            }
         }
-        else
-            navigate('/feedbacks');
-    }, [location.state, navigate])
+        fetchFeedback();
+    }, [])
+
+    const handelClick = (e) => {
+        setFilter(e.target.value)
+        const buttons = [...e.target.parentElement.children]
+        buttons.forEach(button => {
+            button.classList.remove('active')
+        });
+        e.target.classList.add('active');
+        window.scrollTo(0, 0);
+    }
 
     return (
-        <section className='page feedback-page'>
-            <div className="page-heading">
-                {
-                    location.state && <h3>{location?.state?.label} Feedbacks</h3>
-                }
-            </div>
-            {
-                <div className="feedback-container">
-                    {
-                        isLoading ?
-                            <Loader />
-                            :
-                            location.state && location?.state?.feedback.map((feed) =>
-                                <FeedbackCard key={feed.id} {...feed} />
-                            )
-                    }
-                </div>
-            }
-        </section>
+
+        error !== ''
+            ?
+            < Error error={error} />
+            :
+            isLoading
+                ?
+                <Loader />
+                :
+                <section className='page feedback-page'>
+                    <div className="page-heading">
+                        <h3>Feedbacks</h3>
+                    </div>
+                    <div className="feedback-navigation">
+                        <button onClick={handelClick} value="Trainee">Trainee</button>
+                        <button onClick={handelClick} value="Intern">Intern</button>
+                    </div>
+                    <div className="feedback-container">
+                        {
+
+                            Object.values(feedback).map(e => {
+                                return e.filter(filterFeed => {
+                                    if (filter !== '')
+                                        return filterFeed.Feedback_Type === filter
+                                    else return true;
+                                }).map((feed) => {
+                                    return <FeedbackCard key={feed.id} {...feed} />
+                                })
+                            })
+                        }
+                    </div>
+                </section>
+
     )
 }

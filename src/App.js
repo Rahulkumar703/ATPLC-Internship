@@ -4,7 +4,6 @@ import { createRoutesFromElements, RouterProvider, createBrowserRouter, Route } 
 import RootLayout from './Layouts/RootLayout';
 import MyCoursesLayout from './Layouts/MyCoursesLayout';
 import ProfileLayout from './Layouts/ProfileLayout';
-import FeedbackLayout from './Layouts/FeedbackLayout';
 // Pages
 import Home from './Pages/Home/Home'
 import Login from './Pages/Login/Login'
@@ -43,9 +42,7 @@ function App() {
         <Route path="gallery" element={<Gallery />} />
         <Route path="internship" element={<Internship />} />
         <Route path="enroll/:course" element={<Enroll />} />
-        <Route path="feedbacks" element={<FeedbackLayout />} />
-        <Route path='feedbacks/trainee' element={<Feedback />} />
-        <Route path='feedbacks/intern' element={<Feedback />} />
+        <Route path="feedbacks" element={<Feedback />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     )
