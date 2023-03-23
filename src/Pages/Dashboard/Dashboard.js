@@ -7,7 +7,8 @@ import TaskCard from '../../Components/TaskCard/TaskCard'
 import Card from '../../Components/ProgressCard/ProgressCard'
 import Loader from '../../Components/Loader/Loader'
 import Error from '../Error/Error'
-import Button from '../../Components/Button/Button'
+import CourseFeedback from '../../Components/Feedback/CouseFeedback/CourseFeedback'
+import Certificate from '../../Components/Certificate/Certificate'
 
 export default function Dashboard() {
     const location = useLocation();
@@ -17,6 +18,7 @@ export default function Dashboard() {
     const [isLoading, setIsloading] = useState(true);
     const [taskData, setTaskData] = useState([]);
     const [completedTask, setCompletedTask] = useState(0);
+
 
 
     useEffect(() => {
@@ -112,35 +114,8 @@ export default function Dashboard() {
                             }
                         </div>
 
-
-
-                        <section className="certificate-section">
-                            <div className="section-heading">
-                                <h4>Cerificate</h4>
-                            </div>
-                            <div className="section-body">
-                                <div className="certificate-criteria">
-                                    <p>You must submit at least <span>75%</span> of tasks to be eligible for the training certificate.</p>
-                                    <p>Once you meet the criteria, a download button for your training certificate will appear.</p>
-                                </div>
-                                <div className="current-percentage">
-                                    <p>Current Percentage = <span className={`${(completedTask / taskData.Tasks?.length * 100) >= 75 ? 'success' : 'danger'}`}>{(completedTask / taskData.Tasks?.length * 100).toFixed(2)}%</span></p>
-                                </div>
-                                {
-                                    (completedTask / taskData.Tasks?.length * 100) >= 75
-                                        ?
-                                        <div className="certificate-download">
-                                            <a href={'/Assets/Images/demoCertificate.jpg'} download='ATPLC_Dummy_Certificate' target={'_blank'} rel="noreferrer">
-                                                <Button icon='fi fi-rr-template' label='Download Certificate' />
-                                            </a>
-                                        </div>
-                                        :
-                                        <div className="dummy-certificate-img">
-                                            <img src="/Assets/Images/demoCertificateBlured.png" alt="Demo_Certificate" />
-                                        </div>
-                                }
-                            </div>
-                        </section>
+                        <CourseFeedback />
+                        <Certificate completedTask={completedTask} totalTask={taskData?.Tasks.length} />
 
 
                     </div>

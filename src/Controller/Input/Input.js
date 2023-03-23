@@ -21,6 +21,34 @@ export default function Input(
         onChange(e);
     }
 
+    if (type === 'textarea')
+        return (
+            <div className={`input-box ${icon ? 'icon' : null}`}>
+
+                <textarea
+                    type={type}
+                    id={name}
+                    name={name}
+                    value={value}
+                    disabled={disabled}
+                    onChange={handelChange}
+                    placeholder={placeholder}
+                    required={required}
+                    autoComplete={autoComplete}
+                />
+                {
+                    icon ?
+                        <div className="icon">
+                            <i className={icon}></i>
+                        </div>
+                        :
+                        null
+                }
+
+                <label htmlFor={name}>{label}</label>
+            </div>
+        );
+
     return (
         <div className={`input-box ${icon ? 'icon' : null}`}>
 

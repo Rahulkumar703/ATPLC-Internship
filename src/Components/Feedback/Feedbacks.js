@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import './Feedback.css'
+import './Feedbacks.css'
 import FeedbackCard from '../Feedback/FeedbackCard/FeedbackCard';
 import Loader from '../Loader/Loader'
 

@@ -13,12 +13,14 @@
     border-right: 1px solid var(--secondary);
 }
 
-.input-box.icon input {
+.input-box.icon input,
+.input-box.icon textarea {
     padding-left: 5rem;
 }
 
 
-.input-box input {
+.input-box input,
+.input-box textarea {
     font-size: var(--medium-font);
     width: 100%;
     height: 5rem;
@@ -30,6 +32,13 @@
     padding-top: 3rem;
 }
 
+.input-box textarea {
+    resize: none;
+    min-height: 30vh;
+    width: 100%;
+    font-family: inherit;
+}
+
 .input-box input:disabled,
 .input-box input:disabled~.icon,
 .input-box input:disabled~label {
@@ -38,7 +47,8 @@
     user-select: none;
 }
 
-.input-box input~label {
+.input-box input~label,
+.input-box textarea~label {
     left: 1rem;
     background: transparent;
     position: absolute;
@@ -54,12 +64,15 @@
     padding: .5rem;
 }
 
-.input-box.icon input~label {
+.input-box.icon input~label,
+.input-box.icon textarea~label {
     left: 5rem;
 }
 
 .input-box input:focus~label,
-.input-box input:not(:placeholder-shown)~label {
+.input-box input:not(:placeholder-shown)~label,
+.input-box textarea:focus~label,
+.input-box textarea:not(:placeholder-shown)~label {
     top: .3rem;
     font-size: var(--small-font);
     color: var(--primary);

@@ -8,9 +8,10 @@
     padding: 2rem;
     display: flex;
     position: sticky;
-    top: 8rem;
+    top: 7.9rem;
     z-index: 3;
-    background: var(--bg-light);
+    padding-bottom: 4rem;
+    background: linear-gradient(to bottom, var(--bg-light), var(--bg-light), var(--bg-light), transparent);
 }
 
 .feedback-navigation button {
@@ -18,18 +19,28 @@
     background: var(--bg-dark);
     flex: 1;
     border-radius: .3rem;
-    font-size: var(--heading);
+    font-size: var(--large-font);
     color: var(--text);
     transition: .3s;
     border: none;
-    padding: 1rem;
+    padding: 1.5rem 1rem;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.feedback-navigation button .icon i {
+    margin: 0;
+
 }
 
 .feedback-navigation button:hover,
 .feedback-navigation button.active {
     background: var(--primary);
     color: var(--white);
+    font-weight: bold;
 }
 
 .feedback-page .feedback-container {
@@ -39,8 +50,9 @@
     padding: 0 1rem;
 }
 
-.feedback-container .feedback-card {
+.feedback-page .feedback-container .feedback-card {
     background: var(--bg);
+    width: 100%;
 }
 
 @media screen and (max-width:750px) {

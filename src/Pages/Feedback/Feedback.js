@@ -56,8 +56,20 @@ export default function Feedback() {
                         <h3>Feedbacks</h3>
                     </div>
                     <div className="feedback-navigation">
-                        <button onClick={handelClick} value="Trainee">Trainee</button>
-                        <button onClick={handelClick} value="Intern">Intern</button>
+                        <button onClick={handelClick} value="Trainee">
+                            <div className="icon">
+                                <i className="fi fi-rr-gym"></i>
+                            </div>
+                            <div className="icon">Trainee</div>
+                        </button>
+                        <button onClick={handelClick} value="Intern">
+                            <div className="icon">
+                                <i className="fi fi-rr-house-laptop"></i>
+                            </div>
+                            <div className="text">
+                                Intern
+                            </div>
+                        </button>
                     </div>
                     <div className="feedback-container">
                         {

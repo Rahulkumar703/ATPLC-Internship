@@ -3,7 +3,7 @@ import '../CommonPage.css'
 import './Home.css'
 import OurExperties from '../../Components/OurExperties/OurExperties'
 import Hero from '../../Components/Hero/Hero'
-import Feedback from '../../Components/Feedback/Feedback'
+import Feedback from '../../Components/Feedback/Feedbacks'
 import PageStatics from '../../Components/PageStatics/PageStatics'
 
 

@@ -1,9 +1,9 @@
 import React from 'react'
 import './Button.css'
 
-export default function Button({ icon, label, onClick, isLoading, className }) {
+export default function Button({ icon, label, onClick, isLoading, className, type = "button" }) {
     return (
-        <button onClick={onClick} className={`button ${className}`} title={label} >
+        <button onClick={onClick} className={`button ${className}`} title={label} type={type}>
             <div className="icon">
                 {
                     isLoading ?
