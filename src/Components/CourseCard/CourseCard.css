@@ -54,7 +54,7 @@
     font-size: 8rem;
     font-weight: 800;
     text-align: center;
-    color: var(--bg-light);
+    color: var(--primary);
     font-family: 'Poppins', sans-serif;
     padding-block: 3rem;
     text-shadow: .5rem .5rem .5rem var(--bg-dark), .6rem .6rem .5rem var(--bg-light), 1rem 1rem .5rem var(--bg-dark);
