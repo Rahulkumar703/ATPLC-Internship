@@ -43,12 +43,15 @@ export default function Courses() {
                 error === '' ? isloading ? <Loader /> :
                     <div className="courses-grid">
                         {courses.map(course => {
+                            console.log(course);
                             return <CourseCard
                                 key={course.id}
                                 id={course.id}
                                 courseName={course.Course_Name}
                                 courseDuration={course.Course_Duration}
                                 coverImage={course.Course_Thumbnail}
+                                couresPrice={course.Course_Price}
+                                courseTechnologies={course.Course_Technologies}
                             />
                         })}
                     </div>

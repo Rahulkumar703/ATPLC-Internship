@@ -52,6 +52,8 @@ export default function Courses() {
                         ? course.Course__Course_Thumbnail
                         : '/media/' + course.Course__Course_Thumbnail
                 }
+                couresPrice={null}
+                courseTechnologies={null}
             />
         )),
         [myCourses]

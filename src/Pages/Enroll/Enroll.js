@@ -1,13 +1,23 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import '../CommonPage.css'
 import './Enroll.css'
 import logo from '../../Assets/logo.png'
+import Input from '../../Controller/Input/Input'
+import Button from '../../Components/Button/Button'
 
 export default function Enroll() {
-    const [price, setPrice] = useState(500);
+    const location = useLocation();
+    const { id, courseName, courseDuration, coverImage, couresPrice, courseTechnologies } = location?.state;
+    console.log(location);
     const [message, setMessage] = useState('');
+    const [user, setUser] = useState({
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+    });
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -40,7 +50,7 @@ export default function Enroll() {
         }
 
         // creating a new order
-        const result = await axios.post(`${process.env.REACT_APP_BACKEND_PATH}/course-order`, { amount: price * 100 });
+        const result = await axios.post(`${process.env.REACT_APP_BACKEND_PATH}/course-order`, { amount: couresPrice * 100 });
 
         if (!result) {
             setMessage("Server error. Are you online?");
@@ -66,9 +76,9 @@ export default function Enroll() {
                 };
                 const result = await axios.post(`${process.env.REACT_APP_BACKEND_PATH}/payment-success`, data);
 
-                console.log(result);
+                console.log(result.data);
 
-                setMessage(result.data.msg);
+                setMessage(result.data.status);
             },
             prefill: {
                 name: "Devil",
@@ -87,12 +97,96 @@ export default function Enroll() {
         paymentObject.open();
     }
 
+    const handelChange = (e) => {
+        setUser({ ...user, [e.target.name]: e.target.value })
+    }
+
     return (
         <section className='page enroll-page'>
             {message !== '' && <div className="message-box">{message}</div>}
-            <form onSubmit={displayRazorPay}>
-                <button type='submit'>Pay ₹{price}</button>
-            </form>
+            <div className="page-heading">
+                <h3>Enroll Course</h3>
+            </div>
+
+
+            <div className="page-content">
+
+
+                <div className="course-details">
+
+                    <div className="course-header">
+                        <div className='cover-image'>
+                            {
+                                coverImage && coverImage !== '/media/' ?
+                                    <img src={`${process.env.REACT_APP_BACKEND_PATH}${coverImage}`} alt="course thumbnail" />
+                                    :
+                                    <div className='cover-default-image'> {'</>'}</div>
+                            }
+                        </div>
+                        <div className="course-name">
+                            <h4>{courseName}</h4>
+                        </div> <div className="course-price-duration">
+                            {
+                                (couresPrice !== null) ?
+                                    <div className="course-price">
+                                        <div className="icon">
+                                            <i className="fi fi-rr-indian-rupee-sign"></i>
+                                        </div>
+                                        <div className="text">
+                                            {/* {couresPrice} */}
+                                            500
+                                        </div>
+                                    </div>
+                                    :
+                                    null
+                            }
+                            {
+                                courseDuration !== 0 ?
+                                    <div className="course-duration">
+                                        <div className="icon">
+                                            <i className="fi fi-rr-hourglass-start"></i>
+                                        </div>
+                                        <div className="text">
+                                            {courseDuration} Month
+                                        </div>
+                                    </div>
+                                    :
+                                    null
+                            }
+                        </div>
+                    </div>
+
+                    <div className="course-body">
+                        {
+                            courseTechnologies &&
+                            <div className="course-technologies">
+                                <div className="technologies-heading">
+                                    <h4>Course Technologies</h4>
+                                </div>
+                                <div className="technologies-body">
+                                    {
+                                        courseTechnologies.map((tech, index) => {
+                                            return <span key={index} >{tech}</span>
+                                        })
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+
+
+                <form onSubmit={displayRazorPay} className="payment-form">
+                    <div className="form-container">
+                        <Input type="text" label={'Full Name'} id='name' name='name' icon={'fi fi-rr-user'} value={user.name} onChange={handelChange} />
+                        <Input type="email" label={'Email'} id='email' name='email' icon={'fi fi-rr-user'} value={user.email} onChange={handelChange} />
+                        <Input type="password" label={'Password'} id='password' name='password' icon={'fi fi-rr-user'} value={user.password} onChange={handelChange} />
+                        <Input type="password" label={'Confirm Password'} id='confirmPassword' name='confirmPassword' icon={'fi fi-rr-user'} value={user.confirmPassword} onChange={handelChange} />
+                        <Button label="Enroll Now" icon={"fi fi-rr-wallet"} type="submit" />
+                    </div>
+                </form>
+            </div>
         </section>
     )
 }

@@ -95,7 +95,7 @@ export default function ChangePassword() {
                         label="Confirm New Password"
                     />
 
-                    <Button icon='fi fi-rr-refresh' label='Update' isLoading={isLoading} className="password-update-button" />
+                    <Button icon='fi fi-rr-refresh' label='Update' isLoading={isLoading} className="password-update-button" type='submit' />
 
                 </div>
             </form>

@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './CourseCard.css'
 
-export default function CourseCard({ id, courseName, courseDuration, coverImage, courseCompletionStatus }) {
-
+export default function CourseCard({ id, courseName, courseDuration, coverImage, courseCompletionStatus, couresPrice, courseTechnologies }) {
 
 
     const [isEnrolled, setIsEnrolled] = useState(false);
@@ -37,17 +36,46 @@ export default function CourseCard({ id, courseName, courseDuration, coverImage,
                 </div>
             </div>
             <div className="course-content">
+
+                <div className="course-price-duration">
+                    {
+                        courseDuration !== 0 ?
+                            <div className="course-duration">
+                                <div className="icon">
+                                    <i className="fi fi-rr-hourglass-start"></i>
+                                </div>
+                                <div className="text">
+                                    {courseDuration} Month
+                                </div>
+                            </div>
+                            :
+                            null
+                    }
+                    {
+                        (couresPrice !== null && !isEnrolled) ?
+                            <div className="course-price">
+                                <div className="icon">
+                                    <i className="fi fi-rr-indian-rupee-sign"></i>
+                                </div>
+                                <div className="text">
+                                    {couresPrice}
+                                </div>
+                            </div>
+                            :
+                            null
+                    }
+                </div>
                 {
-                    courseDuration !== 0 &&
-                    <div className="course-duration">
-                        <div className="icon">
-                            <i className="fi fi-rr-hourglass-start"></i>
-                        </div>
-                        <div className="text">
-                            {courseDuration} Month
-                        </div>
+                    courseTechnologies !== null &&
+                    <div className="techs">
+                        {
+                            courseTechnologies.map((tech, index) => {
+                                return <span className='tech' key={index}>{tech}</span>
+                            })
+                        }
                     </div>
                 }
+
                 <div className="course-card-buttons">
                     {
                         isEnrolled ?
@@ -58,7 +86,7 @@ export default function CourseCard({ id, courseName, courseDuration, coverImage,
                                 <div className="text">Continue to Dashboard</div>
                             </Link>
                             :
-                            <Link tabIndex={0} to={`/enroll/${courseName}`} state={{ id, courseName }} className="course-card-btn">
+                            <Link tabIndex={0} to={`/enroll/${courseName}`} state={{ id, courseName, courseDuration, coverImage, couresPrice, courseTechnologies }} className="course-card-btn">
                                 <div className="icon">
                                     <i className="fi fi-rr-file-signature"></i>
                                 </div>

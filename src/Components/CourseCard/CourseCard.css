@@ -21,7 +21,7 @@
     z-index: 1;
     transition: .3s;
     user-select: none;
-    transform: translateY(25%);
+    transform: translateY(40%);
     border-radius: .5rem;
     display: flex;
     flex-direction: column;
@@ -64,6 +64,7 @@
     background: transparent;
     overflow: hidden;
     transition: .3s;
+    user-select: none;
 }
 
 
@@ -84,6 +85,7 @@
 
 .course-card .course-content {
     flex: 1;
+    height: 15rem;
     padding: 0 1rem;
     padding-top: 1rem;
     display: flex;
@@ -93,6 +95,28 @@
     transform: translateY(-50%);
     z-index: -1;
 }
+
+.course-content .course-price-duration {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.course-price-duration .course-duration,
+.course-price-duration .course-price {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+}
+
+.course-duration .icon i,
+.course-duration .text,
+.course-price .icon i,
+.course-price .text {
+    color: var(--faded-text);
+    font-size: var(--medium-font);
+}
+
 
 .course-card:hover {
     border: 1px solid var(--secondary);
@@ -106,19 +130,25 @@
 }
 
 
-
-
-.course-content .course-duration {
+.course-content .techs {
     display: flex;
-    gap: .5rem;
+    padding: .5rem 0;
     align-items: center;
+    gap: .5rem;
+    flex-wrap: wrap;
 }
 
-.course-duration .icon i,
-.course-duration .text {
-    color: var(--faded-text);
-    font-size: var(--medium-font);
+.techs .tech {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .5rem 1rem;
+    background: var(--bg-dark);
+    font-size: var(--small-font);
+    gap: .5rem;
+    flex-wrap: wrap;
 }
+
 
 
 

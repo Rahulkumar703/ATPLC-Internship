@@ -81,7 +81,7 @@ export default function Login() {
                 <form className="login-form" action="" onSubmit={login}>
                     <Input icon={'fi fi-rr-portrait'} name='Username' value={loginDetails.Username} type='text' label='username' onChange={handelChange} required />
                     <Input icon={'fi fi-rr-lock'} name='Password' value={loginDetails.Password} type='password' label='password' onChange={handelChange} required />
-                    <Button icon='fi fi-rr-sign-in-alt' label="Login" isLoading={isLoading} className='login-button' />
+                    <Button icon={'fi fi-rr-sign-in-alt'} label="Login" isLoading={isLoading} className='login-button' type='submit' />
                 </form>
             </div>
         </div>

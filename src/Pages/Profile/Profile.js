@@ -21,7 +21,7 @@ export default function Profile() {
         e.preventDefault();
         try {
             const { data } = await axios.put(`${process.env.REACT_APP_BACKEND_PATH}/profile`, profile);
-            console.log('updating profile - ' + data);
+            setMessage(data?.Response);
         }
         catch (error) {
             setMessage(error?.response?.statusText || error.message)
@@ -39,7 +39,7 @@ export default function Profile() {
                 Username: JSON.parse(localStorage.getItem('user')).userId,
             })
             setProfile(data.response[0]);
-            console.log(data.response[0]);
+            console.log(profile);
 
         } catch (error) {
             console.log(error);
@@ -64,8 +64,8 @@ export default function Profile() {
 
     }
 
-    const handelChange = (e, name) => {
-        setProfile({ ...profile, [name]: e.target.value })
+    const handelChange = (e) => {
+        setProfile({ ...profile, [e.target.name]: e.target.value })
     }
 
     return (
@@ -121,8 +121,8 @@ export default function Profile() {
                             <Input
                                 id='college'
                                 label='College'
-                                value={profile.College}
-                                name='College'
+                                value={profile.College_Name}
+                                name='College_Name'
                                 icon='fi fi-rr-graduation-cap'
                                 onChange={handelChange}
                             />
@@ -163,7 +163,7 @@ export default function Profile() {
                                 onChange={handelChange}
                             />
                         </div>
-                        <Button icon={"fi fi-rr-refresh"} label="Update Profile" isLoading={isLoading} className='profile-update-btn' />
+                        <Button icon={"fi fi-rr-refresh"} label="Update Profile" isLoading={isLoading} className='profile-update-btn' type='submit' />
                     </form>
             }
         </div>
