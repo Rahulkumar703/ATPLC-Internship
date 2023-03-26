@@ -147,6 +147,8 @@
     font-size: var(--small-font);
     gap: .5rem;
     flex-wrap: wrap;
+    user-select: none;
+    cursor: pointer;
 }
 
 

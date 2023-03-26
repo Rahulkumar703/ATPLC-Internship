@@ -120,6 +120,8 @@
     font-size: var(--medium-font);
     gap: .5rem;
     border-radius: .3rem;
+    user-select: none;
+    cursor: pointer;
 }
 
 

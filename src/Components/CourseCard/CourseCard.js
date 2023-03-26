@@ -65,11 +65,12 @@ export default function CourseCard({ id, courseName, courseDuration, coverImage,
                             null
                     }
                 </div>
+                {console.log(courseTechnologies)}
                 {
                     courseTechnologies !== null &&
                     <div className="techs">
                         {
-                            courseTechnologies.map((tech, index) => {
+                            courseTechnologies.split(',').map((tech, index) => {
                                 return <span className='tech' key={index}>{tech}</span>
                             })
                         }

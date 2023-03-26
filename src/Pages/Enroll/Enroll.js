@@ -73,6 +73,9 @@ export default function Enroll() {
                     razorpay_paymentId: response.razorpay_payment_id,
                     razorpay_orderId: response.razorpay_order_id,
                     razorpay_signature: response.razorpay_signature,
+                    Name: user.name,
+                    Email: user.email,
+                    Password: user.password
                 };
                 const result = await axios.post(`${process.env.REACT_APP_BACKEND_PATH}/payment-success`, data);
 
@@ -133,8 +136,7 @@ export default function Enroll() {
                                             <i className="fi fi-rr-indian-rupee-sign"></i>
                                         </div>
                                         <div className="text">
-                                            {/* {couresPrice} */}
-                                            500
+                                            {couresPrice}
                                         </div>
                                     </div>
                                     :
@@ -165,8 +167,8 @@ export default function Enroll() {
                                 </div>
                                 <div className="technologies-body">
                                     {
-                                        courseTechnologies.map((tech, index) => {
-                                            return <span key={index} >{tech}</span>
+                                        courseTechnologies.split(',').map((tech, index) => {
+                                            return <span key={index} className="techs">{tech}</span>
                                         })
                                     }
                                 </div>
