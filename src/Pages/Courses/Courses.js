@@ -36,6 +36,9 @@ export default function Courses() {
     return (
 
         <section className='page courses-page'>
+            <div className="page-thumbnail">
+                <img src="/Assets/Illustrator/training-page.jpg" alt="training" />
+            </div>
             <div className="page-heading">
                 <h3>Courses</h3>
             </div>

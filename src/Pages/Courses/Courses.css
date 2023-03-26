@@ -1,3 +1,14 @@
+.courses-page .page-thumbnail {
+    display: flex;
+    height: 30vh;
+    width: 100%;
+}
+
+.page-thumbnail img {
+    object-position: 0 center 0;
+    border-radius: .3rem;
+}
+
 .courses-page .page-heading {
     font-size: 3rem;
     padding: 1rem 3rem;

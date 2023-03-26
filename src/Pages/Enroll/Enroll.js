@@ -3,14 +3,12 @@ import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import '../CommonPage.css'
 import './Enroll.css'
-import logo from '../../Assets/logo.png'
 import Input from '../../Controller/Input/Input'
 import Button from '../../Components/Button/Button'
 
 export default function Enroll() {
     const location = useLocation();
     const { id, courseName, courseDuration, coverImage, couresPrice, courseTechnologies } = location?.state;
-    console.log(location);
     const [message, setMessage] = useState('');
     const [user, setUser] = useState({
         name: '',
@@ -66,9 +64,10 @@ export default function Enroll() {
             currency: currency,
             name: "ATPLC",
             description: "Test Transaction",
-            image: { logo },
+            image: 'https://www.atplc.in/Assets/Images/atplc_logo.png',
             order_id: order_id,
             handler: async function (response) {
+                console.log(user);
                 const data = {
                     razorpay_paymentId: response.razorpay_payment_id,
                     razorpay_orderId: response.razorpay_order_id,
@@ -81,7 +80,7 @@ export default function Enroll() {
 
                 console.log(result.data);
 
-                setMessage(result.data.status);
+                setMessage(result.data.res);
             },
             prefill: {
                 name: "Devil",
