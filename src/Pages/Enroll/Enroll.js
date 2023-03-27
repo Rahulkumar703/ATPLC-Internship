@@ -67,7 +67,6 @@ export default function Enroll() {
             image: 'https://www.atplc.in/Assets/Images/atplc_logo.png',
             order_id: order_id,
             handler: async function (response) {
-                console.log(user);
                 const data = {
                     razorpay_paymentId: response.razorpay_payment_id,
                     razorpay_orderId: response.razorpay_order_id,
@@ -82,13 +81,12 @@ export default function Enroll() {
 
                 setMessage(result.data.res);
             },
-            prefill: {
-                name: "Devil",
-                email: "Devil@example.com",
-                contact: "9876543210",
-            },
             notes: {
-                address: "Devil Corporate Office",
+                courseId: id,
+                courseName,
+                name: user.name,
+                email: user.email,
+                date: Date.now()
             },
             theme: {
                 color: "#9c394b",
