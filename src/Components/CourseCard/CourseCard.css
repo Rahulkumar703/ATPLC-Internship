@@ -18,7 +18,6 @@
 }
 
 .course-card .course-cover {
-    max-height: 25rem;
     z-index: 1;
     flex: 1;
     transition: .3s;
@@ -160,12 +159,12 @@
 
 
 .course-content .course-card-buttons {
-    background: transparent;
     margin-top: 1rem;
     border-radius: .3rem;
-    flex: 1;
+    /* flex: 1; */
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    background: #000;
 }
 
 .course-card-buttons .course-card-btn {

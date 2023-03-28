@@ -52,7 +52,7 @@ html {
 /* Body */
 
 body {
-  --bg-light: hsl(330, 100%, 99%);
+  --bg-light: hsl(0, 0%, 100%);
   --bg: hsl(0, 0%, 94%);
   --bg-dark: hsl(0, 0%, 88%);
   --text: #101010;
