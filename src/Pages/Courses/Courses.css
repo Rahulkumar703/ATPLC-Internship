@@ -1,19 +1,20 @@
 .courses-page .page-thumbnail {
     display: flex;
-    height: 30vh;
+    height: max(25rem, 25vh);
     width: 100%;
+    background: var(--white);
+    border-radius: .5rem;
 }
 
 .page-thumbnail img {
-    object-position: 0 center 0;
     border-radius: .3rem;
+    object-fit: contain;
 }
 
 .courses-page .page-heading {
     font-size: 3rem;
     padding: 1rem 3rem;
     margin: 1rem 0;
-    /* color: var(--text); */
     font-weight: 700;
 }
 
@@ -22,7 +23,6 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
     padding: 2rem 5%;
-    /* align-items: flex-start; */
     align-self: flex-start;
     gap: 2rem;
 }

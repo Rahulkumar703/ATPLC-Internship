@@ -8,7 +8,7 @@
     display: grid;
     gap: 2rem;
     padding: 1rem;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 2fr 1.2fr;
     position: relative;
     justify-content: space-between;
 }
@@ -22,8 +22,8 @@
 
 .course-header .cover-image {
     width: 100%;
-    height: 30rem;
-    background: var(--bg);
+    height: 20rem;
+    background: var(--white);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -35,8 +35,8 @@
     align-self: center;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center 0;
+    object-fit: contain;
+    object-position: center;
 }
 
 .course-header .cover-default-image {
@@ -49,11 +49,14 @@
     text-shadow: .5rem .5rem .5rem var(--bg-dark), .6rem .6rem .5rem var(--bg-light), 1rem 1rem .5rem var(--bg-dark);
     font-size: italic;
     z-index: 1;
+    width: 100%;
+    height: 100%;
     line-height: 15rem;
-    background: transparent;
-    overflow: hidden;
+    background: var(--bg);
     transition: .3s;
     user-select: none;
+    display: grid;
+    place-items: center;
 }
 
 .course-header .course-name {
@@ -144,6 +147,17 @@
 @media screen and (max-width:900px) {
     .enroll-page .page-content {
         grid-template-columns: minmax(30rem, 1fr);
+    }
+
+    .course-header .cover-image {
+        height: 25rem;
+    }
+
+}
+
+@media screen and (min-width:1024px) {
+    .course-header .cover-image {
+        height: 25rem;
     }
 
 }

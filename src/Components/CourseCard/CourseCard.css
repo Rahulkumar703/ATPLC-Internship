@@ -18,15 +18,18 @@
 }
 
 .course-card .course-cover {
+    max-height: 25rem;
     z-index: 1;
+    flex: 1;
     transition: .3s;
     user-select: none;
-    transform: translateY(40%);
+    transform: translateY(8rem);
     border-radius: .5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: hidden;
+    gap: 1rem;
     gap: .5rem;
     background: var(--bg);
     border: 1px solid var(--secondary);
@@ -35,8 +38,9 @@
 
 .course-cover .cover-image {
     width: 100%;
-    height: 15rem;
-    background: var(--bg);
+    max-height: 20rem;
+    overflow: hidden;
+    background: var(--white);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -46,7 +50,7 @@
     align-self: center;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
 }
 
@@ -61,7 +65,8 @@
     font-size: italic;
     z-index: 1;
     line-height: 15rem;
-    background: transparent;
+    background: var(--bg);
+    width: 100%;
     overflow: hidden;
     transition: .3s;
     user-select: none;
@@ -77,17 +82,17 @@
     color: var(--primary);
     font-family: 'Poppins', sans-serif;
     font-size: italic;
-    width: 100%;
     padding: .5rem;
+    display: flex;
+    align-items: center;
     text-align: center;
+    justify-content: center;
+    flex: 1;
 }
 
 
 .course-card .course-content {
-    flex: 1;
-    height: 15rem;
-    padding: 0 1rem;
-    padding-top: 1rem;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     gap: .5rem;
@@ -158,7 +163,9 @@
     background: transparent;
     margin-top: 1rem;
     border-radius: .3rem;
-    overflow: hidden;
+    flex: 1;
+    display: flex;
+    align-items: center;
 }
 
 .course-card-buttons .course-card-btn {
@@ -175,6 +182,7 @@
     align-items: center;
     gap: 1rem;
     color: var(--white);
+    border-radius: .3rem;
 }
 
 
