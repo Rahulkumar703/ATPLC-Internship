@@ -192,9 +192,9 @@ export default function Enroll() {
                     <div className="form-container">
                         {message !== '' && <div className="message-box">{message}</div>}
                         <Input type="text" label={'Full Name'} id='name' name='name' icon={'fi fi-rr-user'} value={user.name} onChange={handelChange} />
-                        <Input type="email" label={'Email'} id='email' name='email' icon={'fi fi-rr-user'} value={user.email} onChange={handelChange} />
-                        <Input type="password" label={'Password'} id='password' name='password' icon={'fi fi-rr-user'} value={user.password} onChange={handelChange} />
-                        <Input type="password" label={'Confirm Password'} id='confirmPassword' name='confirmPassword' icon={'fi fi-rr-user'} value={user.confirmPassword} onChange={handelChange} />
+                        <Input type="email" label={'Email'} id='email' name='email' icon={'fi fi-rr-envelope'} value={user.email} onChange={handelChange} />
+                        <Input type="password" label={'Password'} id='password' name='password' icon={'fi fi-rr-key'} value={user.password} onChange={handelChange} />
+                        <Input type="password" label={'Confirm Password'} id='confirmPassword' name='confirmPassword' icon={'fi fi-rr-key'} value={user.confirmPassword} onChange={handelChange} />
                         <Button label="Enroll Now" icon={"fi fi-rr-wallet"} type="submit" isLoading={isloading} />
                     </div>
                 </form>
