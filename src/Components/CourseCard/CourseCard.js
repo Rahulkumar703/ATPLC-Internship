@@ -4,17 +4,17 @@ import './CourseCard.css'
 
 export default function CourseCard({ id, courseName, courseDuration, coverImage, courseCompletionStatus, couresPrice, courseTechnologies }) {
 
-
     const [isEnrolled, setIsEnrolled] = useState(false);
 
 
     useEffect(() => {
         if (localStorage.getItem('courses')) {
 
-            const enrolledCourses = JSON.parse(localStorage.getItem('courses')).map(course => course.Course_id);
+            const enrolledCourses = JSON.parse(localStorage.getItem('courses')).map(course => course.Courses_id);
             enrolledCourses.forEach(enrolledCourseId => {
-                if (enrolledCourseId === id)
+                if (enrolledCourseId === id) {
                     setIsEnrolled(true)
+                }
             })
         }
     }, [id])
@@ -65,7 +65,6 @@ export default function CourseCard({ id, courseName, courseDuration, coverImage,
                             null
                     }
                 </div>
-                {console.log(courseTechnologies)}
                 {
                     courseTechnologies !== null &&
                     <div className="techs">

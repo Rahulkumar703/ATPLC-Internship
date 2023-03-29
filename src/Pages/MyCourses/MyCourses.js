@@ -42,15 +42,15 @@ export default function Courses() {
     const courseCards = useMemo(() =>
         myCourses.map((course) => (
             <CourseCard
-                key={course.Course_id}
-                id={course.Course_id}
-                courseName={course.Course__Course_Name}
+                key={course.Courses_id}
+                id={course.Courses_id}
+                courseName={course.Courses__Course_Name}
                 courseDuration={0}
-                courseCompletionStatus={course.Course_Completed}
+                courseCompletionStatus={course.Courses_Completed}
                 coverImage={
-                    course.Course__Course_Thumbnail.startsWith('/media')
-                        ? course.Course__Course_Thumbnail
-                        : '/media/' + course.Course__Course_Thumbnail
+                    course.Courses__Course_Thumbnail.startsWith('/media')
+                        ? course.Courses__Course_Thumbnail
+                        : '/media/' + course.Courses__Course_Thumbnail
                 }
                 couresPrice={null}
                 courseTechnologies={null}

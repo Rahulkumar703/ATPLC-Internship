@@ -20,7 +20,6 @@ export default function Dashboard() {
     const [completedTask, setCompletedTask] = useState(0);
 
 
-
     useEffect(() => {
         if (!localStorage.getItem('user')) {
             navigate('/login', { replace: true })
@@ -54,6 +53,7 @@ export default function Dashboard() {
                 setTaskData(data);
             } catch (e) {
                 setError(e);
+                console.log(e);
             }
             finally {
                 setIsloading(false);

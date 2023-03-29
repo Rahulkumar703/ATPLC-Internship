@@ -46,7 +46,6 @@ export default function Courses() {
                 error === '' ? isloading ? <Loader /> :
                     <div className="courses-grid">
                         {courses.map(course => {
-                            console.log(course);
                             return <CourseCard
                                 key={course.id}
                                 id={course.id}
