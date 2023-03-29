@@ -8,7 +8,7 @@ import './Task.css'
 export default function Task() {
 
     const { state } = useLocation();
-    let { courseId, Task_No, Task_Id, Task_Topic, Task_Content, Task_Status, Code_Link, Remarks, Output_Link } = state;
+    let { courseId, Task_No, Task_Topic, Task_Content, Task_Status, Code_Link, Remarks, Output_Link } = state;
 
     const [taskStatus, setTaskStatus] = useState('');
     const [remarks, setRemarks] = useState('');
@@ -194,7 +194,7 @@ export default function Task() {
                         {
                             (link.codeLink !== Code_Link || link.outputLink !== Output_Link)
                             &&
-                            <Button className='submit-button' icon="fi fi-rr-arrow-up-from-square" label='Submit' isLoading={isLoading} />
+                            <Button type="submit" className='submit-button' icon="fi fi-rr-arrow-up-from-square" label='Submit' isLoading={isLoading} />
                         }
                     </form>
                 </div>

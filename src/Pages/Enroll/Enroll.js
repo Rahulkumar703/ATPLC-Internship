@@ -82,7 +82,9 @@ export default function Enroll() {
                         razorpay_signature: response.razorpay_signature,
                         Name: user.name,
                         Email: user.email,
-                        Password: user.password
+                        Password: user.password,
+                        courseId: id,
+                        courseName,
                     };
                     const result = await axios.post(`${process.env.REACT_APP_BACKEND_PATH}/payment-success`, data);
 
