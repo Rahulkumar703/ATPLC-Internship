@@ -34,11 +34,11 @@ export default function Navbar({ hamburgerStatus, setHamburgerStatus }) {
                     </Link>
                 </li>
                 <li className="nav-items">
-                    <Link onClick={handleLinkClick} to="/courses" className="nav-links">
+                    <Link onClick={handleLinkClick} to="/events" className="nav-links">
                         <div className="icon">
-                            <i className="fi fi-rr-e-learning"></i>
+                            <i className="fi fi-rr-calendar-star"></i>
                         </div>
-                        <div className="text">Courses</div>
+                        <div className="text">Events</div>
                     </Link>
                 </li>
                 <li className="nav-items">

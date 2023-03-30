@@ -18,6 +18,7 @@ import Internship from './Pages/Internship/Internship'
 import NotFound from './Pages/NotFound/NotFound'
 import Enroll from './Pages/Enroll/Enroll'
 import Feedback from './Pages/Feedback/Feedback';
+import Events from './Pages/Events/Events';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="courses" element={<Courses />} />
+        <Route path="events" element={<Events />} />
 
         <Route path="my-courses" element={<MyCoursesLayout />}>
           <Route index element={<MyCourses />} />
