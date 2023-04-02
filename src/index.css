@@ -38,9 +38,10 @@ html {
   font-size: 62.5%;
   /* Font Family */
   /* font-family: 'Babylonica', cursive;
-  font-family: 'Poppins', sans-serif; */
-  font-family: 'Inter', sans-serif;
+  /* font-family: 'Poppins', sans-serif; */
+  font-family: 'Poppins', 'Inter', sans-serif;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 
 }
 
