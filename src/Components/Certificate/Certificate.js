@@ -3,7 +3,7 @@ import Button from '../Button/Button'
 import './Certificate.css'
 export default function Certificate({ completedTask, totalTask }) {
     async function generateCertificate() {
-        const url = 'https://atplc.in/template.pdf'
+        const url = 'https://atplc.in/Assets/template.pdf'
         const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer());
 
 
