@@ -1,6 +1,32 @@
+import { PDFDocument, rgb } from 'pdf-lib'
 import Button from '../Button/Button'
 import './Certificate.css'
 export default function Certificate({ completedTask, totalTask }) {
+    async function generateCertificate() {
+        // const url = 'http://localhost:3000/template.pdf'
+        // const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer());
+
+
+        // console.log(existingPdfBytes);
+        // Load a PDFDocument from the existing PDF bytes
+        // const pdfDoc = await PDFDocument.load(existingPdfBytes)
+
+        // const poppins = await pdfDoc.embedFont(StandardFonts.Helvetica)
+
+        // console.log(uri);
+        // const pages = pdfDoc.getPages()
+        // const firstPage = pages[0]
+        // firstPage.drawText('This text was added with JavaScript!', {
+        //     x: 5,
+        //     y: 300,
+        //     size: 32,
+        //     font: poppins,
+        //     color: rgb(0.61176, 0.22353, 0.29412)
+        // })
+
+        // const pdfBytes = await pdfDoc.save()
+    }
+
     return (
 
         <section className="certificate-section">
@@ -16,12 +42,10 @@ export default function Certificate({ completedTask, totalTask }) {
                     <p>Current Percentage = <span className={`${(completedTask / totalTask * 100) >= 75 ? 'success' : 'danger'}`}>{(completedTask / totalTask * 100).toFixed(2)}%</span></p>
                 </div>
                 {
-                    (completedTask / totalTask * 100) >= 75
+                    (completedTask / totalTask * 100) <= 75
                         ?
                         <div className="certificate-download">
-                            <a href={'/Assets/Images/demoCertificate.jpg'} download='ATPLC_Dummy_Certificate' target={'_blank'} rel="noreferrer">
-                                <Button icon='fi fi-rr-template' label='Download Certificate' />
-                            </a>
+                            <Button icon='fi fi-rr-template' label='Download Certificate' onClick={generateCertificate} />
                         </div>
                         :
                         <div className="dummy-certificate-img">
