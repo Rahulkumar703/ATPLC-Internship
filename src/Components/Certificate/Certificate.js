@@ -3,11 +3,11 @@ import Button from '../Button/Button'
 import './Certificate.css'
 export default function Certificate({ completedTask, totalTask }) {
     async function generateCertificate() {
-        // const url = 'http://localhost:3000/template.pdf'
-        // const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer());
+        const url = 'https://atplc.in/template.pdf'
+        const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer());
 
 
-        // console.log(existingPdfBytes);
+        console.log(existingPdfBytes);
         // Load a PDFDocument from the existing PDF bytes
         // const pdfDoc = await PDFDocument.load(existingPdfBytes)
 
@@ -41,6 +41,7 @@ export default function Certificate({ completedTask, totalTask }) {
                 <div className="current-percentage">
                     <p>Current Percentage = <span className={`${(completedTask / totalTask * 100) >= 75 ? 'success' : 'danger'}`}>{(completedTask / totalTask * 100).toFixed(2)}%</span></p>
                 </div>
+                <a href="/Assets/template.pdf">Certificate</a>
                 {
                     (completedTask / totalTask * 100) <= 75
                         ?
