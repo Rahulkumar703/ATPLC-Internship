@@ -13,6 +13,7 @@ export default function Courses() {
 
 
     useEffect(() => {
+        // window.title = "ATPLC | Courses"
         window.scrollTo(0, 0)
         fetchCourses();
     }, [])

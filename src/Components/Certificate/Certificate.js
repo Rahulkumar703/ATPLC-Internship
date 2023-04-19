@@ -1,30 +1,225 @@
-import { PDFDocument, rgb } from 'pdf-lib'
+import { PDFDocument, degrees, rgb } from 'pdf-lib'
+import fontkit from '@pdf-lib/fontkit';
 import Button from '../Button/Button'
 import './Certificate.css'
-export default function Certificate({ completedTask, totalTask }) {
-    async function generateCertificate() {
-        const url = 'https://atplc.in/Assets/template.pdf'
-        const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer());
+import { useEffect, useRef, useState } from 'react'
+import axios from 'axios';
+export default function Certificate({ completedTask, totalTask, courseName, courseId }) {
+
+    const iframeRef = useRef();
+    const [courseDuration, setCourseDuration] = useState();
 
 
-        console.log(existingPdfBytes);
-        // Load a PDFDocument from the existing PDF bytes
-        // const pdfDoc = await PDFDocument.load(existingPdfBytes)
 
-        // const poppins = await pdfDoc.embedFont(StandardFonts.Helvetica)
 
-        // console.log(uri);
-        // const pages = pdfDoc.getPages()
-        // const firstPage = pages[0]
-        // firstPage.drawText('This text was added with JavaScript!', {
-        //     x: 5,
-        //     y: 300,
-        //     size: 32,
-        //     font: poppins,
-        //     color: rgb(0.61176, 0.22353, 0.29412)
-        // })
+    useEffect(() => {
 
-        // const pdfBytes = await pdfDoc.save()
+        const viewDummyCertificate = async () => {
+
+
+            const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_PATH}/courses?format=json`);
+            const duration = await data.courses.filter(course => course.id === courseId)[0].Course_Duration;
+
+            await setCourseDuration(duration);
+
+            const templateUrl = '/Assets/template.pdf'
+            const BoldUrl = '/Assets/Poppins-Bold.ttf'
+            const semiBoldUrl = '/Assets/Poppins-SemiBold.ttf'
+
+            const existingPdfBytes = await fetch(templateUrl).then(res => res.arrayBuffer());
+            const existingFontBytes = await fetch(BoldUrl).then(res => res.arrayBuffer());
+            const existingFontBytes1 = await fetch(semiBoldUrl).then(res => res.arrayBuffer());
+
+
+            const pdfDoc = await PDFDocument.load(existingPdfBytes)
+
+            pdfDoc.registerFontkit(fontkit)
+            const poppinsBold = await pdfDoc.embedFont(existingFontBytes);
+            const poppinsSemiBold = await pdfDoc.embedFont(existingFontBytes1);
+
+
+            const pages = pdfDoc.getPages();
+            const pageWidth = pages[0].getWidth();
+
+
+            let { fullName, college } = JSON.parse(localStorage.getItem('user'))
+
+            const nameWidth = poppinsBold.widthOfTextAtSize(fullName, 32);
+            pages[0].drawText(fullName, {
+                x: (pageWidth / 2) - nameWidth / 2,
+                y: 390,
+                size: 32,
+                font: poppinsBold,
+                color: rgb(0.61176, 0.22353, 0.29412)
+            })
+
+            if (college === undefined) {
+                college = 'Update College name in Profile'
+            }
+
+            const collegeWidth = poppinsSemiBold.widthOfTextAtSize(college, 28);
+
+            pages[0].drawText(college, {
+                x: (pageWidth / 2) - collegeWidth / 2,
+                y: 315,
+                size: 28,
+                font: poppinsSemiBold,
+                color: rgb(0.61176, 0.22353, 0.29412)
+            })
+            pages[0].drawText(courseDuration + '', {
+                x: 518,
+                y: 284,
+                size: 20,
+                font: poppinsSemiBold,
+                color: rgb(0.61176, 0.22353, 0.29412)
+            })
+
+            const courseWidth = poppinsSemiBold.widthOfTextAtSize(courseName, 28);
+            pages[0].drawText(courseName, {
+                x: (pageWidth / 2) - courseWidth / 2,
+                y: 245,
+                size: 28,
+                font: poppinsSemiBold,
+                color: rgb(0.61176, 0.22353, 0.29412)
+            })
+
+
+
+
+            pages[0].drawText("Dummy Certificate", {
+                x: 80,
+                y: 40,
+                size: 82,
+                font: poppinsBold,
+                color: rgb(0, 0, 0),
+                opacity: 0.2,
+                rotate: degrees(33),
+            })
+
+            pages[0].drawText("Dummy Certificate", {
+                x: 80,
+                y: 480,
+                size: 82,
+                font: poppinsBold,
+                color: rgb(0, 0, 0),
+                opacity: 0.2,
+                rotate: degrees(-33),
+            })
+
+            const uri = await pdfDoc.saveAsBase64({ dataUri: true })
+            iframeRef.current.src = uri;
+        }
+
+
+        viewDummyCertificate();
+
+    }, [courseId, courseName, courseDuration])
+
+
+    async function downloadCertificate() {
+        let { fullName, college } = JSON.parse(localStorage.getItem('user'))
+        const username = 'rahulkumar703'
+        const templateUrl = '/Assets/template.pdf'
+        const BoldUrl = '/Assets/Poppins-Bold.ttf'
+        const semiBoldUrl = '/Assets/Poppins-SemiBold.ttf'
+        const signUrl = '/Assets/sign.png'
+        const qrUrl = `https://quickchart.io/qr?text=https%3A%2F%2Fgithub.com%2F${username}&dark=9c394b&ecLevel=H&margin=1&size=70&centerImageUrl=https://www.atplc.in/Assets/Images/atplc_logo.png`;
+
+
+        const existingPdfBytes = await fetch(templateUrl).then(res => res.arrayBuffer());
+        const existingFontBytes = await fetch(BoldUrl).then(res => res.arrayBuffer());
+        const existingFontBytes1 = await fetch(semiBoldUrl).then(res => res.arrayBuffer());
+        const existingSignBytes = await fetch(signUrl).then(res => res.arrayBuffer());
+        const existingQRBytes = await fetch(qrUrl).then(res => res.arrayBuffer());
+
+
+        const pdfDoc = await PDFDocument.load(existingPdfBytes)
+        const sign = await pdfDoc.embedPng(existingSignBytes)
+        sign.width = 200;
+        sign.height = 59;
+        const QR = await pdfDoc.embedPng(existingQRBytes);
+
+        pdfDoc.registerFontkit(fontkit)
+        const poppins = await pdfDoc.embedFont(existingFontBytes);
+        const poppinsSemiBold = await pdfDoc.embedFont(existingFontBytes1);
+        const fontWidth = poppins.widthOfTextAtSize(fullName, 32);
+
+
+        const pages = pdfDoc.getPages();
+        const pageWidth = pages[0].getWidth();
+
+
+        pages[0].drawText(fullName, {
+            x: (pageWidth / 2) - fontWidth / 2,
+            y: 380,
+            size: 32,
+            font: poppins,
+            color: rgb(0.61176, 0.22353, 0.29412)
+        })
+
+
+
+        if (college === undefined) {
+            college = 'Update College name in Profile'
+        }
+
+        const collegeWidth = poppins.widthOfTextAtSize(college, 28);
+
+        pages[0].drawText(college, {
+            x: (pageWidth / 2) - collegeWidth / 2,
+            y: 315,
+            size: 28,
+            font: poppinsSemiBold,
+            color: rgb(0.61176, 0.22353, 0.29412)
+        })
+        pages[0].drawText(courseDuration + '', {
+            x: 518,
+            y: 284,
+            size: 20,
+            font: poppinsSemiBold,
+            color: rgb(0.61176, 0.22353, 0.29412)
+        })
+
+        const courseWidth = poppins.widthOfTextAtSize(courseName, 28);
+        pages[0].drawText(courseName, {
+            x: (pageWidth / 2) - courseWidth / 2,
+            y: 245,
+            size: 28,
+            font: poppinsSemiBold,
+            color: rgb(0.61176, 0.22353, 0.29412)
+        })
+
+
+
+        pages[0].drawImage(sign, {
+            x: 60,
+            y: 100,
+            rotate: degrees(3)
+        })
+        pages[0].drawImage(QR, {
+            x: 620,
+            y: 90,
+            size: 28,
+            font: poppinsSemiBold,
+            color: rgb(0.61176, 0.22353, 0.29412)
+        })
+
+        const seprator = '/'
+        const date = new Date().getDate() + seprator + (new Date().getMonth() + 1) + seprator + new Date().getFullYear();
+
+        pages[0].drawText(date, {
+            x: 412,
+            y: 42,
+            size: 12,
+            font: poppinsSemiBold,
+            color: rgb(0.29020, 0.30588, 0.35294)
+        })
+
+
+
+
+        const uri = await pdfDoc.saveAsBase64({ dataUri: true })
+        iframeRef.current.src = uri;
     }
 
     return (
@@ -41,17 +236,15 @@ export default function Certificate({ completedTask, totalTask }) {
                 <div className="current-percentage">
                     <p>Current Percentage = <span className={`${(completedTask / totalTask * 100) >= 75 ? 'success' : 'danger'}`}>{(completedTask / totalTask * 100).toFixed(2)}%</span></p>
                 </div>
-                <a href="/Assets/template.pdf">Certificate</a>
+                <embed ref={iframeRef} src="" width="100%" height="520px" />
                 {
                     (completedTask / totalTask * 100) <= 75
                         ?
                         <div className="certificate-download">
-                            <Button icon='fi fi-rr-template' label='Download Certificate' onClick={generateCertificate} />
+                            <Button icon='fi fi-rr-template' label='Download Certificate' onClick={downloadCertificate} />
                         </div>
                         :
-                        <div className="dummy-certificate-img">
-                            <img src="/Assets/Images/demoCertificateBlured.png" alt="Demo_Certificate" />
-                        </div>
+                        null
                 }
             </div>
         </section>

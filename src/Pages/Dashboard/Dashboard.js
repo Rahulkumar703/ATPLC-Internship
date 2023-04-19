@@ -115,7 +115,13 @@ export default function Dashboard() {
                         </div>
 
                         <CourseFeedback />
-                        <Certificate completedTask={completedTask} totalTask={taskData?.Tasks.length} />
+
+                        <Certificate
+                            completedTask={completedTask}
+                            totalTask={taskData?.Tasks.length}
+                            courseName={location.state?.courseName}
+                            courseId={location.state?.id}
+                        />
 
 
                     </div>
