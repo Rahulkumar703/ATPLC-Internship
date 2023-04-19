@@ -14,6 +14,8 @@ export default function Courses() {
 
 
     useEffect(() => {
+        document.title = "ATPLC | My Courses"
+        document.getElementsByTagName("META")[2].content = 'All Your Courses at one place'
         window.scrollTo(0, 0);
     }, [])
 

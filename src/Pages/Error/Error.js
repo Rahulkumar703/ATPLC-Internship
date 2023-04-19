@@ -4,6 +4,8 @@ import './Error.css'
 export default function Error({ error }) {
 
     useEffect(() => {
+        document.title = `ATPLC | Page not Found`
+        document.getElementsByTagName("META")[2].content = 'The Page you are looking for is not found.'
         window.scrollTo(0, 0);
     }, [])
 

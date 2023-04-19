@@ -13,7 +13,8 @@ export default function Courses() {
 
 
     useEffect(() => {
-        // window.title = "ATPLC | Courses"
+        document.title = "ATPLC | Courses"
+        document.getElementsByTagName("META")[2].content = 'ATPLC Courses made with experts with one on one doubt resolution.'
         window.scrollTo(0, 0)
         fetchCourses();
     }, [])

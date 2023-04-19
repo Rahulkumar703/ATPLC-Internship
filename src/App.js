@@ -19,6 +19,7 @@ import NotFound from './Pages/NotFound/NotFound'
 import Enroll from './Pages/Enroll/Enroll'
 import Feedback from './Pages/Feedback/Feedback';
 import Events from './Pages/Events/Events';
+import PublicDashborad from './Pages/Dashboard/PublicDashboard';
 
 function App() {
 
@@ -32,7 +33,7 @@ function App() {
 
         <Route path="my-courses" element={<MyCoursesLayout />}>
           <Route index element={<MyCourses />} />
-          <Route path=":courseName" element={<Dashboard />} />
+          <Route path=":id/:courseName" element={<Dashboard />} />
         </Route>
 
         <Route path="task/:taskName" element={<Task />} />
@@ -43,8 +44,9 @@ function App() {
         </Route>
         <Route path="gallery" element={<Gallery />} />
         <Route path="internship" element={<Internship />} />
-        <Route path="enroll/:course" element={<Enroll />} />
+        <Route path="enroll/:courseName" element={<Enroll />} />
         <Route path="feedbacks" element={<Feedback />} />
+        <Route path="dashboard/:userId/:courseId" element={<PublicDashborad />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     )

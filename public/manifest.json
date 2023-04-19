@@ -1,8 +1,8 @@
 {
     "name": "ATPLC",
     "short_name": "ATPLC",
-    "theme_color": "#000",
-    "background_color": "#000",
+    "theme_color": "#9c394b",
+    "background_color": "#9c394b",
     "display": "standalone",
     "orientation": "portrait",
     "scope": "/",

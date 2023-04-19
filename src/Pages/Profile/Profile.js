@@ -13,6 +13,8 @@ export default function Profile() {
     const [profile, setProfile] = useState({});
 
     useEffect(() => {
+        document.title = "ATPLC | Profile"
+        document.getElementsByTagName("META")[2].content = 'Update your Profile to be get updated.'
         window.scrollTo(0, 0);
     }, [])
 

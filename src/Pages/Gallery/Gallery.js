@@ -6,6 +6,8 @@ import './Gallery.css'
 export default function Gallery() {
 
     useEffect(() => {
+        document.title = `ATPLC | Gallery`
+        document.getElementsByTagName("META")[2].content = 'ATPLC is Technical and Practical Learning Club. It Provides a variety of course with one on one doubt resolution and internship within guidence of experts.'
         window.scrollTo(0, 0);
     }, [])
 

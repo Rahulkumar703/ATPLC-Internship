@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import '../CommonPage.css'
 import './Dashboard.css'
@@ -7,14 +7,11 @@ import TaskCard from '../../Components/TaskCard/TaskCard'
 import Card from '../../Components/ProgressCard/ProgressCard'
 import Loader from '../../Components/Loader/Loader'
 import Error from '../Error/Error'
-import CourseFeedback from '../../Components/Feedback/CouseFeedback/CourseFeedback'
-import Certificate from '../../Components/Certificate/Certificate'
 
-export default function Dashboard() {
+export default function PublicDashborad() {
 
-    const params = useParams();
+    const { userId, courseId } = useParams();
 
-    const navigate = useNavigate();
     const [error, setError] = useState('');
 
     const [isLoading, setIsloading] = useState(true);
@@ -22,17 +19,12 @@ export default function Dashboard() {
     const [completedTask, setCompletedTask] = useState(0);
 
 
-    useEffect(() => {
-        if (!localStorage.getItem('user')) {
-            navigate('/login', { replace: true })
-        }
-    }, [navigate])
 
     useEffect(() => {
-        document.title = `Dashboard | ${params?.courseName}`
-        document.getElementsByTagName("META")[2].content = 'All things at one place for your selected course.'
+        document.title = `ATPLC | Dashboard`
+        document.getElementsByTagName("META")[2].content = 'See all work of a students.'
         window.scrollTo(0, 0);
-    }, [params?.courseName])
+    }, [])
 
     useEffect(() => {
         if (taskData?.Submissions) {
@@ -51,8 +43,8 @@ export default function Dashboard() {
             try {
                 setIsloading(true);
                 const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_PATH}/dashboard`, {
-                    course: params?.id,
-                    Username: JSON.parse(localStorage.getItem('user')).userId
+                    course: courseId,
+                    Username: userId
                 });
                 setTaskData(data);
             } catch (e) {
@@ -63,7 +55,7 @@ export default function Dashboard() {
             }
         }
         getTasks();
-    }, [params?.id]);
+    }, [userId, courseId]);
 
     return (
         isLoading ?
@@ -71,7 +63,7 @@ export default function Dashboard() {
             :
             <section className='page dashboard-page'>
                 <div className="page-heading">
-                    <h3>{params?.courseName}</h3>
+                    <h3>Course Name</h3>
                 </div>
                 {error === '' ?
                     <div className="page-body">
@@ -101,30 +93,19 @@ export default function Dashboard() {
                                     return (
                                         <TaskCard
                                             key={task.Task_No}
-                                            sub={submittedTask}
-                                            courseId={params?.id}
+                                            courseId={courseId}
                                             Task_No={task.Task_No}
-                                            Task_Id={task.id}
                                             Task_Topic={task.Task_Topic}
                                             Task_Content={task.Task_Content}
                                             Task_Status={submittedTask?.Task_Status || ''}
                                             Code_Link={submittedTask?.Code_Link || ''}
                                             Output_Link={submittedTask?.Output_Link || ''}
-                                            Remarks={submittedTask?.Remarks || ''}
                                         />
                                     )
                                 })
                             }
                         </div>
 
-                        <CourseFeedback />
-
-                        <Certificate
-                            completedTask={completedTask}
-                            totalTask={taskData?.Tasks.length}
-                            courseName={params?.courseName}
-                            courseId={params?.id}
-                        />
 
 
                     </div>

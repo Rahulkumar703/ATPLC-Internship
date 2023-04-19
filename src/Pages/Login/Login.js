@@ -18,6 +18,8 @@ export default function Login() {
 
 
     useEffect(() => {
+        document.title = "ATPLC | Login"
+        document.getElementsByTagName("META")[2].content = 'Login to acess all your courses and thier dashboards'
         window.scrollTo(0, 0);
     }, [])
 

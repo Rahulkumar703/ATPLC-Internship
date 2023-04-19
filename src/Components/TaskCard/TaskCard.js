@@ -7,7 +7,6 @@ export default function TaskCard({ courseId, Task_No, Task_Id, Task_Topic, Task_
     const taskNumber = Task_No < 10 ? `0${Task_No}` : Task_No;
 
 
-
     let statusLabel;
     if (Task_Status === "Under Review") {
         statusLabel = (
@@ -49,20 +48,86 @@ export default function TaskCard({ courseId, Task_No, Task_Id, Task_Topic, Task_
         );
     }
 
-    return (
-        <Link to={`/task/${Task_Topic}`} className={`task-card`} state={{ courseId, Task_No, Task_Id, Task_Topic, Task_Content, Task_Status, Code_Link, Output_Link, Remarks }}>
+    if (Task_Id !== undefined)
 
-            <div className="task-card-header">
-                <div className="task-number">{taskNumber}</div>
-                <div className="task-name">
-                    {Task_Topic}
+        return (
+            <Link to={`/task/${Task_Topic}`} className={`task-card`} state={{ courseId, Task_No, Task_Id, Task_Topic, Task_Content, Task_Status, Code_Link, Output_Link, Remarks }}>
+
+                <div className="task-card-header">
+                    <div className="task-number">{taskNumber}</div>
+                    <div className="task-name">
+                        {Task_Topic}
+                    </div>
                 </div>
-            </div>
 
-            <div className="task-card-status">
-                {statusLabel}
-            </div>
+                <div className="task-card-status">
+                    {statusLabel}
+                </div>
 
-        </Link>
-    );
+            </Link>
+        );
+    else {
+        return (
+
+            <div className={`task-card`} >
+                <div className="task-card-header">
+                    <div className="task-number">{taskNumber}</div>
+                    <div className="task-name">
+                        {Task_Topic}
+                    </div>
+                </div>
+
+                <div className="task-card-status">
+                    {statusLabel}
+                </div>
+                <div className="task-links-container">
+                    {
+                        Output_Link !== ''
+                            ?
+                            <a href={Output_Link} className={`task-links`} target='_blank' rel="noreferrer">
+                                <div className="icon">
+                                    <i className="fi fi-rr-globe"></i>
+                                </div>
+                                <div className="text">
+                                    Output
+                                </div>
+                            </a>
+                            :
+                            <div className={`task-links`} target='_blank' rel="noreferrer">
+                                <div className="icon">
+                                    <i className="fi fi-rr-globe"></i>
+                                </div>
+                                <div className="text">
+                                    Output
+                                </div>
+                            </div>
+
+                    }
+                    {
+                        Code_Link !== ''
+                            ?
+                            <a href={Code_Link} className={`task-links`} target='_blank' rel="noreferrer">
+                                <div className="icon">
+                                    <i className="fi fi-rr-file-code"></i>
+                                </div>
+                                <div className="text">
+                                    Code
+                                </div>
+                            </a>
+                            :
+                            <div className={`task-links`} target='_blank' rel="noreferrer">
+                                <div className="icon">
+                                    <i className="fi fi-rr-file-code"></i>
+                                </div>
+                                <div className="text">
+                                    Code
+                                </div>
+                            </div>
+
+                    }
+                </div>
+
+            </div>
+        )
+    }
 }

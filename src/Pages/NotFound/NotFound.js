@@ -6,6 +6,8 @@ import './NotFound.css'
 function NotFound() {
     const navigate = useNavigate();
     useEffect(() => {
+        document.title = "ATPLC | 404"
+        document.getElementsByTagName("META")[2].content = 'The Page you are looking for is no longer exist'
         window.scrollTo(0, 0);
     }, [])
     return (

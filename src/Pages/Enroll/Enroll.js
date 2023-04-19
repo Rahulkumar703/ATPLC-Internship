@@ -1,16 +1,17 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import '../CommonPage.css'
 import './Enroll.css'
 import Input from '../../Controller/Input/Input'
 import Button from '../../Components/Button/Button'
+import Loader from '../../Components/Loader/Loader'
+import Error from '../Error/Error'
 
 export default function Enroll() {
-    const location = useLocation();
-    const { id, courseName, courseDuration, coverImage, couresPrice, courseTechnologies } = location?.state;
+    const { courseName } = useParams();
     const [message, setMessage] = useState('');
-    const [isloading, setIsloading] = useState(false);
+    const [paymentLoading, setPaymentLoading] = useState(false);
     const [user, setUser] = useState({
         name: '',
         email: '',
@@ -18,9 +19,35 @@ export default function Enroll() {
         confirmPassword: '',
     });
 
+    const [isloading, setIsLoading] = useState(true);
+    const [error, setError] = useState('');
+    const [courses, setCourses] = useState([]);
+
+
+
+
     useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
+        async function fetchCourses() {
+            setIsLoading(true);
+            try {
+                const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_PATH}/courses?format=json`);
+                await setCourses(data.courses.filter(course => course.Course_Name === courseName)[0]);
+            } catch (error) {
+                setError(error)
+            }
+            finally {
+                setIsLoading(false);
+            }
+        }
+
+        window.scrollTo(0, 0)
+        fetchCourses();
+    }, [courseName])
+
+    useEffect(() => {
+        document.title = `ATPLC | Error`
+        document.getElementsByTagName("META")[2].content = `Oops ! Somthing wents wrong. please try again`
+    }, [courseName])
 
 
     function loadScript(src) {
@@ -39,7 +66,7 @@ export default function Enroll() {
 
     const displayRazorPay = async (e) => {
         e.preventDefault();
-        setIsloading(true);
+        setPaymentLoading(true);
         if (user.name === '' || user.email === '' || user.message === '') {
             setMessage('Please fill all details')
         }
@@ -57,7 +84,8 @@ export default function Enroll() {
             }
 
             // creating a new order
-            const result = await axios.post(`${process.env.REACT_APP_BACKEND_PATH}/course-order`, { amount: couresPrice * 100 });
+
+            const result = await axios.post(`${process.env.REACT_APP_BACKEND_PATH}/course-order`, { amount: courses.Course_Price * 100 });
 
             if (!result) {
                 setMessage("Server error. Are you online?");
@@ -83,18 +111,16 @@ export default function Enroll() {
                         Name: user.name,
                         Email: user.email,
                         Password: user.password,
-                        courseId: id,
-                        courseName,
+                        courseId: courses.id,
+                        courseName: courses.Course_Name,
                     };
                     const result = await axios.post(`${process.env.REACT_APP_BACKEND_PATH}/payment-success`, data);
-
-                    console.log(result.data);
 
                     setMessage(result.data.res);
                 },
                 notes: {
-                    courseId: id,
-                    courseName,
+                    courseId: courses.id,
+                    courseName: courses.Course_Name,
                     name: user.name,
                     email: user.email,
                     date: Date.now()
@@ -107,7 +133,7 @@ export default function Enroll() {
             const paymentObject = new window.Razorpay(options);
             paymentObject.open();
         }
-        setIsloading(false);
+        setPaymentLoading(false);
     }
 
     const handelChange = (e) => {
@@ -120,85 +146,91 @@ export default function Enroll() {
                 <h3>Enroll Course</h3>
             </div>
 
+            {
+                isloading ?
+                    error ?
+                        <Error error={error} />
+                        :
+                        <Loader />
+                    :
+                    <div className="page-content">
 
-            <div className="page-content">
+                        <div className="course-details">
 
-
-                <div className="course-details">
-
-                    <div className="course-header">
-                        <div className='cover-image'>
-                            {
-                                coverImage && coverImage !== '/media/' ?
-                                    <img src={`${process.env.REACT_APP_BACKEND_PATH}${coverImage}`} alt="course thumbnail" />
-                                    :
-                                    <div className='cover-default-image'> {'</>'}</div>
-                            }
-                        </div>
-                        <div className="course-name">
-                            <h4>{courseName}</h4>
-                        </div> <div className="course-price-duration">
-                            {
-                                (couresPrice !== null) ?
-                                    <div className="course-price">
-                                        <div className="icon">
-                                            <i className="fi fi-rr-indian-rupee-sign"></i>
-                                        </div>
-                                        <div className="text">
-                                            {couresPrice}
-                                        </div>
-                                    </div>
-                                    :
-                                    null
-                            }
-                            {
-                                courseDuration !== 0 ?
-                                    <div className="course-duration">
-                                        <div className="icon">
-                                            <i className="fi fi-rr-hourglass-start"></i>
-                                        </div>
-                                        <div className="text">
-                                            {courseDuration} Month
-                                        </div>
-                                    </div>
-                                    :
-                                    null
-                            }
-                        </div>
-                    </div>
-
-                    <div className="course-body">
-                        {
-                            courseTechnologies &&
-                            <div className="course-technologies">
-                                <div className="technologies-heading">
-                                    <h4>Course Technologies</h4>
-                                </div>
-                                <div className="technologies-body">
+                            <div className="course-header">
+                                <div className='cover-image'>
                                     {
-                                        courseTechnologies.split(',').map((tech, index) => {
-                                            return <span key={index} className="techs">{tech}</span>
-                                        })
+                                        courses.Course_Thumbnail && courses.Course_Thumbnail !== '/media/' ?
+                                            <img src={`${process.env.REACT_APP_BACKEND_PATH}${courses.Course_Thumbnail}`} alt="course thumbnail" />
+                                            :
+                                            <div className='cover-default-image'> {'</>'}</div>
+                                    }
+                                </div>
+                                <div className="course-name">
+                                    <h4>{courses.Course_Name}</h4>
+                                </div> <div className="course-price-duration">
+                                    {
+                                        (courses.Course_Price !== null) ?
+                                            <div className="course-price">
+                                                <div className="icon">
+                                                    <i className="fi fi-rr-indian-rupee-sign"></i>
+                                                </div>
+                                                <div className="text">
+                                                    {courses.Course_Price}
+                                                </div>
+                                            </div>
+                                            :
+                                            null
+                                    }
+                                    {
+                                        courses.Course_Duration !== 0 ?
+                                            <div className="course-duration">
+                                                <div className="icon">
+                                                    <i className="fi fi-rr-hourglass-start"></i>
+                                                </div>
+                                                <div className="text">
+                                                    {courses.Course_Duration} Month
+                                                </div>
+                                            </div>
+                                            :
+                                            null
                                     }
                                 </div>
                             </div>
-                        }
+
+                            <div className="course-body">
+                                {
+                                    courses.Course_Technologies &&
+                                    <div className="course-technologies">
+                                        <div className="technologies-heading">
+                                            <h4>Course Technologies</h4>
+                                        </div>
+                                        <div className="technologies-body">
+                                            {
+                                                courses.Course_Technologies.split(',').map((tech, index) => {
+                                                    return <span key={index} className="techs">{tech}</span>
+                                                })
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+
+
+                        <form onSubmit={displayRazorPay} className="payment-form">
+                            <div className="form-container">
+                                {message !== '' && <div className="message-box">{message}</div>}
+                                <Input type="text" label={'Full Name'} id='name' name='name' icon={'fi fi-rr-user'} value={user.name} onChange={handelChange} />
+                                <Input type="email" label={'Email'} id='email' name='email' icon={'fi fi-rr-envelope'} value={user.email} onChange={handelChange} />
+                                <Input type="password" label={'Password'} id='password' name='password' icon={'fi fi-rr-key'} value={user.password} onChange={handelChange} />
+                                <Input type="password" label={'Confirm Password'} id='confirmPassword' name='confirmPassword' icon={'fi fi-rr-key'} value={user.confirmPassword} onChange={handelChange} />
+                                <Button label="Enroll Now" icon={"fi fi-rr-wallet"} type="submit" isLoading={paymentLoading} />
+                            </div>
+                        </form>
                     </div>
-                </div>
-
-
-
-                <form onSubmit={displayRazorPay} className="payment-form">
-                    <div className="form-container">
-                        {message !== '' && <div className="message-box">{message}</div>}
-                        <Input type="text" label={'Full Name'} id='name' name='name' icon={'fi fi-rr-user'} value={user.name} onChange={handelChange} />
-                        <Input type="email" label={'Email'} id='email' name='email' icon={'fi fi-rr-envelope'} value={user.email} onChange={handelChange} />
-                        <Input type="password" label={'Password'} id='password' name='password' icon={'fi fi-rr-key'} value={user.password} onChange={handelChange} />
-                        <Input type="password" label={'Confirm Password'} id='confirmPassword' name='confirmPassword' icon={'fi fi-rr-key'} value={user.confirmPassword} onChange={handelChange} />
-                        <Button label="Enroll Now" icon={"fi fi-rr-wallet"} type="submit" isLoading={isloading} />
-                    </div>
-                </form>
-            </div>
+            }
         </section>
     )
 }

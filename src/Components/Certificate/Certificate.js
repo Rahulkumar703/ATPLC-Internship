@@ -4,13 +4,15 @@ import Button from '../Button/Button'
 import { saveAs } from 'file-saver';
 import './Certificate.css'
 import { useEffect, useRef, useState } from 'react'
-import axios from 'axios';
+
+
+
+
+
 export default function Certificate({ completedTask, totalTask, courseName, courseId }) {
 
     const iframeRef = useRef();
-    const [courseDuration, setCourseDuration] = useState();
     const [certificateURI, setCertificateURI] = useState('');
-
 
 
 
@@ -18,17 +20,15 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
 
         const generateCerifiacte = async () => {
 
-            const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_PATH}/courses?format=json`);
-            const duration = await data.courses.filter(course => course.id === courseId)[0].Course_Duration;
-            const username = 'rahulkumar703'
+            const courseDuration = JSON.parse(localStorage.getItem('courses')).filter(course => course.Courses_id === parseInt(courseId))[0].Courses__Course_Duration;
+            const userId = JSON.parse(localStorage.getItem('user')).userId
 
-            await setCourseDuration(duration);
 
             const templateUrl = '/Assets/Certificate/template.pdf'
             const BoldUrl = '/Assets/Certificate/Poppins-Bold.ttf'
             const semiBoldUrl = '/Assets/Certificate/Poppins-SemiBold.ttf'
             const signUrl = '/Assets/Certificate/sign.png'
-            const qrUrl = `https://quickchart.io/qr?text=https%3A%2F%2Fgithub.com%2F${username}&dark=4a4e5a&ecLevel=H&margin=0&size=70&centerImageUrl=https://www.atplc.in/Assets/Images/atplc_logo.png`;
+            const qrUrl = `https://quickchart.io/qr?text=https%3A%2F%2Fatplc.in%2F${userId}%2F${courseId}&dark=4a4e5a&ecLevel=H&margin=0&size=70&centerImageUrl=https://www.atplc.in/Assets/Images/atplc_logo.png`;
 
             const existingPdfBytes = await fetch(templateUrl).then(res => res.arrayBuffer());
             const existingFontBytes = await fetch(BoldUrl).then(res => res.arrayBuffer());
@@ -152,7 +152,7 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
         generateCerifiacte();
 
 
-    }, [courseId, courseName, courseDuration, completedTask, totalTask])
+    }, [courseId, courseName, completedTask, totalTask])
 
 
     async function downloadCertificate() {

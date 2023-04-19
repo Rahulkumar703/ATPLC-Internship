@@ -5,6 +5,8 @@ import './Internship.css'
 export default function Internship() {
 
     useEffect(() => {
+        document.title = "ATPLC | Internship"
+        document.getElementsByTagName("META")[2].content = 'ATPLC also provides Internship on real world projects.'
         window.scrollTo(0, 0);
     }, [])
 

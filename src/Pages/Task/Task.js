@@ -14,7 +14,12 @@ export default function Task() {
     const [remarks, setRemarks] = useState('');
 
     useEffect(() => {
+        document.title = `Task | ${Task_Topic}`
+        document.getElementsByTagName("META")[2].content = Task_Content
         window.scrollTo(0, 0);
+    }, [Task_Content, Task_Topic])
+
+    useEffect(() => {
         setTaskStatus(Task_Status);
         if (taskStatus === 'Under Review') {
             setRemarks('')

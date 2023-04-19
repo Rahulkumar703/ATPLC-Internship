@@ -79,14 +79,14 @@ export default function CourseCard({ id, courseName, courseDuration, coverImage,
                 <div className="course-card-buttons">
                     {
                         isEnrolled ?
-                            <Link tabIndex={0} to={`/my-courses/${courseName}`} state={{ id, courseName }} className="course-card-btn">
+                            <Link tabIndex={0} to={`/my-courses/${id}/${courseName}`} className="course-card-btn">
                                 <div className="icon">
                                     <i className="fi fi-rr-dashboard"></i>
                                 </div>
                                 <div className="text">Continue to Dashboard</div>
                             </Link>
                             :
-                            <Link tabIndex={0} to={`/enroll/${courseName}`} state={{ id, courseName, courseDuration, coverImage, couresPrice, courseTechnologies }} className="course-card-btn">
+                            <Link tabIndex={0} to={`/enroll/${courseName}`} className="course-card-btn">
                                 <div className="icon">
                                     <i className="fi fi-rr-file-signature"></i>
                                 </div>
