@@ -3,7 +3,7 @@ import fontkit from '@pdf-lib/fontkit';
 import Button from '../Button/Button'
 import { saveAs } from 'file-saver';
 import './Certificate.css'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 
 
@@ -11,7 +11,6 @@ import { useEffect, useRef, useState } from 'react'
 
 export default function Certificate({ completedTask, totalTask, courseName, courseId }) {
 
-    const iframeRef = useRef();
     const [certificateURI, setCertificateURI] = useState('');
 
 
@@ -29,7 +28,7 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
             const blackAddUrl = '/Assets/Certificate/blackAdd.ttf'
             const robotoUrl = '/Assets/Certificate/Roboto.ttf'
             const signUrl = '/Assets/Certificate/sign.png'
-            const qrUrl = `https://quickchart.io/qr?text=https%3A%2F%2Fatplc-dev.vercel.app%2Fdashboard%2F${userId}%2F${courseId}&dark=4a4e5a&ecLevel=H&margin=0&size=70&centerImageUrl=https://www.atplc.in/Assets/Images/atplc_logo.png`;
+            const qrUrl = `https://quickchart.io/qr?text=https%3A%2F%2Fatplc.in%2Fdashboard%2F${userId}%2F${courseId}&dark=4a4e5a&ecLevel=H&margin=0&size=70&centerImageUrl=https://www.atplc.in/Assets/Images/atplc_logo.png`;
 
             const existingPdfBytes = await fetch(templateUrl).then(res => res.arrayBuffer());
             const existingFontBytes = await fetch(blackOpsUrl).then(res => res.arrayBuffer());
@@ -97,7 +96,7 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
             })
 
 
-            if ((completedTask / totalTask * 100) <= 75) {
+            if ((completedTask / totalTask * 100) >= 75) {
 
                 pages[0].drawImage(sign, {
                     x: 120,
@@ -143,8 +142,7 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
                 })
             }
 
-            const uri = await pdfDoc.saveAsBase64({ dataUri: true })
-            await setCertificateURI(uri);
+            // const uri = await pdfDoc.saveAsBase64({ dataUri: true })
 
 
             const pdf = await pdfDoc.save();
@@ -153,9 +151,7 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
             const blob = new Blob([bytes], { type: "application/pdf" });
             const docUrl = URL.createObjectURL(blob);
 
-            console.log(docUrl);
-            iframeRef.current.src = "https://drive.google.com/viewerng/viewer?embedded=true&url=" + docUrl;
-            iframeRef.current.style.display = "block"
+            await setCertificateURI(docUrl);
         }
 
         generateCerifiacte();
@@ -164,7 +160,7 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
 
 
     async function downloadCertificate() {
-        saveAs(certificateURI, 'ATPLC Certificate.pdf', { autoBom: true })
+        saveAs(certificateURI, 'ATPLC ' + courseName + ' Certificate.pdf', { autoBom: true })
     }
 
     return (
@@ -181,9 +177,8 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
                 <div className="current-percentage">
                     <p>Current Percentage = <span className={`${(completedTask / totalTask * 100) >= 75 ? 'success' : 'danger'}`}>{(completedTask / totalTask * 100).toFixed(2)}%</span></p>
                 </div>
-                <iframe ref={iframeRef} type="application/pdf" src="" title="s"></iframe>
                 <div className="certificate-download">
-                    <Button icon='fi fi-rr-template' label={(completedTask / totalTask * 100) <= 75 ? 'Download Certificate' : 'Download Dummy Certificate'} onClick={downloadCertificate} />
+                    <Button icon='fi fi-rr-template' label={(completedTask / totalTask * 100) >= 75 ? 'Download Certificate' : 'Download Dummy Certificate'} onClick={downloadCertificate} />
                 </div>
             </div>
         </section>
