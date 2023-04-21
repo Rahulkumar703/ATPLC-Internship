@@ -48,18 +48,18 @@ export default function Feedback() {
             <div className="section-heading">
                 <h2>Our Testimonials</h2>
             </div>
-            <div className="section-body">
-                {
-                    isLoading
+            {
+                isLoading
+                    ?
+                    <Loader />
+                    :
+                    message !== ''
                         ?
-                        <Loader />
+                        <div className="message-box">
+                            {message}
+                        </div>
                         :
-                        message !== ''
-                            ?
-                            <div className="message-box">
-                                {message}
-                            </div>
-                            :
+                        <div className="section-body">
                             <Swiper
                                 spaceBetween={10}
                                 slidesPerView={1}
@@ -109,8 +109,8 @@ export default function Feedback() {
                                     )
                                 }
                             </Swiper>
-                }
-            </div>
+                        </div>
+            }
         </section >
     )
 }

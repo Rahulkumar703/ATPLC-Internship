@@ -63,54 +63,55 @@ export default function PublicDashborad() {
             :
             <section className='page dashboard-page'>
                 <div className="page-heading">
-                    <h3>Course Name</h3>
+                    <h3>Dasboard</h3>
                 </div>
-                {error === '' ?
-                    <div className="page-body">
-                        <div className="score-card-container grid">
-                            <Card
-                                heading='Verified Submission'
-                                icon="fi fi-rr-list-check"
-                                obtainedScore={completedTask}
-                                totalScore={taskData.Tasks?.length || 0}
-                            />
-                            <Card
-                                heading='Pending Tasks'
-                                icon="fi fi-rr-info"
-                                obtainedScore={taskData.Tasks?.length - completedTask}
-                                totalScore={taskData.Tasks?.length || 0}
-                            />
-                        </div>
-                        <div className="page-body-heading">
-                            <h4>Course Tasks</h4>
-                        </div>
-                        <div className="task-list-container grid">
-                            {
-                                taskData?.Tasks?.map(task => {
-                                    const submittedTask = taskData.Submissions?.find(sub => {
-                                        return sub.Task_No_id === task.id;
-                                    });
-                                    return (
-                                        <TaskCard
-                                            key={task.Task_No}
-                                            courseId={courseId}
-                                            Task_No={task.Task_No}
-                                            Task_Topic={task.Task_Topic}
-                                            Task_Content={task.Task_Content}
-                                            Task_Status={submittedTask?.Task_Status || ''}
-                                            Code_Link={submittedTask?.Code_Link || ''}
-                                            Output_Link={submittedTask?.Output_Link || ''}
-                                        />
-                                    )
-                                })
-                            }
-                        </div>
+                {
+                    error === '' ?
+                        <div className="page-body" >
+                            <div className="score-card-container grid">
+                                <Card
+                                    heading='Verified Submission'
+                                    icon="fi fi-rr-list-check"
+                                    obtainedScore={completedTask}
+                                    totalScore={taskData.Tasks?.length || 0}
+                                />
+                                <Card
+                                    heading='Pending Tasks'
+                                    icon="fi fi-rr-info"
+                                    obtainedScore={taskData.Tasks?.length - completedTask}
+                                    totalScore={taskData.Tasks?.length || 0}
+                                />
+                            </div>
+                            <div className="page-body-heading">
+                                <h4>Course Tasks</h4>
+                            </div>
+                            <div className="task-list-container grid">
+                                {
+                                    taskData?.Tasks?.map(task => {
+                                        const submittedTask = taskData.Submissions?.find(sub => {
+                                            return sub.Task_No_id === task.id;
+                                        });
+                                        return (
+                                            <TaskCard
+                                                key={task.Task_No}
+                                                courseId={courseId}
+                                                Task_No={task.Task_No}
+                                                Task_Topic={task.Task_Topic}
+                                                Task_Content={task.Task_Content}
+                                                Task_Status={submittedTask?.Task_Status || ''}
+                                                Code_Link={submittedTask?.Code_Link || ''}
+                                                Output_Link={submittedTask?.Output_Link || ''}
+                                            />
+                                        )
+                                    })
+                                }
+                            </div>
 
 
 
-                    </div>
-                    :
-                    <Error error={error} />
+                        </div>
+                        :
+                        <Error error={error} />
                 }
             </section>
 
