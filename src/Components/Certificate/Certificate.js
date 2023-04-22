@@ -30,7 +30,12 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
             const signUrl = '/Assets/Certificate/sign.png'
             const qrUrl = `https://quickchart.io/qr?text=https%3A%2F%2Fatplc.in%2Fdashboard%2F${userId}%2F${courseId}&dark=4a4e5a&ecLevel=H&margin=0&size=70&centerImageUrl=https://www.atplc.in/Assets/Images/atplc_logo.png`;
 
-            const existingPdfBytes = await fetch(templateUrl).then(res => res.arrayBuffer());
+            const existingPdfBytes = await fetch(templateUrl, {
+                method: "GET",
+                headers: {
+                    "Accept": "application/octet-stream",
+                }
+            }).then(res => res.arrayBuffer());
             const existingFontBytes = await fetch(blackOpsUrl).then(res => res.arrayBuffer());
             const existingFontBytes1 = await fetch(blackAddUrl).then(res => res.arrayBuffer());
             const existingFontBytes2 = await fetch(robotoUrl).then(res => res.arrayBuffer());
@@ -142,16 +147,16 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
                 })
             }
 
-            // const uri = await pdfDoc.saveAsBase64({ dataUri: true })
+            const uri = await pdfDoc.saveAsBase64({ dataUri: true })
 
 
-            const pdf = await pdfDoc.save();
+            // const pdf = await pdfDoc.save();
 
-            const bytes = new Uint8Array(pdf);
-            const blob = new Blob([bytes], { type: "application/pdf" });
-            const docUrl = URL.createObjectURL(blob);
+            // const bytes = new Uint8Array(pdf);
+            // const blob = new Blob([bytes], { type: "application/pdf" });
+            // const docUrl = URL.createObjectURL(blob);
 
-            await setCertificateURI(docUrl);
+            await setCertificateURI(uri);
         }
 
         generateCerifiacte();
