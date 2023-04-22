@@ -156,14 +156,9 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
             const blob = new Blob([bytes], { type: "application/pdf" });
             const docUrl = URL.createObjectURL(blob);
 
-            if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-                window.navigator.msSaveOrOpenBlob(blob, 'fileName');
-            } else {
-                var objectUrl = URL.createObjectURL(blob);
-                window.open(objectUrl);
-            }
-
             await setCertificateURI(docUrl);
+
+            document.querySelector('iframe').src = docUrl;
         }
 
         generateCerifiacte();
@@ -198,7 +193,7 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
                     <p>Current Percentage = <span className={`${(completedTask / totalTask * 100) >= 75 ? 'success' : 'danger'}`}>{(completedTask / totalTask * 100).toFixed(2)}%</span></p>
                 </div>
                 <div className="certificate-download">
-                    <a href="" className="open" target="_blank" >Open</a>
+                    <iframe src="" title='cert' width={'100%'} height='700px'></iframe>
                     <Button icon='fi fi-rr-template' label={(completedTask / totalTask * 100) >= 75 ? 'Download Certificate' : 'Download Dummy Certificate'} onClick={downloadCertificate} />
                 </div>
             </div>
