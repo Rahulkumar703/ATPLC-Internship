@@ -4,6 +4,8 @@ import Button from '../Button/Button'
 import { saveAs } from 'file-saver';
 import './Certificate.css'
 import { useEffect, useState } from 'react'
+import { json } from 'react-router-dom';
+
 
 
 
@@ -30,121 +32,129 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
             const signUrl = '/Assets/Certificate/sign.png'
             const qrUrl = `https://quickchart.io/qr?text=https%3A%2F%2Fatplc.in%2Fdashboard%2F${userId}%2F${courseId}&dark=4a4e5a&ecLevel=H&margin=0&size=70&centerImageUrl=https://www.atplc.in/Assets/Images/atplc_logo.png`;
 
-            const existingPdfBytes = await fetch(templateUrl, {
-                method: "GET",
-                headers: {
-                    "Accept": "application/octet-stream",
-                }
-            }).then(res => res.arrayBuffer());
-            const existingFontBytes = await fetch(blackOpsUrl).then(res => res.arrayBuffer());
-            const existingFontBytes1 = await fetch(blackAddUrl).then(res => res.arrayBuffer());
-            const existingFontBytes2 = await fetch(robotoUrl).then(res => res.arrayBuffer());
-            const existingSignBytes = await fetch(signUrl).then(res => res.arrayBuffer());
-            const existingQRBytes = await fetch(qrUrl).then(res => res.arrayBuffer());
+            let pdfDoc;
+            try {
+                const existingPdfBytes = await fetch(templateUrl, {
+                    method: "GET",
+                    headers: {
+                        "Accept": "application/octet-stream",
+                    }
+                }).then(res => res.arrayBuffer());
+                const existingFontBytes = await fetch(blackOpsUrl).then(res => res.arrayBuffer());
+                const existingFontBytes1 = await fetch(blackAddUrl).then(res => res.arrayBuffer());
+                const existingFontBytes2 = await fetch(robotoUrl).then(res => res.arrayBuffer());
+                const existingSignBytes = await fetch(signUrl).then(res => res.arrayBuffer());
+                const existingQRBytes = await fetch(qrUrl).then(res => res.arrayBuffer());
 
 
-            const pdfDoc = await PDFDocument.load(existingPdfBytes)
+                pdfDoc = await PDFDocument.load(existingPdfBytes)
 
-            pdfDoc.registerFontkit(fontkit)
-            const blackOps = await pdfDoc.embedFont(existingFontBytes);
-            const blackAdd = await pdfDoc.embedFont(existingFontBytes1);
-            const roboto = await pdfDoc.embedFont(existingFontBytes2);
-            const sign = await pdfDoc.embedPng(existingSignBytes)
-            sign.width = 150;
-            sign.height = 42;
-            const QR = await pdfDoc.embedPng(existingQRBytes);
+                pdfDoc.registerFontkit(fontkit)
 
 
-            const pages = pdfDoc.getPages();
-            const pageWidth = pages[0].getWidth();
+                const blackOps = await pdfDoc.embedFont(existingFontBytes);
+
+                const blackAdd = await pdfDoc.embedFont(existingFontBytes1);
+                const roboto = await pdfDoc.embedFont(existingFontBytes2);
+                const sign = await pdfDoc.embedPng(existingSignBytes)
+                sign.width = 150;
+                sign.height = 42;
+                const QR = await pdfDoc.embedPng(existingQRBytes);
 
 
-            let { fullName, college } = JSON.parse(localStorage.getItem('user'))
-
-            const nameWidth = blackOps.widthOfTextAtSize(fullName, 50);
-            pages[0].drawText(fullName, {
-                x: (pageWidth / 2) - nameWidth / 2,
-                y: 410,
-                size: 50,
-                font: blackOps,
-                color: rgb(0, 0, 0)
-            })
-
-            if (college === undefined) {
-                college = 'Update College name in Profile'
-            }
-
-            const collegeWidth = roboto.widthOfTextAtSize(college, 28);
-
-            pages[0].drawText(college, {
-                x: (pageWidth / 2) - collegeWidth / 2,
-                y: 330,
-                size: 28,
-                font: roboto,
-                color: rgb(0.61176, 0.22353, 0.29412)
-            })
-            pages[0].drawText(courseDuration + '', {
-                x: 486,
-                y: 305.5,
-                size: 32,
-                font: blackAdd,
-                color: rgb(0.61176, 0.22353, 0.29412)
-            })
-
-            const courseWidth = roboto.widthOfTextAtSize(courseName, 28);
-            pages[0].drawText(courseName, {
-                x: (pageWidth / 2) - courseWidth / 2,
-                y: 250,
-                size: 28,
-                font: roboto,
-                color: rgb(0.61176, 0.22353, 0.29412)
-            })
+                const pages = pdfDoc.getPages();
+                const pageWidth = pages[0].getWidth();
 
 
-            if ((completedTask / totalTask * 100) >= 75) {
+                let { fullName, college } = JSON.parse(localStorage.getItem('user'))
 
-                pages[0].drawImage(sign, {
-                    x: 120,
-                    y: 60,
-                    rotate: degrees(-2)
-                })
-                pages[0].drawImage(QR, {
-                    x: 590,
-                    y: 55,
-                })
-
-                const seprator = '/'
-                const date = new Date().getDate() + seprator + (new Date().getMonth() + 1) + seprator + new Date().getFullYear();
-
-                pages[0].drawText(date, {
-                    x: 445,
-                    y: 20,
-                    size: 16,
-                    font: blackAdd,
+                const nameWidth = blackOps.widthOfTextAtSize(fullName, 50);
+                pages[0].drawText(fullName, {
+                    x: (pageWidth / 2) - nameWidth / 2,
+                    y: 410,
+                    size: 50,
+                    font: blackOps,
                     color: rgb(0, 0, 0)
                 })
-            }
-            else {
 
-                pages[0].drawText("Dummy Certificate", {
-                    x: 80,
-                    y: 40,
-                    size: 82,
-                    font: blackOps,
-                    color: rgb(0, 0, 0),
-                    opacity: 0.2,
-                    rotate: degrees(33),
+                if (college === undefined) {
+                    college = 'Update College name in Profile'
+                }
+
+                const collegeWidth = roboto.widthOfTextAtSize(college, 28);
+
+                pages[0].drawText(college, {
+                    x: (pageWidth / 2) - collegeWidth / 2,
+                    y: 330,
+                    size: 28,
+                    font: roboto,
+                    color: rgb(0.61176, 0.22353, 0.29412)
+                })
+                pages[0].drawText(courseDuration + '', {
+                    x: 486,
+                    y: 305.5,
+                    size: 32,
+                    font: blackAdd,
+                    color: rgb(0.61176, 0.22353, 0.29412)
                 })
 
-                pages[0].drawText("Dummy Certificate", {
-                    x: 80,
-                    y: 480,
-                    size: 82,
-                    font: blackOps,
-                    color: rgb(0, 0, 0),
-                    opacity: 0.2,
-                    rotate: degrees(-33),
+                const courseWidth = roboto.widthOfTextAtSize(courseName, 28);
+                pages[0].drawText(courseName, {
+                    x: (pageWidth / 2) - courseWidth / 2,
+                    y: 250,
+                    size: 28,
+                    font: roboto,
+                    color: rgb(0.61176, 0.22353, 0.29412)
                 })
+
+
+                if ((completedTask / totalTask * 100) >= 75) {
+
+                    pages[0].drawImage(sign, {
+                        x: 120,
+                        y: 60,
+                        rotate: degrees(-2)
+                    })
+                    pages[0].drawImage(QR, {
+                        x: 590,
+                        y: 55,
+                    })
+
+                    const seprator = '/'
+                    const date = new Date().getDate() + seprator + (new Date().getMonth() + 1) + seprator + new Date().getFullYear();
+
+                    pages[0].drawText(date, {
+                        x: 445,
+                        y: 20,
+                        size: 16,
+                        font: blackAdd,
+                        color: rgb(0, 0, 0)
+                    })
+                }
+                else {
+
+                    pages[0].drawText("Dummy Certificate", {
+                        x: 80,
+                        y: 40,
+                        size: 82,
+                        font: blackOps,
+                        color: rgb(0, 0, 0),
+                        opacity: 0.2,
+                        rotate: degrees(33),
+                    })
+
+                    pages[0].drawText("Dummy Certificate", {
+                        x: 80,
+                        y: 480,
+                        size: 82,
+                        font: blackOps,
+                        color: rgb(0, 0, 0),
+                        opacity: 0.2,
+                        rotate: degrees(-33),
+                    })
+                }
+            } catch (error) {
+                console.log(error);
             }
 
             // const uri = await pdfDoc.saveAsBase64({ dataUri: true })
@@ -154,14 +164,15 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
 
             const bytes = new Uint8Array(pdf);
             const blob = new Blob([bytes], { type: "application/pdf" });
-            console.log(blob);
             const docUrl = URL.createObjectURL(blob);
+
+            console.log(blob, docUrl);
+
+            localStorage.setItem('blob', JSON.stringify({ blob, docUrl }))
 
             await setCertificateURI(docUrl);
 
-            console.log(docUrl);
 
-            document.querySelector('iframe').src = docUrl;
         }
 
         generateCerifiacte();
@@ -170,15 +181,9 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
 
 
     async function downloadCertificate() {
-        // saveAs(certificateURI, 'ATPLC ' + courseName + ' Certificate.pdf', { autoBom: true })
+        saveAs(certificateURI, 'ATPLC ' + courseName + ' Certificate.pdf', { autoBom: true })
 
-        console.log(certificateURI);
-        var link = document.createElement('a');
-        link.href = certificateURI;
-        link.download = 'ATPLC ' + courseName + ' Certificate.pdf';
-        link.click();
-
-
+        console.log(JSON.parse(localStorage.getItem('blob')));
     }
 
     return (
@@ -196,7 +201,6 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
                     <p>Current Percentage = <span className={`${(completedTask / totalTask * 100) >= 75 ? 'success' : 'danger'}`}>{(completedTask / totalTask * 100).toFixed(2)}%</span></p>
                 </div>
                 <div className="certificate-download">
-                    <iframe src="" title='cert' width={'100%'} height='700px'></iframe>
                     <Button icon='fi fi-rr-template' label={(completedTask / totalTask * 100) >= 75 ? 'Download Certificate' : 'Download Dummy Certificate'} onClick={downloadCertificate} />
                 </div>
             </div>
