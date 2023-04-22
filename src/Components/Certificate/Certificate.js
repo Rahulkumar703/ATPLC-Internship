@@ -1,10 +1,9 @@
-import { PDFDocument, degrees, rgb } from 'pdf-lib'
+import { PDFDocument, degrees, rgb, StandardFonts } from 'pdf-lib'
 import fontkit from '@pdf-lib/fontkit';
 import Button from '../Button/Button'
 import { saveAs } from 'file-saver';
 import './Certificate.css'
 import { useEffect, useState } from 'react'
-import { json } from 'react-router-dom';
 
 
 
@@ -33,6 +32,7 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
             const qrUrl = `https://quickchart.io/qr?text=https%3A%2F%2Fatplc.in%2Fdashboard%2F${userId}%2F${courseId}&dark=4a4e5a&ecLevel=H&margin=0&size=70&centerImageUrl=https://www.atplc.in/Assets/Images/atplc_logo.png`;
 
             let pdfDoc;
+
             try {
                 const existingPdfBytes = await fetch(templateUrl, {
                     method: "GET",
@@ -52,10 +52,12 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
                 pdfDoc.registerFontkit(fontkit)
 
 
-                const blackOps = await pdfDoc.embedFont(existingFontBytes);
+                const hel = await pdfDoc.embedStandardFont(StandardFonts.Helvetica);
 
-                const blackAdd = await pdfDoc.embedFont(existingFontBytes1);
-                const roboto = await pdfDoc.embedFont(existingFontBytes2);
+                // const blackOps = await pdfDoc.embedFont(existingFontBytes);
+                // const blackAdd = await pdfDoc.embedFont(existingFontBytes1);
+                // const roboto = await pdfDoc.embedFont(existingFontBytes2);
+
                 const sign = await pdfDoc.embedPng(existingSignBytes)
                 sign.width = 150;
                 sign.height = 42;
@@ -68,12 +70,14 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
 
                 let { fullName, college } = JSON.parse(localStorage.getItem('user'))
 
-                const nameWidth = blackOps.widthOfTextAtSize(fullName, 50);
+                // const nameWidth = blackOps.widthOfTextAtSize(fullName, 50);
+                const nameWidth = hel.widthOfTextAtSize(fullName, 50);
                 pages[0].drawText(fullName, {
                     x: (pageWidth / 2) - nameWidth / 2,
                     y: 410,
                     size: 50,
-                    font: blackOps,
+                    // font: blackOps,
+                    font: hel,
                     color: rgb(0, 0, 0)
                 })
 
@@ -81,29 +85,34 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
                     college = 'Update College name in Profile'
                 }
 
-                const collegeWidth = roboto.widthOfTextAtSize(college, 28);
+                // const collegeWidth = roboto.widthOfTextAtSize(college, 28);
+                const collegeWidth = hel.widthOfTextAtSize(college, 28);
 
                 pages[0].drawText(college, {
                     x: (pageWidth / 2) - collegeWidth / 2,
                     y: 330,
                     size: 28,
-                    font: roboto,
+                    // font: roboto,
+                    font: hel,
                     color: rgb(0.61176, 0.22353, 0.29412)
                 })
                 pages[0].drawText(courseDuration + '', {
                     x: 486,
                     y: 305.5,
                     size: 32,
-                    font: blackAdd,
+                    // font: blackAdd,
+                    font: hel,
                     color: rgb(0.61176, 0.22353, 0.29412)
                 })
 
-                const courseWidth = roboto.widthOfTextAtSize(courseName, 28);
+                // const courseWidth = roboto.widthOfTextAtSize(courseName, 28);
+                const courseWidth = hel.widthOfTextAtSize(courseName, 28);
                 pages[0].drawText(courseName, {
                     x: (pageWidth / 2) - courseWidth / 2,
                     y: 250,
                     size: 28,
-                    font: roboto,
+                    // font: roboto,
+                    font: hel,
                     color: rgb(0.61176, 0.22353, 0.29412)
                 })
 
@@ -127,7 +136,8 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
                         x: 445,
                         y: 20,
                         size: 16,
-                        font: blackAdd,
+                        // font: blackAdd,
+                        font: hel,
                         color: rgb(0, 0, 0)
                     })
                 }
@@ -137,7 +147,8 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
                         x: 80,
                         y: 40,
                         size: 82,
-                        font: blackOps,
+                        // font: blackOps,
+                        font: hel,
                         color: rgb(0, 0, 0),
                         opacity: 0.2,
                         rotate: degrees(33),
@@ -147,7 +158,8 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
                         x: 80,
                         y: 480,
                         size: 82,
-                        font: blackOps,
+                        // font: blackOps,
+                        font: hel,
                         color: rgb(0, 0, 0),
                         opacity: 0.2,
                         rotate: degrees(-33),
