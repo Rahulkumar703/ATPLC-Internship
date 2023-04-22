@@ -147,17 +147,18 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
                 })
             }
 
-            const uri = await pdfDoc.saveAsBase64({ dataUri: true })
+            // const uri = await pdfDoc.saveAsBase64({ dataUri: true })
 
 
-            // const pdf = await pdfDoc.save();
+            const pdf = await pdfDoc.save();
 
-            // const bytes = new Uint8Array(pdf);
-            // const blob = new Blob([bytes], { type: "application/pdf" });
-            // const docUrl = URL.createObjectURL(blob);
+            const bytes = new Uint8Array(pdf);
+            const blob = new Blob([bytes], { type: "application/pdf" });
+            const docUrl = URL.createObjectURL(blob);
 
-            await setCertificateURI(uri);
-            console.log(certificateURI);
+            await setCertificateURI(docUrl);
+
+            document.querySelector('.open').href = docUrl
         }
 
         generateCerifiacte();
@@ -168,10 +169,13 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
     async function downloadCertificate() {
         // saveAs(certificateURI, 'ATPLC ' + courseName + ' Certificate.pdf', { autoBom: true })
 
+        console.log(certificateURI);
         var link = document.createElement('a');
         link.href = certificateURI;
         link.download = "Report_" + new Date() + ".pdf";
         link.click();
+
+
     }
 
     return (
@@ -189,6 +193,7 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
                     <p>Current Percentage = <span className={`${(completedTask / totalTask * 100) >= 75 ? 'success' : 'danger'}`}>{(completedTask / totalTask * 100).toFixed(2)}%</span></p>
                 </div>
                 <div className="certificate-download">
+                    <a href="" className="open" target="_blank" >Open</a>
                     <Button icon='fi fi-rr-template' label={(completedTask / totalTask * 100) >= 75 ? 'Download Certificate' : 'Download Dummy Certificate'} onClick={downloadCertificate} />
                 </div>
             </div>
