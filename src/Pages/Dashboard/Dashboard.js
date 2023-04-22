@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams, Link } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import '../CommonPage.css'
 import './Dashboard.css'
@@ -9,7 +9,7 @@ import Loader from '../../Components/Loader/Loader'
 import Error from '../Error/Error'
 import CourseFeedback from '../../Components/Feedback/CouseFeedback/CourseFeedback'
 import Certificate from '../../Components/Certificate/Certificate'
-import { WhatsappShareButton, WhatsappIcon, LinkedinShareButton, LinkedinIcon, FacebookMessengerShareButton, FacebookMessengerIcon, InstapaperIcon } from 'react-share'
+import { WhatsappShareButton, WhatsappIcon, LinkedinShareButton, LinkedinIcon } from 'react-share'
 import CopyToClipboard from 'react-copy-to-clipboard'
 
 export default function Dashboard() {
