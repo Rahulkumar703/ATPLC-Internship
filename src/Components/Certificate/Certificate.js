@@ -156,9 +156,14 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
             const blob = new Blob([bytes], { type: "application/pdf" });
             const docUrl = URL.createObjectURL(blob);
 
-            await setCertificateURI(docUrl);
+            if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+                window.navigator.msSaveOrOpenBlob(blob, 'fileName');
+            } else {
+                var objectUrl = URL.createObjectURL(blob);
+                window.open(objectUrl);
+            }
 
-            document.querySelector('.open').href = docUrl
+            await setCertificateURI(docUrl);
         }
 
         generateCerifiacte();
@@ -172,7 +177,7 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
         console.log(certificateURI);
         var link = document.createElement('a');
         link.href = certificateURI;
-        link.download = "Report_" + new Date() + ".pdf";
+        link.download = 'ATPLC ' + courseName + ' Certificate.pdf';
         link.click();
 
 
