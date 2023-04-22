@@ -154,9 +154,12 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
 
             const bytes = new Uint8Array(pdf);
             const blob = new Blob([bytes], { type: "application/pdf" });
+            console.log(blob);
             const docUrl = URL.createObjectURL(blob);
 
             await setCertificateURI(docUrl);
+
+            console.log(docUrl);
 
             document.querySelector('iframe').src = docUrl;
         }
