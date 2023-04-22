@@ -54,9 +54,9 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
 
                 const hel = await pdfDoc.embedStandardFont(StandardFonts.Helvetica);
 
-                const blackOps = await pdfDoc.embedFont(existingFontBytes);
+                // const blackOps = await pdfDoc.embedFont(existingFontBytes);
                 // const blackAdd = await pdfDoc.embedFont(existingFontBytes1);
-                const roboto = await pdfDoc.embedFont(existingFontBytes2);
+                // const roboto = await pdfDoc.embedFont(existingFontBytes2);
 
                 const sign = await pdfDoc.embedPng(existingSignBytes)
                 sign.width = 150;
@@ -70,14 +70,14 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
 
                 let { fullName, college } = JSON.parse(localStorage.getItem('user'))
 
-                const nameWidth = blackOps.widthOfTextAtSize(fullName, 50);
-                // const nameWidth = hel.widthOfTextAtSize(fullName, 50);
+                // const nameWidth = blackOps.widthOfTextAtSize(fullName, 50);
+                const nameWidth = hel.widthOfTextAtSize(fullName, 50);
                 pages[0].drawText(fullName, {
                     x: (pageWidth / 2) - nameWidth / 2,
                     y: 410,
                     size: 50,
-                    font: blackOps,
-                    // font: hel,
+                    // font: blackOps,
+                    font: hel,
                     color: rgb(0, 0, 0)
                 })
 
@@ -85,15 +85,15 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
                     college = 'Update College name in Profile'
                 }
 
-                const collegeWidth = roboto.widthOfTextAtSize(college, 28);
-                // const collegeWidth = hel.widthOfTextAtSize(college, 28);
+                // const collegeWidth = roboto.widthOfTextAtSize(college, 28);
+                const collegeWidth = hel.widthOfTextAtSize(college, 28);
 
                 pages[0].drawText(college, {
                     x: (pageWidth / 2) - collegeWidth / 2,
                     y: 330,
                     size: 28,
-                    font: roboto,
-                    // font: hel,
+                    // font: roboto,
+                    font: hel,
                     color: rgb(0.61176, 0.22353, 0.29412)
                 })
                 pages[0].drawText(courseDuration + '', {
@@ -105,13 +105,13 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
                     color: rgb(0.61176, 0.22353, 0.29412)
                 })
 
-                const courseWidth = roboto.widthOfTextAtSize(courseName, 28);
-                // const courseWidth = hel.widthOfTextAtSize(courseName, 28);
+                // const courseWidth = roboto.widthOfTextAtSize(courseName, 28);
+                const courseWidth = hel.widthOfTextAtSize(courseName, 28);
                 pages[0].drawText(courseName, {
                     x: (pageWidth / 2) - courseWidth / 2,
                     y: 250,
                     size: 28,
-                    font: roboto,
+                    // font: roboto,
                     font: hel,
                     color: rgb(0.61176, 0.22353, 0.29412)
                 })
@@ -147,8 +147,8 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
                         x: 80,
                         y: 40,
                         size: 82,
-                        font: blackOps,
-                        // font: hel,
+                        // font: blackOps,
+                        font: hel,
                         color: rgb(0, 0, 0),
                         opacity: 0.2,
                         rotate: degrees(33),
@@ -158,8 +158,8 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
                         x: 80,
                         y: 480,
                         size: 82,
-                        font: blackOps,
-                        // font: hel,
+                        // font: blackOps,
+                        font: hel,
                         color: rgb(0, 0, 0),
                         opacity: 0.2,
                         rotate: degrees(-33),
@@ -184,7 +184,7 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
 
             await setCertificateURI(docUrl);
 
-
+            document.querySelector('.download-link').href = docUrl;
         }
 
         generateCerifiacte();
@@ -213,7 +213,7 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
                     <p>Current Percentage = <span className={`${(completedTask / totalTask * 100) >= 75 ? 'success' : 'danger'}`}>{(completedTask / totalTask * 100).toFixed(2)}%</span></p>
                 </div>
                 <div className="certificate-download">
-                    <a href="." className='download-link'>Download Certificate</a>
+                    <a href="/" className='download-link' download={true}>Download Certificate</a>
                     <Button icon='fi fi-rr-template' label={(completedTask / totalTask * 100) >= 75 ? 'Download Certificate' : 'Download Dummy Certificate'} onClick={downloadCertificate} />
                 </div>
             </div>
