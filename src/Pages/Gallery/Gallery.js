@@ -25,6 +25,7 @@ export default function Gallery() {
             }
             setImages(arr);
             setIsLoading(false);
+            setError('')
         }
         fetchImages();
     }, [])

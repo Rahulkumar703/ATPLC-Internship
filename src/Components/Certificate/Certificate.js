@@ -1,10 +1,8 @@
-import { PDFDocument, degrees, rgb, StandardFonts } from 'pdf-lib'
-import fontkit from '@pdf-lib/fontkit';
+import { PDFDocument, degrees, rgb, StandardFonts, fontkit } from 'pdf-lib'
 import Button from '../Button/Button'
-import { saveAs } from 'file-saver';
 import './Certificate.css'
 import { useEffect, useState } from 'react'
-
+import Loader from '../Loader/Loader'
 
 
 
@@ -13,6 +11,7 @@ import { useEffect, useState } from 'react'
 export default function Certificate({ completedTask, totalTask, courseName, courseId }) {
 
     const [certificateURI, setCertificateURI] = useState('');
+    const [loading, setLoading] = useState(true);
 
 
 
@@ -23,11 +22,7 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
             const courseDuration = JSON.parse(localStorage.getItem('courses')).filter(course => course.Courses_id === parseInt(courseId))[0].Courses__Course_Duration;
             const userId = JSON.parse(localStorage.getItem('user')).userId
 
-
             const templateUrl = '/Assets/Certificate/template.pdf'
-            const blackOpsUrl = '/Assets/Certificate/blackOps.ttf'
-            const blackAddUrl = '/Assets/Certificate/blackAdd.ttf'
-            const robotoUrl = '/Assets/Certificate/Roboto.ttf'
             const signUrl = '/Assets/Certificate/sign.png'
             const qrUrl = `https://quickchart.io/qr?text=https%3A%2F%2Fatplc.in%2Fdashboard%2F${userId}%2F${courseId}&dark=4a4e5a&ecLevel=H&margin=0&size=70&centerImageUrl=https://www.atplc.in/Assets/Images/atplc_logo.png`;
 
@@ -40,9 +35,6 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
                         "Accept": "application/octet-stream",
                     }
                 }).then(res => res.arrayBuffer());
-                const existingFontBytes = await fetch(blackOpsUrl).then(res => res.arrayBuffer());
-                const existingFontBytes1 = await fetch(blackAddUrl).then(res => res.arrayBuffer());
-                const existingFontBytes2 = await fetch(robotoUrl).then(res => res.arrayBuffer());
                 const existingSignBytes = await fetch(signUrl).then(res => res.arrayBuffer());
                 const existingQRBytes = await fetch(qrUrl).then(res => res.arrayBuffer());
 
@@ -52,11 +44,7 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
                 pdfDoc.registerFontkit(fontkit)
 
 
-                const hel = await pdfDoc.embedStandardFont(StandardFonts.Helvetica);
-
-                // const blackOps = await pdfDoc.embedFont(existingFontBytes);
-                // const blackAdd = await pdfDoc.embedFont(existingFontBytes1);
-                // const roboto = await pdfDoc.embedFont(existingFontBytes2);
+                const romanFont = await pdfDoc.embedStandardFont(StandardFonts.TimesRomanBold);
 
                 const sign = await pdfDoc.embedPng(existingSignBytes)
                 sign.width = 150;
@@ -70,14 +58,12 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
 
                 let { fullName, college } = JSON.parse(localStorage.getItem('user'))
 
-                // const nameWidth = blackOps.widthOfTextAtSize(fullName, 50);
-                const nameWidth = hel.widthOfTextAtSize(fullName, 50);
+                const nameWidth = romanFont.widthOfTextAtSize(fullName, 50);
                 pages[0].drawText(fullName, {
                     x: (pageWidth / 2) - nameWidth / 2,
                     y: 410,
                     size: 50,
-                    // font: blackOps,
-                    font: hel,
+                    font: romanFont,
                     color: rgb(0, 0, 0)
                 })
 
@@ -85,34 +71,30 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
                     college = 'Update College name in Profile'
                 }
 
-                // const collegeWidth = roboto.widthOfTextAtSize(college, 28);
-                const collegeWidth = hel.widthOfTextAtSize(college, 28);
+                const collegeWidth = romanFont.widthOfTextAtSize(college, 28);
 
                 pages[0].drawText(college, {
                     x: (pageWidth / 2) - collegeWidth / 2,
                     y: 330,
                     size: 28,
-                    // font: roboto,
-                    font: hel,
+                    font: romanFont,
                     color: rgb(0.61176, 0.22353, 0.29412)
                 })
                 pages[0].drawText(courseDuration + '', {
                     x: 486,
                     y: 305.5,
-                    size: 32,
+                    size: 20,
                     // font: blackAdd,
-                    font: hel,
+                    font: romanFont,
                     color: rgb(0.61176, 0.22353, 0.29412)
                 })
 
-                // const courseWidth = roboto.widthOfTextAtSize(courseName, 28);
-                const courseWidth = hel.widthOfTextAtSize(courseName, 28);
+                const courseWidth = romanFont.widthOfTextAtSize(courseName, 28);
                 pages[0].drawText(courseName, {
                     x: (pageWidth / 2) - courseWidth / 2,
                     y: 250,
                     size: 28,
-                    // font: roboto,
-                    font: hel,
+                    font: romanFont,
                     color: rgb(0.61176, 0.22353, 0.29412)
                 })
 
@@ -129,37 +111,35 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
                         y: 55,
                     })
 
-                    const seprator = '/'
-                    const date = new Date().getDate() + seprator + (new Date().getMonth() + 1) + seprator + new Date().getFullYear();
+                    const seprator = '-'
+                    const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                    const date = new Date().getDate() + seprator + month[new Date().getMonth()] + seprator + new Date().getFullYear();
 
                     pages[0].drawText(date, {
                         x: 445,
-                        y: 20,
-                        size: 16,
-                        // font: blackAdd,
-                        font: hel,
+                        y: 19,
+                        size: 10,
+                        font: romanFont,
                         color: rgb(0, 0, 0)
                     })
                 }
                 else {
 
                     pages[0].drawText("Dummy Certificate", {
-                        x: 80,
-                        y: 40,
+                        x: 160,
+                        y: 100,
                         size: 82,
-                        // font: blackOps,
-                        font: hel,
+                        font: romanFont,
                         color: rgb(0, 0, 0),
                         opacity: 0.2,
-                        rotate: degrees(33),
+                        rotate: degrees(30),
                     })
 
                     pages[0].drawText("Dummy Certificate", {
-                        x: 80,
-                        y: 480,
+                        x: 120,
+                        y: 440,
                         size: 82,
-                        // font: blackOps,
-                        font: hel,
+                        font: romanFont,
                         color: rgb(0, 0, 0),
                         opacity: 0.2,
                         rotate: degrees(-33),
@@ -169,7 +149,6 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
                 console.log(error);
             }
 
-            // const uri = await pdfDoc.saveAsBase64({ dataUri: true })
 
 
             const pdf = await pdfDoc.save();
@@ -178,24 +157,21 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
             const blob = new Blob([bytes], { type: "application/pdf" });
             const docUrl = URL.createObjectURL(blob);
 
-            console.log(blob, docUrl);
-
-            localStorage.setItem('blob', JSON.stringify({ blob, docUrl }))
-
             await setCertificateURI(docUrl);
+            setLoading(false);
 
-            document.querySelector('.download-link').href = docUrl;
+
         }
 
         generateCerifiacte();
-
-    }, [courseId, courseName, completedTask, totalTask])
+    }, [completedTask, courseId, courseName, totalTask])
 
 
     async function downloadCertificate() {
-        saveAs(certificateURI, 'ATPLC ' + courseName + ' Certificate.pdf', { autoBom: true })
-
-        console.log(JSON.parse(localStorage.getItem('blob')));
+        const a = document.createElement('a')
+        a.href = certificateURI;
+        document.body.appendChild(a);
+        a.click();
     }
 
     return (
@@ -212,10 +188,14 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
                 <div className="current-percentage">
                     <p>Current Percentage = <span className={`${(completedTask / totalTask * 100) >= 75 ? 'success' : 'danger'}`}>{(completedTask / totalTask * 100).toFixed(2)}%</span></p>
                 </div>
-                <div className="certificate-download">
-                    <a href="/" className='download-link' download={true}>Download Certificate</a>
-                    <Button icon='fi fi-rr-template' label={(completedTask / totalTask * 100) >= 75 ? 'Download Certificate' : 'Download Dummy Certificate'} onClick={downloadCertificate} />
-                </div>
+                {
+                    !loading ?
+                        <div className="certificate-download">
+                            <Button icon='fi fi-rr-template' label={(completedTask / totalTask * 100) >= 75 ? 'Download Certificate' : 'Download Dummy Certificate'} onClick={downloadCertificate} />
+                        </div>
+                        :
+                        <Loader />
+                }
             </div>
         </section>
     )

@@ -115,7 +115,6 @@ export default function Enroll() {
                         courseName: courses.Course_Name,
                     };
                     const result = await axios.post(`${process.env.REACT_APP_BACKEND_PATH}/payment-success`, data);
-
                     setMessage(result.data.res);
                 },
                 notes: {
