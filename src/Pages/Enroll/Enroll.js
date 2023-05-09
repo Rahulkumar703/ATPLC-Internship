@@ -114,8 +114,10 @@ export default function Enroll() {
                         courseId: courses.id,
                         courseName: courses.Course_Name,
                     };
+                    console.log('data sending from frontend-', data);
                     const result = await axios.post(`${process.env.REACT_APP_BACKEND_PATH}/payment-success`, data);
-                    setMessage(result.data.res);
+                    console.log('data coming back from backend-', result.data);
+                    // setMessage(result.data.res);
                 },
                 notes: {
                     courseId: courses.id,
