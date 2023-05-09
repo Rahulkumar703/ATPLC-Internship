@@ -5,12 +5,54 @@ import Button from '../../Components/Button/Button';
 import Input from '../../Controller/Input/Input';
 import './Task.css'
 
+function StatusLabel({ taskStatus }) {
+    if (taskStatus === "Under Review") {
+        return (
+            <div className="status-label info row">
+                <div className="icon">
+                    <i className="fi fi-rr-time-forward"></i>
+                </div>
+                <div className="text">Under Review</div>
+            </div>
+        );
+    } else if (taskStatus === "Rejected") {
+        return (
+            <div className="status-label danger row">
+                <div className="icon">
+                    <i className="fi fi-rr-ban"></i>
+                </div>
+                <div className="text">Rejected</div>
+            </div>
+        );
+    }
+    else if (taskStatus === "Approved") {
+        return (
+            <div className="status-label success row">
+                <div className="icon">
+                    <i className="fi fi-rr-badge-check"></i>
+                </div>
+                <div className="text">Verified</div>
+            </div>
+        );
+    }
+    else {
+        return (
+            <div className="status-label pending row">
+                <div className="icon">
+                    <i className="fi fi-rr-cross-circle"></i>
+                </div>
+                <div className="text">Not Submitted</div>
+            </div>
+        );
+    }
+}
+
 export default function Task() {
 
     const { state } = useLocation();
     let { courseId, Task_No, Task_Topic, Task_Content, Task_Status, Code_Link, Remarks, Output_Link } = state;
 
-    const [taskStatus, setTaskStatus] = useState('');
+    const [taskStatus, setTaskStatus] = useState(Task_Status);
     const [remarks, setRemarks] = useState('');
 
     useEffect(() => {
@@ -19,13 +61,15 @@ export default function Task() {
         window.scrollTo(0, 0);
     }, [Task_Content, Task_Topic])
 
+
+
     useEffect(() => {
-        setTaskStatus(Task_Status);
         if (taskStatus === 'Under Review') {
-            setRemarks('')
+            setRemarks('');
         }
         else setRemarks(Remarks);
     }, [Task_Status, Remarks, taskStatus])
+
 
 
     const [isLoading, setIsLoading] = useState(false);
@@ -33,12 +77,6 @@ export default function Task() {
         {
             codeLink: Code_Link || '',
             outputLink: Output_Link || ''
-        }
-    );
-    const [showEdit, setShowEdit] = useState(
-        {
-            codeLink: true,
-            outputLink: true
         }
     );
 
@@ -64,13 +102,13 @@ export default function Task() {
                     Code_Link: link.codeLink,
                     Output_Link: link.outputLink
                 })
-                setMessage(data.response)
+                setMessage(data.response);
             } catch (e) {
                 setMessage(e.message);
             }
             finally {
                 setIsLoading(false);
-                setTaskStatus("Under Review");
+                setTaskStatus('Under Review');
             }
         }
         setIsLoading(false);
@@ -81,46 +119,6 @@ export default function Task() {
     }
 
 
-    let statusLabel;
-    if (taskStatus === "Under Review") {
-        statusLabel = (
-            <div className="status-label info row">
-                <div className="icon">
-                    <i className="fi fi-rr-time-forward"></i>
-                </div>
-                <div className="text">Under Review</div>
-            </div>
-        );
-    } else if (taskStatus === "Rejected") {
-        statusLabel = (
-            <div className="status-label danger row">
-                <div className="icon">
-                    <i className="fi fi-rr-ban"></i>
-                </div>
-                <div className="text">Rejected</div>
-            </div>
-        );
-    }
-    else if (taskStatus === "Approved") {
-        statusLabel = (
-            <div className="status-label success row">
-                <div className="icon">
-                    <i className="fi fi-rr-badge-check"></i>
-                </div>
-                <div className="text">Verified</div>
-            </div>
-        );
-    }
-    else {
-        statusLabel = (
-            <div className="status-label pending row">
-                <div className="icon">
-                    <i className="fi fi-rr-cross-circle"></i>
-                </div>
-                <div className="text">Not Submitted</div>
-            </div>
-        );
-    }
 
 
     return (
@@ -140,7 +138,7 @@ export default function Task() {
                 </div>
                 <div className="task-submisssion">
                     <div className="submission-status-remarks">
-                        {statusLabel}
+                        <StatusLabel taskStatus={taskStatus} />
                         {
                             remarks &&
                             <div className="remarks">
@@ -170,13 +168,7 @@ export default function Task() {
                                 name="codeLink"
                                 value={link.codeLink}
                                 onChange={handelChange}
-                                disabled={showEdit.codeLink}
                             />
-                            <div className="edit" onClick={() => setShowEdit({ ...showEdit, codeLink: !showEdit.codeLink })}>
-                                <div className="icon">
-                                    {showEdit.codeLink ? <i className="fi fi-rr-edit"></i> : <i className="fi fi-rr-check"></i>}
-                                </div>
-                            </div>
                         </div>
                         <h4 className='input-heading'>Enter your Task Webpage/Task Output Link</h4>
                         <div className="input-box-container">
@@ -188,13 +180,7 @@ export default function Task() {
                                 name="outputLink"
                                 value={link.outputLink}
                                 onChange={handelChange}
-                                disabled={showEdit.outputLink}
                             />
-                            <div className="edit" onClick={() => setShowEdit({ ...showEdit, outputLink: !showEdit.outputLink })}>
-                                <div className="icon">
-                                    {showEdit.outputLink ? <i className="fi fi-rr-edit"></i> : <i className="fi fi-rr-check"></i>}
-                                </div>
-                            </div>
                         </div>
                         {
                             (link.codeLink !== Code_Link || link.outputLink !== Output_Link)

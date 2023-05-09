@@ -2,14 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './TaskCard.css';
 
-export default function TaskCard({ courseId, Task_No, Task_Id, Task_Topic, Task_Content, Task_Status, Code_Link, Output_Link, Remarks }) {
-
-    const taskNumber = Task_No < 10 ? `0${Task_No}` : Task_No;
-
-
-    let statusLabel;
-    if (Task_Status === "Under Review") {
-        statusLabel = (
+function StatusLabel({ taskStatus }) {
+    if (taskStatus === "Under Review") {
+        return (
             <div className="status-label info row">
                 <div className="icon">
                     <i className="fi fi-rr-time-forward"></i>
@@ -17,8 +12,8 @@ export default function TaskCard({ courseId, Task_No, Task_Id, Task_Topic, Task_
                 <div className="text">Under Review</div>
             </div>
         );
-    } else if (Task_Status === "Rejected") {
-        statusLabel = (
+    } else if (taskStatus === "Rejected") {
+        return (
             <div className="status-label danger row">
                 <div className="icon">
                     <i className="fi fi-rr-ban"></i>
@@ -27,8 +22,8 @@ export default function TaskCard({ courseId, Task_No, Task_Id, Task_Topic, Task_
             </div>
         );
     }
-    else if (Task_Status === "Approved") {
-        statusLabel = (
+    else if (taskStatus === "Approved") {
+        return (
             <div className="status-label success row">
                 <div className="icon">
                     <i className="fi fi-rr-badge-check"></i>
@@ -38,7 +33,7 @@ export default function TaskCard({ courseId, Task_No, Task_Id, Task_Topic, Task_
         );
     }
     else {
-        statusLabel = (
+        return (
             <div className="status-label pending row">
                 <div className="icon">
                     <i className="fi fi-rr-cross-circle"></i>
@@ -47,6 +42,12 @@ export default function TaskCard({ courseId, Task_No, Task_Id, Task_Topic, Task_
             </div>
         );
     }
+}
+export default function TaskCard({ courseId, Task_No, Task_Id, Task_Topic, Task_Content, Task_Status, Code_Link, Output_Link, Remarks }) {
+
+    const taskNumber = Task_No < 10 ? `0${Task_No}` : Task_No;
+
+
 
     if (Task_Id !== undefined)
 
@@ -61,11 +62,12 @@ export default function TaskCard({ courseId, Task_No, Task_Id, Task_Topic, Task_
                 </div>
 
                 <div className="task-card-status">
-                    {statusLabel}
+                    <StatusLabel taskStatus={Task_Status} />
                 </div>
 
             </Link>
         );
+
     else {
         return (
 
@@ -78,7 +80,7 @@ export default function TaskCard({ courseId, Task_No, Task_Id, Task_Topic, Task_
                 </div>
 
                 <div className="task-card-status">
-                    {statusLabel}
+                    <StatusLabel taskStatus={Task_Status} />
                 </div>
                 <div className="task-links-container">
                     {

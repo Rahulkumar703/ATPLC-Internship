@@ -48,7 +48,14 @@ export default function PublicDashborad() {
                 });
                 setTaskData(data);
             } catch (e) {
-                setError(e);
+                if (e.response.status === 500)
+                    setError({
+                        response: {
+                            statusText: "Invalid Task Link",
+                            status: 400
+                        }
+                    });
+                else setError(e);
             }
             finally {
                 setIsloading(false);
