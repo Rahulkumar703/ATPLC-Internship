@@ -56,7 +56,8 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
                 const pageWidth = pages[0].getWidth();
 
 
-                let { fullName, college } = JSON.parse(localStorage.getItem('user'))
+                let { fullName, college } = JSON.parse(localStorage.getItem('user'));
+
 
                 const nameWidth = romanFont.widthOfTextAtSize(fullName, 50);
                 pages[0].drawText(fullName, {
@@ -112,9 +113,9 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
                     })
 
                     const seprator = '-'
-                    const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-                    const date = new Date().getDate() + seprator + month[new Date().getMonth()] + seprator + new Date().getFullYear();
-
+                    const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                    const dateObj = new Date();
+                    const date = dateObj.getDate() + seprator + month[dateObj.getMonth()] + seprator + dateObj.getFullYear();
                     pages[0].drawText(date, {
                         x: 445,
                         y: 19,
@@ -170,6 +171,8 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
     async function downloadCertificate() {
         const a = document.createElement('a')
         a.href = certificateURI;
+        // a.download = "ATPLC " + courseName + " Certificate.pdf";
+        a.target = "_blank";
         document.body.appendChild(a);
         a.click();
     }
