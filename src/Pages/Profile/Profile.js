@@ -43,7 +43,9 @@ export default function Profile() {
             setProfile(data.response[0]);
             const localUser = JSON.parse(localStorage.getItem('user'));
 
-            localUser.college = data?.response[0]?.College_Name
+            localUser.college = data?.response[0]?.College_Name;
+            localUser.fullName = data?.response[0]?.Name;
+
             localStorage.setItem('user', JSON.stringify(localUser))
 
         } catch (error) {
