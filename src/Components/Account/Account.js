@@ -39,14 +39,26 @@ export default function Account({ accountRef, setHamburgerStatus }) {
                     <>
                         <div className="header-profile row" ref={popUpRef} onClick={togglePopUp}>
                             <div className="profile-pic">
-                                {JSON.parse(localStorage.getItem('user')).fullName[0]}
+                                {
+                                    JSON.parse(localStorage.getItem('user'))?.fullName
+                                        ?
+                                        JSON.parse(localStorage.getItem('user'))?.fullName[0]
+                                        : ''
+                                }
                             </div>
                             <div className="profile-details col">
                                 <div className="profile-name">
-                                    {JSON.parse(localStorage.getItem('user')).fullName.split(' ')[0]}
+                                    {
+                                        JSON.parse(localStorage.getItem('user'))?.fullName
+                                            ?
+                                            JSON.parse(localStorage.getItem('user'))?.fullName?.split(' ')[0]
+                                            : ''
+                                    }
                                 </div>
                                 <div className="profile-email">
-                                    {JSON.parse(localStorage.getItem('user'))?.email}
+                                    {
+                                        JSON.parse(localStorage.getItem('user'))?.email || ''
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -56,7 +68,7 @@ export default function Account({ accountRef, setHamburgerStatus }) {
                                     <div className="icon">
                                         <i className="fi fi-rr-id-badge"></i>
                                     </div>
-                                    <div className="text">{JSON.parse(localStorage.getItem('user')).username}</div>
+                                    <div className="text">{JSON.parse(localStorage.getItem('user'))?.username}</div>
                                 </li>
                                 <li>
                                     <Link to="/profile" onClick={scrollToTop} >

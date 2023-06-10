@@ -43,8 +43,21 @@ export default function Profile() {
             setProfile(data.response[0]);
             const localUser = JSON.parse(localStorage.getItem('user'));
 
-            localUser.college = data?.response.length ? profile.data?.response[0]?.College_Name : "";
-            localUser.fullName = data?.response.length ? profile.data?.response[0]?.Name : "";
+            if (localUser.college === '') {
+                localUser.college = data?.response.length
+                    ?
+                    profile.data?.response[0]?.College_Name
+                    :
+                    "";
+            }
+            if (localUser.fullName === '') {
+                localUser.fullName = data?.response.length
+                    ?
+                    profile.data?.response[0]?.Name
+                    :
+                    "";
+            }
+
 
             localStorage.setItem('user', JSON.stringify(localUser))
 

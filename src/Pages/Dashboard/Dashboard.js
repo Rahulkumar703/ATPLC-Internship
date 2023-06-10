@@ -21,7 +21,7 @@ export default function Dashboard() {
 
     const [isLoading, setIsloading] = useState(true);
     const [taskData, setTaskData] = useState([]);
-    const [completedTask, setCompletedTask] = useState(0);
+    const [completedTask, setCompletedTask] = useState([]);
 
 
     useEffect(() => {
@@ -50,10 +50,8 @@ export default function Dashboard() {
                     uniqueSubmissions.push(item);
                 }
             });
-            console.log(uniqueSubmissions);
 
-            let count = uniqueSubmissions.length;
-            setCompletedTask(count);
+            setCompletedTask(uniqueSubmissions);
         }
     }, [taskData]);
 
@@ -98,13 +96,13 @@ export default function Dashboard() {
                             <Card
                                 heading='Verified Submission'
                                 icon="fi fi-rr-list-check"
-                                obtainedScore={completedTask}
+                                obtainedScore={completedTask.length}
                                 totalScore={taskData.Tasks?.length || 0}
                             />
                             <Card
                                 heading='Pending Tasks'
                                 icon="fi fi-rr-info"
-                                obtainedScore={taskData.Tasks?.length - completedTask}
+                                obtainedScore={taskData.Tasks?.length - completedTask.length}
                                 totalScore={taskData.Tasks?.length || 0}
                             />
                         </div>
@@ -137,9 +135,11 @@ export default function Dashboard() {
                         <div className="task-list-container grid">
                             {
                                 taskData?.Tasks?.map(task => {
-                                    const submittedTask = taskData.Submissions?.find(sub => {
+                                    const submittedTask = completedTask?.find(sub => {
                                         return sub.Task_No_id === task.id;
                                     });
+                                    console.log(submittedTask);
+
                                     return (
                                         <TaskCard
                                             key={task.Task_No}
@@ -162,7 +162,7 @@ export default function Dashboard() {
                         <CourseFeedback />
 
                         <Certificate
-                            completedTask={completedTask}
+                            completedTask={completedTask.length}
                             totalTask={taskData?.Tasks.length}
                             courseName={params?.courseName}
                             courseId={params?.id}
