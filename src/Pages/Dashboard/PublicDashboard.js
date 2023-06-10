@@ -16,7 +16,9 @@ export default function PublicDashborad() {
 
     const [isLoading, setIsloading] = useState(true);
     const [taskData, setTaskData] = useState([]);
-    const [completedTask, setCompletedTask] = useState(0);
+    const [completedTask, setCompletedTask] = useState([]);
+    const [profile, setProfile] = useState({});
+
 
 
 
@@ -28,13 +30,19 @@ export default function PublicDashborad() {
 
     useEffect(() => {
         if (taskData?.Submissions) {
-            let count = 0;
-            taskData.Submissions.forEach(sub => {
-                if (sub.Task_Status === "Approved") {
-                    count++;
+            const approvedTasks = taskData.Submissions.filter(sub => {
+                return sub.Task_Status === "Approved";
+            });
+
+            var uniqueSubmissions = [];
+            approvedTasks.forEach(function (item) {
+                var i = uniqueSubmissions.findIndex(task => task.Task_No_id === item.Task_No_id);
+                if (i <= -1) {
+                    uniqueSubmissions.push(item);
                 }
             });
-            setCompletedTask(count);
+
+            setCompletedTask(uniqueSubmissions);
         }
     }, [taskData]);
 
@@ -46,6 +54,17 @@ export default function PublicDashborad() {
                     course: courseId,
                     Username: userId
                 });
+
+                const profile = await axios.post(`${process.env.REACT_APP_BACKEND_PATH}/profile`, {
+                    Username: userId,
+                })
+                if (profile.data.response) {
+                    setProfile({
+                        Name: profile.data.response[0].Name,
+                        College: profile.data.response[0].College_Name,
+                        Branch: profile.data.response[0].Branch
+                    })
+                }
                 setTaskData(data);
             } catch (e) {
                 if (e.response.status === 500)
@@ -70,7 +89,16 @@ export default function PublicDashborad() {
             :
             <section className='page dashboard-page'>
                 <div className="page-heading">
-                    <h3>Dasboard</h3>
+                    <h3 className='user-name'>
+                        {
+                            profile.Name
+                        }
+                    </h3>
+                    <p className='college-name'>
+                        {
+                            profile.College
+                        }
+                    </p>
                 </div>
                 {
                     error === '' ?
@@ -79,13 +107,13 @@ export default function PublicDashborad() {
                                 <Card
                                     heading='Verified Submission'
                                     icon="fi fi-rr-list-check"
-                                    obtainedScore={completedTask}
+                                    obtainedScore={completedTask.length}
                                     totalScore={taskData.Tasks?.length || 0}
                                 />
                                 <Card
                                     heading='Pending Tasks'
                                     icon="fi fi-rr-info"
-                                    obtainedScore={taskData.Tasks?.length - completedTask}
+                                    obtainedScore={taskData.Tasks?.length - completedTask.length}
                                     totalScore={taskData.Tasks?.length || 0}
                                 />
                             </div>

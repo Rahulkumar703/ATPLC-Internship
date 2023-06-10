@@ -10,6 +10,15 @@
     margin: 1rem 0;
 }
 
+.dashboard-page .page-heading .user-name {
+    text-align: center;
+}
+
+.dashboard-page .page-heading .college-name {
+    text-align: center;
+    opacity: .7;
+}
+
 .page-body .page-body-heading {
     font-size: var(--heading);
     align-self: center;
