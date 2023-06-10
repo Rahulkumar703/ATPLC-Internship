@@ -50,13 +50,14 @@ export default function Login() {
                 // getting profile
                 const profile = await axios.post(`${process.env.REACT_APP_BACKEND_PATH}/profile`, {
                     Username: data.user_id[0].id,
-                })
+                });
+
 
                 localStorage.setItem('user', JSON.stringify({
                     userId: data.user_id[0].id,
-                    username: loginDetails.Username.toUpperCase(),
-                    fullName: profile.data?.response[0]?.Name,
-                    college: profile.data?.response[0]?.College_Name
+                    username: loginDetails?.Username?.toUpperCase(),
+                    fullName: profile.data?.response.length ? profile.data?.response[0]?.Name : "",
+                    college: profile.data?.response.length ? profile.data?.response[0]?.College_Name : ""
                 }));
 
                 window.location.assign('/my-courses');

@@ -34,7 +34,9 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
                     headers: {
                         "Accept": "application/octet-stream",
                     }
-                }).then(res => res.arrayBuffer());
+                }).then(res => {
+                    return res.arrayBuffer();
+                });
                 const existingSignBytes = await fetch(signUrl).then(res => res.arrayBuffer());
                 const existingQRBytes = await fetch(qrUrl).then(res => res.arrayBuffer());
 
@@ -57,7 +59,6 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
 
 
                 let { fullName, college } = JSON.parse(localStorage.getItem('user'));
-
 
                 const nameWidth = romanFont.widthOfTextAtSize(fullName, 50);
                 pages[0].drawText(fullName, {

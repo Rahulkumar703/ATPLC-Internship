@@ -38,12 +38,21 @@ export default function Dashboard() {
 
     useEffect(() => {
         if (taskData?.Submissions) {
-            let count = 0;
-            taskData.Submissions.forEach(sub => {
-                if (sub.Task_Status === "Approved") {
-                    count++;
+
+            const approvedTasks = taskData.Submissions.filter(sub => {
+                return sub.Task_Status === "Approved";
+            });
+
+            var uniqueSubmissions = [];
+            approvedTasks.forEach(function (item) {
+                var i = uniqueSubmissions.findIndex(task => task.Task_No_id === item.Task_No_id);
+                if (i <= -1) {
+                    uniqueSubmissions.push(item);
                 }
             });
+            console.log(uniqueSubmissions);
+
+            let count = uniqueSubmissions.length;
             setCompletedTask(count);
         }
     }, [taskData]);
