@@ -43,7 +43,7 @@ export default function Profile() {
             setProfile(data.response[0]);
             const localUser = JSON.parse(localStorage.getItem('user'));
 
-            localUser.college = data.response[0].College_Name
+            localUser.college = data?.response[0]?.College_Name
             localStorage.setItem('user', JSON.stringify(localUser))
 
         } catch (error) {
@@ -87,7 +87,7 @@ export default function Profile() {
                         <div className="update-field">
                             <div className="profile-img">
                                 {
-                                    profile.Profile_Preview && profile.Profile_Preview !== '' ?
+                                    profile?.Profile_Preview && profile?.Profile_Preview !== '' ?
                                         <img src={profile.Profile_Preview} alt="profile-pic"
                                         />
                                         :
@@ -116,7 +116,7 @@ export default function Profile() {
                             <Input
                                 id='full-name'
                                 label='Name'
-                                value={profile.Name}
+                                value={profile?.Name}
                                 name='Name'
                                 icon='fi fi-rr-id-card-clip-alt'
                                 onChange={handelChange}
@@ -126,7 +126,7 @@ export default function Profile() {
                             <Input
                                 id='college'
                                 label='College'
-                                value={profile.College_Name}
+                                value={profile?.College_Name}
                                 name='College_Name'
                                 icon='fi fi-rr-graduation-cap'
                                 onChange={handelChange}
@@ -136,7 +136,7 @@ export default function Profile() {
                             <Input
                                 id='branch'
                                 label='Branch'
-                                value={profile.Branch}
+                                value={profile?.Branch}
                                 name='Branch'
                                 icon='fi fi-rr-code-branch'
                                 onChange={handelChange}
@@ -144,7 +144,7 @@ export default function Profile() {
                             <Input
                                 id='batch'
                                 label='Batch'
-                                value={profile.Batch}
+                                value={profile?.Batch}
                                 name='Batch'
                                 icon='fi fi-rr-badge'
                                 onChange={handelChange}
@@ -154,7 +154,7 @@ export default function Profile() {
                             <Input
                                 id='hometown'
                                 label='Hometown'
-                                value={profile.Hometown}
+                                value={profile?.Hometown}
                                 name='Hometown'
                                 icon='fi fi-rr-house-building'
                                 onChange={handelChange}
@@ -162,7 +162,7 @@ export default function Profile() {
                             <Input
                                 id='contact-no'
                                 label='Contact No'
-                                value={profile.Contact_No}
+                                value={profile?.Contact_No}
                                 name='Contact_No'
                                 icon='fi fi-rr-mobile-notch'
                                 onChange={handelChange}
