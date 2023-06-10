@@ -193,12 +193,9 @@ export default function Certificate({ completedTask, totalTask, courseName, cour
                     <p>Current Percentage = <span className={`${(completedTask / totalTask * 100) >= 75 ? 'success' : 'danger'}`}>{(completedTask / totalTask * 100).toFixed(2)}%</span></p>
                 </div>
                 {
-                    !loading ?
-                        <div className="certificate-download">
-                            <Button icon='fi fi-rr-template' label={(completedTask / totalTask * 100) >= 75 ? 'Download Certificate' : 'Download Dummy Certificate'} onClick={downloadCertificate} />
-                        </div>
-                        :
-                        <Loader />
+                    <div className="certificate-download">
+                        <Button icon='fi fi-rr-template' label={(completedTask / totalTask * 100) >= 75 ? 'Download Certificate' : 'Download Dummy Certificate'} onClick={downloadCertificate} isLoading={loading} />
+                    </div>
                 }
             </div>
         </section>
